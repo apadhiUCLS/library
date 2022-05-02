@@ -31,9 +31,9 @@ public class LibraryApplication extends Application {
     public static void switchToOverview(Book book) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("BookOverview.fxml"));
         Parent root = loader.load();
-        Scene myScene = new Scene(root);
         BookOverviewController bookController=loader.getController();
         bookController.setBook(book);
+        Scene myScene = new Scene(root);
         s.setScene(myScene); // the initialize method will get called in here
     }
 

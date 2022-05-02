@@ -19,7 +19,7 @@ public class BookOverviewController {
 
     @FXML
     public void goBack() {
-         LibraryApplication.switchToBrowse();
+         LibraryApplication.switchToMainView();
     }
 
     public void setBook(Book b) {

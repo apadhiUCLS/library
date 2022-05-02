@@ -29,8 +29,8 @@ public class BookOverviewController {
     @FXML
     public void initialize() {
         this.lblTitle.setText(b.getTitle());
-        this.lblAuthor.setText(b.getAuthor());
+        this.lblAuthor.setText(b.getAuthor().toString());
         this.lblBlurb.setText(b.getDescription());
-        this.lblCopies.setText(b.getCopies());
+        //this.lblCopies.setText(b.getCopies());
     }
 }

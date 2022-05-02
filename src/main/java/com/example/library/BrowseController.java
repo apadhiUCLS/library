@@ -21,7 +21,7 @@ public class BrowseController {
     @FXML
     private TableColumn authorColumn;
 
-    private void showPatient(MouseEvent e) throws Exception {
+    private void showOverview(MouseEvent e) throws Exception {
         Book b = (Book) table.getSelectionModel().getSelectedItem();
         LibraryApplication.switchToOverview(b);
     }

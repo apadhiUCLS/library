@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 
+import java.io.IOException;
+
 public class BookOverviewController {
     @FXML
     private Label lblTitle;
@@ -18,7 +20,7 @@ public class BookOverviewController {
     private Book b;
 
     @FXML
-    public void goBack() {
+    public void goBack() throws IOException {
          LibraryApplication.switchToMainView();
     }
 

@@ -21,14 +21,14 @@ public class LibraryApplication extends Application {
         s.show();
     }
 
-    public void switchToMainView() throws IOException {
+    public static void switchToMainView() throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         s.setScene(myScene); // the initialize method will get called in here
     }
 
-    public void switchToOverview(Book book) throws IOException {
+    public static void switchToOverview(Book book) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("BookOverview.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);

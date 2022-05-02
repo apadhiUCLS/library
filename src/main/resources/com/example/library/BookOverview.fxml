@@ -18,5 +18,7 @@
       <Label fx:id="lblAuthor" layoutX="46.0" layoutY="132.0" />
       <Label fx:id="lblBlurb" layoutX="45.0" layoutY="222.0" />
       <Button fx:id="btnBack" layoutX="510.0" layoutY="38.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+      <Label layoutX="46.0" layoutY="294.0" text="Copies:" />
+      <Label fx:id="lblCopies" layoutX="50.0" layoutY="325.0" />
    </children>
 </AnchorPane>

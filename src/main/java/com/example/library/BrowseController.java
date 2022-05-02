@@ -34,7 +34,7 @@ public class BrowseController {
         bookList.add(new Book("Harry Potter", JKRowling));
 
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("column"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         table.setItems(FXCollections.observableList(bookList));
     }
 

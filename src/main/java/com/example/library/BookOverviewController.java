@@ -26,13 +26,12 @@ public class BookOverviewController {
 
     public void setBook(Book b) {
         this.b = b;
+        this.lblTitle.setText(b.getTitle());
+        this.lblAuthor.setText(b.getAuthor().toString());
+        this.lblBlurb.setText(b.getDescription());
     }
 
     @FXML
     public void initialize() {
-        this.lblTitle.setText(b.getTitle());
-        this.lblAuthor.setText(b.getAuthor().toString());
-        this.lblBlurb.setText(b.getDescription());
-        //this.lblCopies.setText(b.getCopies());
     }
 }

@@ -21,13 +21,15 @@ public class BrowseController {
     @FXML
     private TableColumn authorColumn;
 
+    @FXML
     private void showOverview() throws Exception {
         Book b = (Book) table.getSelectionModel().getSelectedItem();
         LibraryApplication.switchToOverview(b);
     }
 
+    @FXML
     public void initialize() {
-        List bookList = new ArrayList();
+        List<Book> bookList = new ArrayList<Book>();
         Author HarperLee = new Author("Harper", "Lee");
         Author JKRowling = new Author("JK", "Rowling");
         bookList.add(new Book("To Kill A MockingBird", HarperLee));

@@ -20,13 +20,22 @@ public class Person {
 
     public void addCheckout(Book book) {
         checkedOutBooks.add(book);
+        if (this.heldBooks.indexOf(book) < 0) {
+            removeHold(book);
+        }
     }
 
     public void addHold(Book book) {
         heldBooks.add(book);
     }
 
+    public void removeHold(Book book) {
+        int index = this.heldBooks.indexOf(book);
+        this.heldBooks.remove(index);
+    }
+
     public void returnBook(Book book) {
         int index = this.checkedOutBooks.indexOf(book);
+        this.checkedOutBooks.remove(index);
     }
 }

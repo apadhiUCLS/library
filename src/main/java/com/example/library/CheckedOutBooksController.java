@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CheckedOutBooksController {
@@ -26,13 +27,18 @@ public class CheckedOutBooksController {
     private ArrayList<Book> checkedOutBooks;
 
     @FXML
-    private void showOverview() throws Exception {
-        Book b = (Book) table.getSelectionModel().getSelectedItem();
-        LibraryApplication.switchToOverview(b);
+    public void goBack() throws IOException {
+        LibraryApplication.switchToMainView();
     }
 
     public void setCheckedOutBooks(ArrayList<Book> checkedOutBooks){
         this.checkedOutBooks = checkedOutBooks;
+    }
+
+    @FXML
+    private void showOverview() throws Exception {
+        Book b = (Book) table.getSelectionModel().getSelectedItem();
+        LibraryApplication.switchToOverview(b);
     }
 
     @FXML

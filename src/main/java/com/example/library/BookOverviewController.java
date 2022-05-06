@@ -19,6 +19,8 @@ public class BookOverviewController {
     private Button btnCheckout;
     @FXML
     private Label lblCopies;
+    @FXML
+    private Button returnButton;
     private Book b;
 
     @FXML
@@ -31,11 +33,17 @@ public class BookOverviewController {
         LibraryApplication.switchToCheckoutView(b.Checkout());
     }
 
+    @FXML
+    public void setReturnButton() throws IOException {
+            LibraryApplication.switchToCheckoutView(b.Return());
+    }
+
     public void setBook(Book b) {
         this.b = b;
         this.lblTitle.setText(b.getTitle());
         this.lblAuthor.setText(b.getAuthor().toString());
         this.lblBlurb.setText(b.getDescription());
+        this.lblCopies.setText(Integer.toString(b.getInventory()));
     }
 
     @FXML

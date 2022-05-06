@@ -59,6 +59,15 @@ public class Book {
         returnDate.setMonth(returnDate.getMonth()+1);
     }
 
+    public Date getReturnDate(){
+        return returnDate;
+    }
+
+    public boolean isOverdue(){
+        Date today=new Date();
+        return returnDate.before(today);
+    }
+
     public int getInventory(){
         return inventory;
     }

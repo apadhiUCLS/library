@@ -16,12 +16,19 @@ public class BookOverviewController {
     @FXML
     private Button btnBack;
     @FXML
+    private Button btnCheckout;
+    @FXML
     private Label lblCopies;
     private Book b;
 
     @FXML
     public void goBack() throws IOException {
          LibraryApplication.switchToMainView();
+    }
+
+    @FXML
+    public void checkout() throws IOException {
+        LibraryApplication.switchToCheckoutView(b.Checkout());
     }
 
     public void setBook(Book b) {

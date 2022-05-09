@@ -14,25 +14,34 @@ public class LibraryApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         s=stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(LibraryApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         s.setTitle("Hello!");
         s.setScene(scene);
         s.show();
     }
 
-    public void switchToMainView() throws IOException {
+    public static void switchToMainView() throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         s.setScene(myScene); // the initialize method will get called in here
     }
 
-    public void switchToOverview(Book book) throws IOException {
+    public static void switchToCheckoutView(String m) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("checkout-page.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        CheckoutController checkoutBook = loader.getController();
+        checkoutBook.setMessage(m);
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
+    public static void switchToOverview(Book book) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("BookOverview.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
-        BookOverviewController bookController=loader.getController();
+        BookOverviewController bookController = loader.getController();
         bookController.setBook(book);
         s.setScene(myScene); // the initialize method will get called in here
     }

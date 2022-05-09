@@ -14,6 +14,10 @@ public class Person {
         this.name = name;
     }
 
+    public ArrayList<Book> getCheckedOutBooks(){
+        return checkedOutBooks;
+    }
+
     public Person(){
         this.checkedOutBooks = new ArrayList<Book>();
         this.heldBooks = new ArrayList<Book>();

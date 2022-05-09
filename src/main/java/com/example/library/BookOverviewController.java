@@ -23,7 +23,7 @@ public class BookOverviewController {
     private Button returnButton;
     private Book b;
 
-    private Person p=new Person();
+    private Person p=new Person("Person");
 
     @FXML
     public void goBack() throws IOException {
@@ -37,7 +37,7 @@ public class BookOverviewController {
 
     @FXML
     public void setReturnButton() throws IOException {
-            LibraryApplication.switchToCheckoutView(b.Return());
+            LibraryApplication.switchToCheckoutView(b.returnBook(p));
     }
 
     public void setBook(Book b) {

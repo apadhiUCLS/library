@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class LibraryApplication extends Application {
@@ -34,6 +35,15 @@ public class LibraryApplication extends Application {
         Scene myScene = new Scene(root);
         CheckoutController checkoutBook = loader.getController();
         checkoutBook.setMessage(m);
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
+    public static void switchToCheckedOutBooks(Person p) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("checked-out-books.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        CheckedOutBooksController listOfBooks = loader.getController();
+        listOfBooks.setCheckedOutBooks(p.getCheckedOutBooks());
         s.setScene(myScene); // the initialize method will get called in here
     }
 

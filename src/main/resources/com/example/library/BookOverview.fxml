@@ -24,5 +24,10 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Button fx:id="returnButton" layoutX="491.0" layoutY="65.0" mnemonicParsing="false" onAction="#setReturnButton" prefHeight="38.0" prefWidth="95.0" text="Return">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

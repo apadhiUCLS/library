@@ -15,6 +15,17 @@ public class CheckoutController {
     private Label message;
 
     @FXML
+    private Label action;
+
+    @FXML
+    private Button backToBrowse;
+
+    @FXML
+    public void goBackToBrowse() throws IOException {
+        LibraryApplication.switchToMainView();
+    }
+
+    @FXML
     public void initialize() {
     }
 
@@ -25,5 +36,10 @@ public class CheckoutController {
 
     public void setMessage(String m){
         this.message.setText(m);
+    }
+
+    public void setLabel(String l){
+        action.setText(l);
+
     }
 }

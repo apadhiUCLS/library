@@ -28,6 +28,15 @@ public class LibraryApplication extends Application {
         s.setScene(myScene); // the initialize method will get called in here
     }
 
+    public static void switchToCheckoutView(String m) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("checkout-page.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        CheckoutController checkoutBook = loader.getController();
+        checkoutBook.setMessage(m);
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
     public static void switchToOverview(Book book) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("BookOverview.fxml"));
         Parent root = loader.load();

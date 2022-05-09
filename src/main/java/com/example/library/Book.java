@@ -85,7 +85,7 @@ public class Book {
             if (p.inHolds(this)){
                 p.removeHold(this);
             }
-            return "Checkout successful!";
+            return "Checkout successful! Inventory remaining is " + inventory + " copies and the return date is " +returnDate;
         } else{
             return "No copies available:(";
         }

@@ -34,7 +34,7 @@ public class LibraryApplication extends Application {
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         CheckoutController checkoutBook = loader.getController();
-        checkoutBook.setMessage(m);
+        checkoutBook.setLabel(m);
         s.setScene(myScene); // the initialize method will get called in here
     }
 

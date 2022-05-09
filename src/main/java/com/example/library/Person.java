@@ -27,7 +27,7 @@ public class Person {
 
     public void addCheckout(Book book) {
         checkedOutBooks.add(book);
-        if (this.heldBooks.indexOf(book) < 0) {
+        if (this.heldBooks.indexOf(book) > 0) {
             removeHold(book);
         }
     }

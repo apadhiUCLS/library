@@ -76,14 +76,14 @@ public class Book {
         inventory= i;
     }
 
-    public String checkout(){
+    public String checkout(Person p){
         if (inventory>0 && checkedOut==false){
             inventory-=1;
-            Person.addCheckout(this);
+            p.addCheckout(this);
             checkedOut=true;
             setReturnDate();
-            if (Person.inHold(this)){
-                Person.removeHold(this);
+            if (p.inHolds(this)){
+                p.removeHold(this);
             }
             return "Checkout successful!";
         } else{
@@ -91,10 +91,10 @@ public class Book {
         }
     }
 
-    public String returnBook(){
+    public String returnBook(Person p){
         if (checkedOut==true){
             inventory +=1;
-            Person.returnBook(this);
+            p.returnBook(this);
             returnDate=null;
             return "Return successful!";
         } else{
@@ -111,11 +111,12 @@ public class Book {
         }
     }
 
-    public String hold(){
+    public String hold(Person p){
         if (inventory==0){
-            Person.addHold(this);
+            p.addHold(this);
+            return "Hold successful";
         } else{
-            return "There are copies available, so you can check this book out!"
+            return "There are copies available, so you can check this book out!";
         }
     }
 

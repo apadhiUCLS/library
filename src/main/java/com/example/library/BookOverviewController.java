@@ -21,6 +21,8 @@ public class BookOverviewController {
     private Label lblCopies;
     private Book b;
 
+    private Person p=new Person();
+
     @FXML
     public void goBack() throws IOException {
          LibraryApplication.switchToMainView();
@@ -28,7 +30,7 @@ public class BookOverviewController {
 
     @FXML
     public void checkout() throws IOException {
-        LibraryApplication.switchToCheckoutView(b.Checkout());
+        LibraryApplication.switchToCheckoutView(b.checkout(p));
     }
 
     public void setBook(Book b) {

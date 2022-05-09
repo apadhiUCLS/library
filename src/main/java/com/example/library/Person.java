@@ -47,7 +47,8 @@ public class Person {
 
     public ArrayList<Book> getHolds() {return heldBooks;}
     public ArrayList<Book> getCheckedOut() {return checkedOutBooks;}
-    public ArrayList<Book> overdue() {return overdue;}
+    public ArrayList<Book> getOverdue() {return overdue;}
+    public String getName() {return name;}
 
     public void returnBook(Book book) {
         if (this.checkedOutBooks.indexOf(book) < 0) {

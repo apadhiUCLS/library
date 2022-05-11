@@ -54,6 +54,8 @@ public class BrowseController {
         copiesColumn.setCellValueFactory(new PropertyValueFactory<>("Inventory"));
         table.setItems(FXCollections.observableList(bookList));
     }
-
+    public void update(){
+        table.refresh();
+    }
 
 }

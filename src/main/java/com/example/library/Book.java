@@ -13,6 +13,7 @@ public class Book {
     private String description;
     private int inventory;
     boolean checkedOut=false;
+    private int numCheckedOut=0;
 
     public Book(String title, Author author){
         this.title=title;
@@ -80,25 +81,28 @@ public class Book {
     }
 
     public String checkout(Person p){
-        if (inventory>0 && checkedOut==false){
+        if (inventory>0){
             inventory-=1;
             p.addCheckout(this);
             checkedOut=true;
+            numCheckedOut+=1;
             setReturnDate();
             if (p.inHolds(this)){
                 p.removeHold(this);
             }
             return "Checkout successful! Inventory remaining is " + inventory + " copies and the return date is " +returnDate;
         } else{
-            return "No copies available:(";
+            hold(p);
+            return "No copies available:( Hold has been placed.";
         }
     }
 
     public String returnBook(Person p){
-        if (checkedOut==true){
+        if (numCheckedOut>0){
             inventory +=1;
             p.returnBook(this);
             returnDate=null;
+            numCheckedOut-=1;
             return "Return successful!";
         } else{
             return "This book was not checked out, so you can't return it:(";
@@ -106,7 +110,7 @@ public class Book {
     }
     public  void serialize() throws IOException {
         try {
-            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.patientdb/settings.ser");
+            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.library/settings.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             out.close();

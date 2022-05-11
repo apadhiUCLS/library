@@ -1,5 +1,8 @@
 package com.example.library;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Date;
 
 public class Book {
@@ -99,6 +102,17 @@ public class Book {
             return "Return successful!";
         } else{
             return "This book was not checked out, so you can't return it:(";
+        }
+    }
+    public  void serialize() throws IOException {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.patientdb/settings.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(this);
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
         }
     }
 

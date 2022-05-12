@@ -46,8 +46,8 @@ public class BrowseController {
         List<Book> bookList = new ArrayList<Book>();
         Author HarperLee = new Author("Harper", "Lee");
         Author JKRowling = new Author("JK", "Rowling");
-        bookList.add(new Book("To Kill A MockingBird", HarperLee, 3));
-        bookList.add(new Book("Harry Potter", JKRowling, 4));
+        bookList.add(new Book("To Kill A MockingBird", HarperLee, 3,1));
+        bookList.add(new Book("Harry Potter", JKRowling, 4,1));
 
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));

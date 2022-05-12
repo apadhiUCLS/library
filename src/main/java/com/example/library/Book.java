@@ -12,8 +12,12 @@ public class Book {
     private Date returnDate;
     private String description;
     private int inventory;
+    private int invPaperback;
+    private int invHardcover;
     boolean checkedOut=false;
-    private int numCheckedOut=0;
+    private int numPaperbackCheckedOut=0;
+    private int numHardcoverCheckedOut=0;
+    private Rating rating;
 
     public Book(String title, Author author){
         this.title=title;
@@ -21,11 +25,14 @@ public class Book {
         this.inventory=0;
     }
 
-    public Book(String title, Author author, int inventory){
+    public Book(String title, Author author, int invPaperback, int invHardcover){
         this.title=title;
         this.author=author;
-        this.inventory=inventory;
+        this.invHardcover=invHardcover;
+        this.invPaperback=invPaperback;
+        inventory=invPaperback+invHardcover;
     }
+
 
     public void setTitle(String t){
         title=t;
@@ -80,34 +87,86 @@ public class Book {
         inventory= i;
     }
 
-    public String checkout(Person p){
-        if (inventory>0){
-            inventory-=1;
+    public int getInvPaperback(){
+        return invPaperback;
+    }
+
+    public void setInvPaperback(int i){
+        invPaperback = i;
+        inventory=invPaperback+invHardcover;
+    }
+
+    public int getInvHardcover(){
+        return invHardcover;
+    }
+
+    public void setInvHardcover(int i){
+        invHardcover= i;
+        inventory=invPaperback+invHardcover;
+    }
+
+    public String checkoutPaperback(Person p){
+        if (invPaperback>0){
+            invPaperback-=1;
             p.addCheckout(this);
             checkedOut=true;
-            numCheckedOut+=1;
+            numPaperbackCheckedOut+=1;
             setReturnDate();
             if (p.inHolds(this)){
                 p.removeHold(this);
             }
-            return "Checkout successful! Inventory remaining is " + inventory + " copies and the return date is " +returnDate;
+            inventory=invPaperback+invHardcover;
+            return "Checkout successful! The return date is " +returnDate;
         } else{
             hold(p);
             return "No copies available:( Hold has been placed.";
         }
     }
 
-    public String returnBook(Person p){
-        if (numCheckedOut>0){
-            inventory +=1;
+    public String checkoutHardcover(Person p){
+        if (invHardcover>0){
+            invHardcover-=1;
+            p.addCheckout(this);
+            checkedOut=true;
+            numHardcoverCheckedOut+=1;
+            setReturnDate();
+            if (p.inHolds(this)){
+                p.removeHold(this);
+            }
+            inventory=invPaperback+invHardcover;
+            return "Checkout successful! The return date is " +returnDate;
+        } else{
+            hold(p);
+            return "No copies available:( Hold has been placed.";
+        }
+    }
+
+    public String returnPaperback(Person p){
+        if (numPaperbackCheckedOut>0){
+            invPaperback +=1;
             p.returnBook(this);
             returnDate=null;
-            numCheckedOut-=1;
+            numPaperbackCheckedOut-=1;
+            inventory=invPaperback+invHardcover;
             return "Return successful!";
         } else{
             return "This book was not checked out, so you can't return it:(";
         }
     }
+
+    public String returnHardcover(Person p){
+        if (numHardcoverCheckedOut>0){
+            invPaperback +=1;
+            p.returnBook(this);
+            returnDate=null;
+            numHardcoverCheckedOut-=1;
+            inventory=invPaperback+invHardcover;
+            return "Return successful!";
+        } else{
+            return "This book was not checked out, so you can't return it:(";
+        }
+    }
+
     public  void serialize() throws IOException {
         try {
             FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.library/settings.ser");

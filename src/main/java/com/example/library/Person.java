@@ -5,6 +5,7 @@ public class Person {
     private ArrayList<Book>  checkedOutBooks;
     private ArrayList<Book>  heldBooks;
     private ArrayList<Book>  overdue;
+    private ArrayList<Book>  favorites;
     private String name;
 
     public Person(String name){
@@ -12,6 +13,18 @@ public class Person {
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
         this.name = name;
+    }
+
+    public void addFavorite(Book b){
+        favorites.add(b);
+    }
+
+    public void removeFavorite(Book b){
+        favorites.remove(b);
+    }
+
+    public ArrayList<Book> getFavorites(){
+        return favorites;
     }
 
     public ArrayList<Book> getCheckedOutBooks(){

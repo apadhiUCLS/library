@@ -24,7 +24,10 @@ public class BrowseController {
     private TableColumn authorColumn;
 
     @FXML
-    private TableColumn copiesColumn;
+    private TableColumn hardcoverColumn;
+
+    @FXML
+    private TableColumn paperbackColumn;
 
     @FXML
     private Button checkedOutBooks;
@@ -51,7 +54,8 @@ public class BrowseController {
 
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        copiesColumn.setCellValueFactory(new PropertyValueFactory<>("Inventory"));
+        hardcoverColumn.setCellValueFactory(new PropertyValueFactory<>("invHardcover"));
+        paperbackColumn.setCellValueFactory(new PropertyValueFactory<>("invPaperback"));
         table.setItems(FXCollections.observableList(bookList));
     }
     public void update(){

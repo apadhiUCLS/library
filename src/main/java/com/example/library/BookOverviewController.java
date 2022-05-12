@@ -16,11 +16,19 @@ public class BookOverviewController {
     @FXML
     private Button btnBack;
     @FXML
-    private Button btnCheckout;
+    private Button btnCheckoutHardcover;
     @FXML
-    private Label lblCopies;
+    private Button btnCheckoutPaperback;
     @FXML
-    private Button returnButton;
+    private Button btnFavorite;
+    @FXML
+    private Label lblHardcoverCopies;
+    @FXML
+    private Label lblPaperbackCopies;
+    @FXML
+    private Button returnButtonHardcover;
+    @FXML
+    private Button returnButtonPaperback;
     private Book b;
 
     private Person p=new Person("Person");
@@ -31,13 +39,29 @@ public class BookOverviewController {
     }
 
     @FXML
-    public void checkout() throws IOException {
-        LibraryApplication.switchToCheckoutView(b.checkout(p));
+    public void checkoutHardcover() throws IOException {
+        LibraryApplication.switchToCheckoutView(b.checkoutHardcover(p));
     }
 
     @FXML
-    public void setReturnButton() throws IOException {
-            LibraryApplication.switchToCheckoutView(b.returnBook(p));
+    public void checkoutPaperback() throws IOException {
+        LibraryApplication.switchToCheckoutView(b.checkoutPaperback(p));
+    }
+
+    @FXML
+    public void setBtnFavorite() throws IOException {
+        b.addFavorite(p);
+        LibraryApplication.switchToFavoriteView(p);
+    }
+
+    @FXML
+    public void returnHardcover() throws IOException {
+            LibraryApplication.switchToCheckoutView(b.returnHardcover(p));
+    }
+
+    @FXML
+    public void returnPaperback() throws IOException {
+        LibraryApplication.switchToCheckoutView(b.returnPaperback(p));
     }
 
     public void setBook(Book b) {
@@ -45,7 +69,8 @@ public class BookOverviewController {
         this.lblTitle.setText(b.getTitle());
         this.lblAuthor.setText(b.getAuthor().toString());
         this.lblBlurb.setText(b.getDescription());
-        this.lblCopies.setText(Integer.toString(b.getInventory()));
+        this.lblPaperbackCopies.setText(Integer.toString(b.getInvPaperback()));
+        this.lblHardcoverCopies.setText(Integer.toString(b.getInvHardcover()));
     }
 
     @FXML

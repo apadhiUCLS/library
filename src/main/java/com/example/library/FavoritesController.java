@@ -26,6 +26,8 @@ public class FavoritesController {
 
     private ArrayList<Book> favoriteBooks;
 
+
+
     @FXML
     public void goBack() throws IOException {
         LibraryApplication.switchToMainView();

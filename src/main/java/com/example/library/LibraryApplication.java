@@ -12,21 +12,27 @@ import java.util.ArrayList;
 
 public class LibraryApplication extends Application {
     private static Stage s;
+    private static Scene home;
+    private static FXMLLoader loader;
     @Override
     public void start(Stage stage) throws IOException {
         s=stage;
         FXMLLoader fxmlLoader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+        loader=fxmlLoader;
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        home=scene;
         s.setTitle("Hello!");
-        s.setScene(scene);
+        s.setScene(home);
         s.show();
     }
 
     public static void switchToMainView() throws IOException {
-        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+/*        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
         Parent root = loader.load();
-        Scene myScene = new Scene(root);
-        s.setScene(myScene); // the initialize method will get called in here
+        Scene myScene = new Scene(root);*/
+        BrowseController browseController = loader.getController();
+        browseController.update();
+        s.setScene(home); // the initialize method will get called in here
     }
 
     public static void switchToCheckoutView(String m) throws IOException {

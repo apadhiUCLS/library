@@ -55,11 +55,11 @@ public class Person {
     public String getName() {return name;}
 
     public void returnBook(Book book) {
-        if (this.checkedOutBooks.indexOf(book) < 0) {
-            this.checkedOutBooks.remove(checkedOutBooks.indexOf(book));
+        if (checkedOutBooks.indexOf(book) >= 0) {
+            checkedOutBooks.remove(checkedOutBooks.indexOf(book));
         }
-        if (this.overdue.indexOf(book) < 0) {
-            this.overdue.remove(overdue.indexOf(book));
+        if (this.overdue.indexOf(book) >= 0) {
+            overdue.remove(overdue.indexOf(book));
         }
     }
 

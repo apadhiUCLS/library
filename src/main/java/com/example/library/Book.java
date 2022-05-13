@@ -3,6 +3,7 @@ package com.example.library;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Book {
@@ -17,7 +18,10 @@ public class Book {
     boolean checkedOut=false;
     private int numPaperbackCheckedOut=0;
     private int numHardcoverCheckedOut=0;
-    private Rating rating;
+    private int avgRating;
+    private int numRatings=0;
+    private Series series;
+    public ArrayList<Rating> ratings;
 
     public Book(String title, Author author){
         this.title=title;
@@ -33,10 +37,30 @@ public class Book {
         inventory=invPaperback+invHardcover;
     }
 
+    public Book(String title, Author author, int invPaperback, int invHardcover, Series series){
+        this.title=title;
+        this.author=author;
+        this.invHardcover=invHardcover;
+        this.invPaperback=invPaperback;
+        this.series=series;
+        series.addToSeries(this);
+        inventory=invPaperback+invHardcover;
+    }
+
+    public ArrayList<Rating> getRatings(){
+        return ratings;
+    }
+
+    public void addRating(Rating r){
+        ratings.add(r);
+        numRatings+=1;
+        avgRating=(avgRating*numRatings+r.getStars())/numRatings;
+    }
 
     public void setTitle(String t){
         title=t;
     }
+
     public void setAuthor(Author a){
         author=a;
     }
@@ -63,6 +87,10 @@ public class Book {
 
     public Date getReleaseDate(){
         return releaseDate;
+    }
+
+    public Series getSeries(){
+        return series;
     }
 
     public void setReturnDate(){
@@ -103,6 +131,14 @@ public class Book {
     public void setInvHardcover(int i){
         invHardcover= i;
         inventory=invPaperback+invHardcover;
+    }
+
+    public int getNumHardcoverCheckedOut(){
+        return numHardcoverCheckedOut;
+    }
+
+    public int getNumPaperbackCheckedOut(){
+        return numPaperbackCheckedOut;
     }
 
     public String checkoutPaperback(Person p){

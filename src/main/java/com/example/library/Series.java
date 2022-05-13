@@ -5,8 +5,33 @@ import java.util.ArrayList;
 public class Series {
     private String title;
     private ArrayList<Book> books;
-    public series(String title, ArrayList<Book> books){
+
+    public Series (String title){
+        this.title=title;
+    }
+
+    public Series(String title, ArrayList<Book> books){
         this.title=title;
         this.books=books;
+    }
+
+    public void addToSeries(Book b){
+        books.add(b);
+    }
+
+    public void removeFromSeries(Book b){
+        books.remove(b);
+    }
+
+    public String getSeriesTitle(){
+        return title;
+    }
+
+    public int getNumBooks(){
+        return books.size();
+    }
+
+    public ArrayList<Book> getSeries(){
+        return books;
     }
 }

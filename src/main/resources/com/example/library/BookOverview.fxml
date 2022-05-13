@@ -17,7 +17,7 @@
       <Label fx:id="lblAuthor" layoutX="114.0" layoutY="65.0" prefHeight="17.0" prefWidth="21.0" />
       <Label fx:id="lblBlurb" layoutX="46.0" layoutY="126.0" prefHeight="17.0" prefWidth="27.0" />
       <Button fx:id="btnBack" layoutX="538.0" layoutY="360.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <Label layoutX="45.0" layoutY="143.0" text="Copies:" />
+      <Label layoutX="45.0" layoutY="135.0" text="Copies:" />
       <Label fx:id="lblHardcoverCopies" layoutX="146.0" layoutY="172.0" prefHeight="17.0" prefWidth="37.0" />
       <Button fx:id="btnCheckoutHardcover" layoutX="46.0" layoutY="219.0" mnemonicParsing="false" onAction="#checkoutHardcover" prefHeight="26.0" prefWidth="77.0" text="Checkout" />
       <Button fx:id="returnButtonHardcover" layoutX="44.0" layoutY="259.0" mnemonicParsing="false" onAction="#returnHardcover" prefHeight="26.0" prefWidth="77.0" text="Return" />
@@ -29,5 +29,8 @@
       <Button fx:id="btnCheckoutPaperback" layoutX="246.0" layoutY="219.0" mnemonicParsing="false" onAction="#checkoutPaperback" prefHeight="26.0" prefWidth="77.0" text="Checkout" />
       <Button fx:id="returnButtonPaperback" layoutX="246.0" layoutY="259.0" mnemonicParsing="false" onAction="#returnPaperback" prefHeight="26.0" prefWidth="77.0" text="Return" />
       <Button fx:id="btnFavorite" layoutX="509.0" layoutY="21.0" mnemonicParsing="false" onAction="#setBtnFavorite" text="Favorite" />
+      <Label layoutX="260.0" layoutY="65.0" text="Average Rating:" />
+      <Label fx:id="ratings" layoutX="382.0" layoutY="65.0" prefHeight="17.0" prefWidth="12.0" />
+      <Button layoutX="262.0" layoutY="21.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Go To Reviews" />
    </children>
 </AnchorPane>

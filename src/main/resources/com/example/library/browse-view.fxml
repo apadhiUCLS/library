@@ -15,6 +15,7 @@
             <TableColumn fx:id="hardcoverColumn" prefWidth="132.0" text="Hardcover Copies" />
             <TableColumn fx:id="paperbackColumn" prefWidth="132.0" text="Paperback Copies" />
             <TableColumn fx:id="seriesColumn" prefWidth="75.0" text="Series" />
+            <TableColumn fx:id="ratingsColumn" prefWidth="60.0" text="Rating" />
         </columns>
       </TableView>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="139.0" text="Library Book Bonanza" AnchorPane.bottomAnchor="369.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="447.0" AnchorPane.topAnchor="14.0" />

@@ -3,6 +3,7 @@ package com.example.library;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 
 import java.io.IOException;
 
@@ -29,6 +30,10 @@ public class BookOverviewController {
     private Button returnButtonHardcover;
     @FXML
     private Button returnButtonPaperback;
+    @FXML
+    private Label ratings;
+    @FXML
+    private Button btnReview;
     private Book b;
 
     private Person p=new Person("Person");
@@ -41,6 +46,11 @@ public class BookOverviewController {
     @FXML
     public void checkoutHardcover() throws IOException {
         LibraryApplication.switchToCheckoutView(b.checkoutHardcover(p));
+    }
+
+    @FXML
+    public void goToReviews() throws IOException {
+        LibraryApplication.switchToReviewView(b);
     }
 
     @FXML
@@ -71,6 +81,7 @@ public class BookOverviewController {
         this.lblBlurb.setText(b.getDescription());
         this.lblPaperbackCopies.setText(Integer.toString(b.getInvPaperback()));
         this.lblHardcoverCopies.setText(Integer.toString(b.getInvHardcover()));
+        this.ratings.setText(Integer.toString(b.getAvgRating()));
     }
 
     @FXML

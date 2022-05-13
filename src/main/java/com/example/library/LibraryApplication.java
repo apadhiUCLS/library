@@ -53,6 +53,15 @@ public class LibraryApplication extends Application {
         s.setScene(myScene); // the initialize method will get called in here
     }
 
+    public static void switchToReviewView(Book b) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("reviews.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        ReviewController review = loader.getController();
+        review.setBookRatings(b.getRatings());
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
     public static void switchToCheckedOutBooks(Person p) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("checked-out-books.fxml"));
         Parent root = loader.load();

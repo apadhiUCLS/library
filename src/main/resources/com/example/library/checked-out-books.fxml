@@ -13,6 +13,10 @@
         <columns>
           <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Title" />
           <TableColumn fx:id="authorColumn" prefWidth="75.0" text="Author" />
+            <TableColumn fx:id="hardcoverCheckedOutColumn" prefWidth="116.0" text="Harcover Copies" />
+            <TableColumn fx:id="paperbackCheckedOutColumn" prefWidth="127.0" text="Paperback Copies" />
+            <TableColumn fx:id="seriesColumn" minWidth="7.0" prefWidth="64.0" text="Series" />
+            <TableColumn prefWidth="75.0" text="Due Date" />
         </columns>
       </TableView>
       <Button fx:id="backToBrowse" layoutX="473.0" layoutY="20.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="113.0" text="Back to Browse" />

@@ -22,6 +22,9 @@ public class FavoritesController {
     private TableColumn authorColumn;
 
     @FXML
+    private TableColumn ratingsColumn;
+
+    @FXML
     private Button backToBrowse;
 
     private ArrayList<Book> favoriteBooks;
@@ -47,6 +50,7 @@ public class FavoritesController {
     public void initialize() {
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         table.setItems(FXCollections.observableList(favoriteBooks));
     }
 }

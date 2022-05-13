@@ -22,9 +22,25 @@ public class CheckedOutBooksController {
     private TableColumn authorColumn;
 
     @FXML
+    private TableColumn hardcoverCheckedOutColumn;
+
+    @FXML
+    private TableColumn paperbackCheckedOutColumn;
+
+    @FXML
+    private TableColumn seriesColumn;
+
+    @FXML
+    private TableColumn returnDateColumn;
+
+    @FXML
+    private TableColumn ratingsColumn;
+
+    @FXML
     private Button backToBrowse;
 
     private ArrayList<Book> checkedOutBooks;
+    private Person p;
 
     @FXML
     public void goBack() throws IOException {
@@ -34,6 +50,7 @@ public class CheckedOutBooksController {
     public void setCheckedOutBooks(ArrayList<Book> checkedOutBooks){
         this.checkedOutBooks = checkedOutBooks;
     }
+
 
     @FXML
     private void showOverview() throws Exception {
@@ -45,6 +62,11 @@ public class CheckedOutBooksController {
     public void initialize() {
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        hardcoverCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numHardcoverCheckedOut"));
+        paperbackCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numPaperbackCheckedOut"));
+        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
+        returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         table.setItems(FXCollections.observableList(checkedOutBooks));
     }
 

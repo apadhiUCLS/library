@@ -12,22 +12,22 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="44.0" layoutY="100.0" text="Author:" />
-      <Label layoutX="44.0" layoutY="183.0" text="Blurb:" />
-      <Label fx:id="lblAuthor" layoutX="46.0" layoutY="132.0" />
-      <Label fx:id="lblBlurb" layoutX="45.0" layoutY="222.0" />
+      <Label layoutX="46.0" layoutY="65.0" text="Author:" />
+      <Label layoutX="44.0" layoutY="103.0" text="Blurb:" />
+      <Label fx:id="lblAuthor" layoutX="114.0" layoutY="65.0" prefHeight="17.0" prefWidth="21.0" />
+      <Label fx:id="lblBlurb" layoutX="46.0" layoutY="126.0" prefHeight="17.0" prefWidth="27.0" />
       <Button fx:id="btnBack" layoutX="538.0" layoutY="360.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <Label layoutX="46.0" layoutY="294.0" text="Copies:" />
-      <Label fx:id="lblCopies" layoutX="50.0" layoutY="325.0" />
-      <Button fx:id="btnCheckout" layoutX="491.0" layoutY="14.0" mnemonicParsing="false" onAction="#checkout" prefHeight="38.0" prefWidth="95.0" text="Checkout">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="returnButton" layoutX="491.0" layoutY="65.0" mnemonicParsing="false" onAction="#setReturnButton" prefHeight="38.0" prefWidth="95.0" text="Return">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
+      <Label layoutX="45.0" layoutY="143.0" text="Copies:" />
+      <Label fx:id="lblHardcoverCopies" layoutX="146.0" layoutY="172.0" prefHeight="17.0" prefWidth="37.0" />
+      <Button fx:id="btnCheckoutHardcover" layoutX="46.0" layoutY="219.0" mnemonicParsing="false" onAction="#checkoutHardcover" prefHeight="26.0" prefWidth="77.0" text="Checkout" />
+      <Button fx:id="returnButtonHardcover" layoutX="44.0" layoutY="259.0" mnemonicParsing="false" onAction="#returnHardcover" prefHeight="26.0" prefWidth="77.0" text="Return" />
+      <Label layoutX="46.0" layoutY="25.0" prefHeight="17.0" prefWidth="37.0" text="Title:" />
+      <Label layoutX="93.0" layoutY="28.0" prefHeight="17.0" prefWidth="21.0" />
+      <Label layoutX="46.0" layoutY="172.0" prefHeight="17.0" prefWidth="77.0" text="Hardcover:" />
+      <Label layoutX="250.0" layoutY="172.0" text="Paperback:" />
+      <Label fx:id="lblPaperbackCopies" layoutX="361.0" layoutY="172.0" prefHeight="17.0" prefWidth="21.0" />
+      <Button fx:id="btnCheckoutPaperback" layoutX="246.0" layoutY="219.0" mnemonicParsing="false" onAction="#checkoutPaperback" prefHeight="26.0" prefWidth="77.0" text="Checkout" />
+      <Button fx:id="returnButtonPaperback" layoutX="246.0" layoutY="259.0" mnemonicParsing="false" onAction="#returnPaperback" prefHeight="26.0" prefWidth="77.0" text="Return" />
+      <Button fx:id="btnFavorite" layoutX="509.0" layoutY="21.0" mnemonicParsing="false" onAction="#setBtnFavorite" text="Favorite" />
    </children>
 </AnchorPane>

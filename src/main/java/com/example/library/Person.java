@@ -33,6 +33,9 @@ public class Person {
         if (this.heldBooks.indexOf(book) > 0) {
             removeHold(book);
         }
+        if (this.wantToRead.indexOf(book) > 0) {
+            this.removeWantToRead(book);
+        }
     }
 
     public void addHold(Book book) {

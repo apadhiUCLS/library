@@ -40,5 +40,11 @@ public class SeriesViewController {
     }
 
     @FXML
+    private void showOverview() throws Exception {
+        Book b = (Book) table.getSelectionModel().getSelectedItem();
+        LibraryApplication.switchToOverview(b);
+    }
+
+    @FXML
     public void initialize() {}
 }

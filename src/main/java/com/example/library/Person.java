@@ -2,6 +2,7 @@ package com.example.library;
 import java.util.*;
 
 public class Person {
+    private ArrayList<Book> wantToRead;
     private ArrayList<Book>  checkedOutBooks;
     private ArrayList<Book>  heldBooks;
     private ArrayList<Book>  overdue;
@@ -12,6 +13,7 @@ public class Person {
         this.checkedOutBooks = new ArrayList<Book>();
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
+        this.wantToRead = new ArrayList<Book>();
         this.name = name;
     }
 
@@ -35,6 +37,7 @@ public class Person {
         this.checkedOutBooks = new ArrayList<Book>();
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
+        this.wantToRead = new ArrayList<Book>();
         this.name = "anonymous";
     }
 
@@ -42,6 +45,9 @@ public class Person {
         checkedOutBooks.add(book);
         if (this.heldBooks.indexOf(book) > 0) {
             removeHold(book);
+        }
+        if (this.wantToRead.indexOf(book) > 0) {
+            this.removeWantToRead(book);
         }
     }
 
@@ -86,5 +92,22 @@ public class Person {
             }
         }
         return existsOverdue;
+    }
+
+    public ArrayList<Book> getWantToRead(){
+        return this.wantToRead;
+    }
+
+    public void addWantToRead(Book b){
+        this.wantToRead.add(b);
+    }
+
+    public void removeWantToRead(Book b) {
+        int index = this.wantToRead.indexOf(b);
+        this.wantToRead.remove(index);
+    }
+
+    public void clearWantToRead() {
+        this.wantToRead = new ArrayList<Book>();
     }
 }

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.library.ReviewView"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.ReviewViewController">
+   <children>
+      <TableView layoutX="81.0" layoutY="39.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="stars" prefWidth="75.0" text="Stars" />
+          <TableColumn fx:id="review" prefWidth="75.0" text="Review" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>

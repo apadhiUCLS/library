@@ -23,6 +23,8 @@ public class BookOverviewController {
     @FXML
     private Button btnFavorite;
     @FXML
+    private Button btnWantToRead;
+    @FXML
     private Label lblHardcoverCopies;
     @FXML
     private Label lblPaperbackCopies;
@@ -69,6 +71,12 @@ public class BookOverviewController {
     public void setBtnFavorite() throws IOException {
         b.addFavorite(p);
         LibraryApplication.switchToFavoriteView(p);
+    }
+
+    @FXML
+    public void setBtnWantToRead() throws IOException {
+        b.addWantToRead(p);
+        LibraryApplication.switchToWantToReadView(p);
     }
 
     @FXML

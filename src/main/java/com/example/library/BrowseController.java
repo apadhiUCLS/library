@@ -3,6 +3,7 @@ package com.example.library;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -35,9 +36,14 @@ public class BrowseController {
     @FXML
     private TableColumn ratingsColumn;
 
-
     @FXML
     private Button checkedOutBooks;
+
+    @FXML
+    private Button favorites;
+
+    @FXML
+    private Button wantToRead;
 
     private Person p;
 
@@ -49,6 +55,14 @@ public class BrowseController {
 
     public void goCheckedOut() throws IOException {
         LibraryApplication.switchToCheckedOutBooks(p);
+    }
+
+    public void goFavorites() throws IOException {
+        LibraryApplication.switchToFavoriteView(p);
+    }
+
+    public void goWantToRead() throws IOException {
+        LibraryApplication.switchToWantToReadView(p);
     }
 
     @FXML
@@ -66,6 +80,7 @@ public class BrowseController {
         seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         table.setItems(FXCollections.observableList(bookList));
+
     }
     public void update(){
         table.refresh();

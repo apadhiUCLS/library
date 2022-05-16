@@ -10,7 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class FavoritesController {
+public class WantToReadController {
 
     @FXML
     private TableView table;
@@ -27,15 +27,15 @@ public class FavoritesController {
     @FXML
     private Button backToBrowse;
 
-    private ArrayList<Book> favoriteBooks;
+    private ArrayList<Book> books;
 
     @FXML
     public void goBack() throws IOException {
         LibraryApplication.switchToMainView();
     }
 
-    public void setFavoriteBooks(ArrayList<Book> favoriteBooks){
-        this.favoriteBooks = favoriteBooks;
+    public void setBooks(ArrayList<Book> books){
+        this.books = books;
     }
 
     @FXML
@@ -49,6 +49,6 @@ public class FavoritesController {
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
-        table.setItems(FXCollections.observableList(favoriteBooks));
+        table.setItems(FXCollections.observableList(books));
     }
 }

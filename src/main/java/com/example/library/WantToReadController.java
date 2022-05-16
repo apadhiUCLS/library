@@ -10,7 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CheckedOutBooksController {
+public class WantToReadController {
 
     @FXML
     private TableView table;
@@ -22,35 +22,21 @@ public class CheckedOutBooksController {
     private TableColumn authorColumn;
 
     @FXML
-    private TableColumn hardcoverCheckedOutColumn;
-
-    @FXML
-    private TableColumn paperbackCheckedOutColumn;
-
-    @FXML
-    private TableColumn seriesColumn;
-
-    @FXML
-    private TableColumn returnDateColumn;
-
-    @FXML
     private TableColumn ratingsColumn;
 
     @FXML
     private Button backToBrowse;
 
-    private ArrayList<Book> checkedOutBooks;
-    private Person p;
+    private ArrayList<Book> books;
 
     @FXML
     public void goBack() throws IOException {
         LibraryApplication.switchToMainView();
     }
 
-    public void setCheckedOutBooks(ArrayList<Book> checkedOutBooks){
-        this.checkedOutBooks = checkedOutBooks;
+    public void setBooks(ArrayList<Book> books){
+        this.books = books;
     }
-
 
     @FXML
     private void showOverview() throws Exception {
@@ -62,12 +48,7 @@ public class CheckedOutBooksController {
     public void initialize() {
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        hardcoverCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numHardcoverCheckedOut"));
-        paperbackCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numPaperbackCheckedOut"));
-        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
-        returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
-        table.setItems(FXCollections.observableList(checkedOutBooks));
+        table.setItems(FXCollections.observableList(books));
     }
-
 }

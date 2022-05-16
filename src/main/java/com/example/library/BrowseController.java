@@ -3,6 +3,7 @@ package com.example.library;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,10 +25,25 @@ public class BrowseController {
     private TableColumn authorColumn;
 
     @FXML
-    private TableColumn copiesColumn;
+    private TableColumn hardcoverColumn;
+
+    @FXML
+    private TableColumn paperbackColumn;
+
+    @FXML
+    private TableColumn seriesColumn;
+
+    @FXML
+    private TableColumn ratingsColumn;
 
     @FXML
     private Button checkedOutBooks;
+
+    @FXML
+    private Button favorites;
+
+    @FXML
+    private Button wantToRead;
 
     private Person p;
 
@@ -39,6 +55,14 @@ public class BrowseController {
 
     public void goCheckedOut() throws IOException {
         LibraryApplication.switchToCheckedOutBooks(p);
+    }
+
+    public void goFavorites() throws IOException {
+        LibraryApplication.switchToFavoriteView(p);
+    }
+
+    public void goWantToRead() throws IOException {
+        LibraryApplication.switchToWantToReadView(p);
     }
 
     @FXML
@@ -58,8 +82,12 @@ public class BrowseController {
 
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        copiesColumn.setCellValueFactory(new PropertyValueFactory<>("Inventory"));
+        hardcoverColumn.setCellValueFactory(new PropertyValueFactory<>("invHardcover"));
+        paperbackColumn.setCellValueFactory(new PropertyValueFactory<>("invPaperback"));
+        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         table.setItems(FXCollections.observableList(bookList));
+
     }
     public void update(){
         table.refresh();

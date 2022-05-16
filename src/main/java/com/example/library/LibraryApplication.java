@@ -44,12 +44,39 @@ public class LibraryApplication extends Application {
         s.setScene(myScene); // the initialize method will get called in here
     }
 
+    public static void switchToFavoriteView(Person p) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("favorite-books.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        FavoritesController favoriteBooks = loader.getController();
+        favoriteBooks.setFavoriteBooks(p.getFavorites());
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
+
+    public static void switchToRateView(Book b) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("rating.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        RatingController rate = loader.getController();
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
     public static void switchToCheckedOutBooks(Person p) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("checked-out-books.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         CheckedOutBooksController listOfBooks = loader.getController();
         listOfBooks.setCheckedOutBooks(p.getCheckedOutBooks());
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
+    public static void switchToWantToReadView(Person p) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("want-to-read-view.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        WantToReadController wantToReadBooks = loader.getController();
+        wantToReadBooks.setBooks(p.getWantToRead());
         s.setScene(myScene); // the initialize method will get called in here
     }
 

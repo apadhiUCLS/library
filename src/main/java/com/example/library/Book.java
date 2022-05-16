@@ -45,7 +45,6 @@ public class Book {
         this.invPaperback=invPaperback;
         this.series=series;
         this.numInSeries=numInSeries;
-        series.addToSeries(this);
         inventory=invPaperback+invHardcover;
     }
 
@@ -59,6 +58,10 @@ public class Book {
 
     public void setNumInSeries(int s){
         numInSeries=s;
+    }
+
+    public double getAvgRating(){
+        return avgRating;
     }
 
     public void addRating(Rating r){
@@ -202,7 +205,7 @@ public class Book {
 
     public String returnHardcover(Person p){
         if (numHardcoverCheckedOut>0){
-            invPaperback +=1;
+            invHardcover +=1;
             p.returnBook(this);
             returnDate=null;
             numHardcoverCheckedOut-=1;
@@ -243,4 +246,11 @@ public class Book {
         }
     }
 
+    public String getSeriesTitle() {
+
+        if (series!=null){
+            return this.series.getSeriesTitle();
+        }
+        return "";
+    }
 }

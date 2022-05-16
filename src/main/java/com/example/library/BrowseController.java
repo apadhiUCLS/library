@@ -45,7 +45,11 @@ public class BrowseController {
     @FXML
     private Button wantToRead;
 
-    private Person p;
+    private Person p=new Person();
+
+    public Person getPerson(){
+        return p;
+    }
 
     @FXML
     private void showOverview() throws Exception {
@@ -72,19 +76,24 @@ public class BrowseController {
         Author JKRowling = new Author("JK", "Rowling");
         Series harryPotter=new Series("Harry Potter");
         bookList.add(new Book("To Kill A MockingBird", HarperLee, 3,1));
-        bookList.add(new Book("Sorcerer's Stone", JKRowling, 4,1,harryPotter,1));
-        bookList.add(new Book("Chamber of Secrets", JKRowling, 4,1,harryPotter,2));
-        bookList.add(new Book("Prisoner of Azkaban", JKRowling, 4,1,harryPotter,3));
-        bookList.add(new Book("Goblet of Fire", JKRowling, 4,1,harryPotter,4));
-        bookList.add(new Book("Order of the Phoenix", JKRowling, 4,1,harryPotter,5));
-        bookList.add(new Book("Half-Blood Prince", JKRowling, 4,1,harryPotter,6));
-        bookList.add(new Book("Deathly Hallows", JKRowling, 4,1,harryPotter,7));
+        Book b1=new Book("Sorcerer's Stone", JKRowling, 4,1,harryPotter,1);
+        harryPotter.addToSeries(b1);
+        bookList.add(b1);
+        Book b2=new Book("Chamber of Secrets", JKRowling, 4,1,harryPotter,2);
+        bookList.add(b2);
+        harryPotter.addToSeries(b2);
+        Book b3=new Book("Prisoner of Azkaban", JKRowling, 4,1,harryPotter,3);
+        bookList.add(b3);
+        harryPotter.addToSeries(b3);
+        Book b4=new Book("Goblet of Fire", JKRowling, 4,1,harryPotter,4);
+        bookList.add(b4);
+        harryPotter.addToSeries(b4);
 
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         hardcoverColumn.setCellValueFactory(new PropertyValueFactory<>("invHardcover"));
         paperbackColumn.setCellValueFactory(new PropertyValueFactory<>("invPaperback"));
-        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
+        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("seriesTitle"));
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         table.setItems(FXCollections.observableList(bookList));
 

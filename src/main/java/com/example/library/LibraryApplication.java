@@ -67,7 +67,9 @@ public class LibraryApplication extends Application {
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         CheckedOutBooksController listOfBooks = loader.getController();
+        listOfBooks.setPerson(p);
         listOfBooks.setCheckedOutBooks(p.getCheckedOutBooks());
+        System.out.println(p.getCheckedOutBooks());
         s.setScene(myScene); // the initialize method will get called in here
     }
 

@@ -69,7 +69,6 @@ public class Person {
     }
 
     public ArrayList<Book> getHolds() {return heldBooks;}
-    public ArrayList<Book> getCheckedOut() {return checkedOutBooks;}
     public ArrayList<Book> getOverdue() {return overdue;}
     public String getName() {return name;}
 

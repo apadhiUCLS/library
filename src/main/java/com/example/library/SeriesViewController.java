@@ -23,7 +23,7 @@ public class SeriesViewController {
     private Label authorLbl;
     @FXML
     private TableView table;
-    private List<Book> bookSeries;
+    private Series bookSeries;
 
     @FXML
     public void backToBrowse() throws IOException {
@@ -36,7 +36,7 @@ public class SeriesViewController {
         this.authorLbl.setText(book.getAuthor().toString());
         titleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         numberColumn.setCellValueFactory(new PropertyValueFactory<> ("numInSeries"));
-        table.setItems(FXCollections.observableList(bookSeries));
+        table.setItems(FXCollections.observableList(book.getSeries().getBooks()));
     }
 
     @FXML

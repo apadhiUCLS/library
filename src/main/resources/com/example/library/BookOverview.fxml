@@ -8,24 +8,24 @@
    <children>
       <Label layoutX="46.0" layoutY="65.0" text="Author:" />
       <Label layoutX="44.0" layoutY="103.0" text="Blurb:" />
-      <Label fx:id="lblAuthor" layoutX="114.0" layoutY="65.0" prefHeight="17.0" prefWidth="21.0" />
-      <Label fx:id="lblBlurb" layoutX="46.0" layoutY="126.0" prefHeight="17.0" prefWidth="27.0" />
+      <Label fx:id="lblAuthor" layoutX="114.0" layoutY="65.0" prefHeight="17.0" prefWidth="67.0" />
+      <Label fx:id="lblBlurb" layoutX="85.0" layoutY="103.0" prefHeight="34.0" prefWidth="384.0" />
       <Button fx:id="btnBack" layoutX="538.0" layoutY="360.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
       <Label layoutX="45.0" layoutY="135.0" text="Copies:" />
-      <Label fx:id="lblHardcoverCopies" layoutX="146.0" layoutY="172.0" prefHeight="17.0" prefWidth="37.0" />
+      <Label fx:id="lblHardcoverCopies" layoutX="129.0" layoutY="172.0" prefHeight="17.0" prefWidth="37.0" />
       <Button fx:id="btnCheckoutHardcover" layoutX="46.0" layoutY="219.0" mnemonicParsing="false" onAction="#checkoutHardcover" prefHeight="26.0" prefWidth="77.0" text="Checkout" />
       <Button fx:id="returnButtonHardcover" layoutX="44.0" layoutY="259.0" mnemonicParsing="false" onAction="#returnHardcover" prefHeight="26.0" prefWidth="77.0" text="Return" />
       <Label layoutX="46.0" layoutY="25.0" prefHeight="17.0" prefWidth="37.0" text="Title:" />
-      <Label fx:id="lblTitle" layoutX="93.0" layoutY="28.0" prefHeight="17.0" prefWidth="21.0" />
+      <Label fx:id="lblTitle" layoutX="83.0" layoutY="25.0" prefHeight="41.0" prefWidth="166.0" />
       <Label layoutX="46.0" layoutY="172.0" prefHeight="17.0" prefWidth="77.0" text="Hardcover:" />
       <Label layoutX="250.0" layoutY="172.0" text="Paperback:" />
-      <Label fx:id="lblPaperbackCopies" layoutX="361.0" layoutY="172.0" prefHeight="17.0" prefWidth="21.0" />
+      <Label fx:id="lblPaperbackCopies" layoutX="347.0" layoutY="172.0" prefHeight="17.0" prefWidth="37.0" />
       <Button fx:id="btnCheckoutPaperback" layoutX="246.0" layoutY="219.0" mnemonicParsing="false" onAction="#checkoutPaperback" prefHeight="26.0" prefWidth="77.0" text="Checkout" />
       <Button fx:id="returnButtonPaperback" layoutX="246.0" layoutY="259.0" mnemonicParsing="false" onAction="#returnPaperback" prefHeight="26.0" prefWidth="77.0" text="Return" />
       <Button fx:id="btnFavorite" layoutX="509.0" layoutY="29.0" mnemonicParsing="false" onAction="#setBtnFavorite" text="Favorite" />
       <Label layoutX="260.0" layoutY="65.0" text="Average Rating:" />
-      <Label fx:id="ratings" layoutX="382.0" layoutY="65.0" prefHeight="17.0" prefWidth="12.0" />
-      <Button fx:id="btnReview" layoutX="262.0" layoutY="21.0" mnemonicParsing="false" onAction="#goToReviews" prefHeight="26.0" prefWidth="110.0" text="Go To Reviews" />
+      <Label fx:id="ratings" layoutX="382.0" layoutY="65.0" prefHeight="17.0" prefWidth="37.0" />
+      <Button fx:id="btnReview" layoutX="265.0" layoutY="21.0" mnemonicParsing="false" onAction="#goToReviews" prefHeight="26.0" prefWidth="110.0" text="Go To Reviews" />
       <Button fx:id="btnRate" layoutX="520.0" layoutY="61.0" mnemonicParsing="false" onAction="#goToRate" text="Rate" />
       <Button fx:id="btnWantToRead" layoutX="491.0" layoutY="90.0" mnemonicParsing="false" onAction="#setBtnWantToRead" text="Want To Read" />
    </children>

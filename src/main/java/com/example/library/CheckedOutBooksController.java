@@ -39,7 +39,7 @@ public class CheckedOutBooksController {
     @FXML
     private Button backToBrowse;
 
-    private ArrayList<Book> checkedOutBooks;
+    private ArrayList<Book> checkedOutBooks=new ArrayList<Book>();
     private Person p;
 
     @FXML
@@ -51,6 +51,9 @@ public class CheckedOutBooksController {
         this.checkedOutBooks = checkedOutBooks;
     }
 
+    public void setPerson(Person p){
+        this.p = p;
+    }
 
     @FXML
     private void showOverview() throws Exception {

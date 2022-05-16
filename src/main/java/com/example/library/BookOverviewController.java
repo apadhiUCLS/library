@@ -54,7 +54,7 @@ public class BookOverviewController {
 
     @FXML
     public void goToReviews() throws IOException {
-        LibraryApplication.switchToReviewView(b);
+        LibraryApplication.switchToReview(b);
     }
 
     @FXML
@@ -69,13 +69,13 @@ public class BookOverviewController {
 
     @FXML
     public void setBtnFavorite() throws IOException {
-        b.addFavorite(p);
+        p.addFavorite(b);
         LibraryApplication.switchToFavoriteView(p);
     }
 
     @FXML
     public void setBtnWantToRead() throws IOException {
-        b.addWantToRead(p);
+        p.addWantToRead(b);
         LibraryApplication.switchToWantToReadView(p);
     }
 
@@ -96,7 +96,7 @@ public class BookOverviewController {
         this.lblBlurb.setText(b.getDescription());
         this.lblPaperbackCopies.setText(Integer.toString(b.getInvPaperback()));
         this.lblHardcoverCopies.setText(Integer.toString(b.getInvHardcover()));
-        this.ratings.setText(Integer.toString(b.getAvgRating()));
+        this.ratings.setText(Double.toString(b.getAvgRating()));
     }
 
     @FXML

@@ -35,7 +35,7 @@ public class SeriesViewController {
         this.bookSeries = book.getSeries();
         this.authorLbl.setText(book.getAuthor().toString());
         titleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
-        numberColumn.setCellValueFactory(new PropertyValueFactory<>((String) bookSeries.indexOf()));
+        numberColumn.setCellValueFactory(new PropertyValueFactory<> ("numInSeries"));
         table.setItems(FXCollections.observableList(bookSeries));
     }
 

@@ -21,6 +21,7 @@ public class Book {
     private int avgRating;
     private int numRatings=0;
     private Series series;
+    private int numInSeries;
     public ArrayList<Rating> ratings;
 
     public Book(String title, Author author){
@@ -37,18 +38,27 @@ public class Book {
         inventory=invPaperback+invHardcover;
     }
 
-    public Book(String title, Author author, int invPaperback, int invHardcover, Series series){
+    public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries){
         this.title=title;
         this.author=author;
         this.invHardcover=invHardcover;
         this.invPaperback=invPaperback;
         this.series=series;
+        this.numInSeries=numInSeries;
         series.addToSeries(this);
         inventory=invPaperback+invHardcover;
     }
 
     public ArrayList<Rating> getRatings(){
         return ratings;
+    }
+
+    public int getNumInSeries(){
+        return numInSeries;
+    }
+
+    public void setNumInSeries(int s){
+        numInSeries=s;
     }
 
     public void addRating(Rating r){

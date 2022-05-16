@@ -34,6 +34,8 @@ public class BookOverviewController {
     private Label ratings;
     @FXML
     private Button btnReview;
+    @FXML
+    private Button btnRate;
     private Book b;
 
     private Person p=new Person("Person");
@@ -51,6 +53,11 @@ public class BookOverviewController {
     @FXML
     public void goToReviews() throws IOException {
         LibraryApplication.switchToReviewView(b);
+    }
+
+    @FXML
+    public void goToRate() throws IOException {
+        LibraryApplication.switchToRateView(b);
     }
 
     @FXML

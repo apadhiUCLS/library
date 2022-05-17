@@ -27,7 +27,7 @@ public class WantToReadController {
     @FXML
     private Button backToBrowse;
 
-    private ArrayList<Book> books;
+    private ArrayList<Book> books=new ArrayList<Book>();
 
     @FXML
     public void goBack() throws IOException {

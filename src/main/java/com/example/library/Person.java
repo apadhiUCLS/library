@@ -14,6 +14,7 @@ public class Person {
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
         this.wantToRead = new ArrayList<Book>();
+        this.favorites=new ArrayList<Book>();
         this.name = name;
     }
 

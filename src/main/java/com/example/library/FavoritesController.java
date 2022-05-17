@@ -27,7 +27,7 @@ public class FavoritesController {
     @FXML
     private Button backToBrowse;
 
-    private ArrayList<Book> favoriteBooks;
+    private ArrayList<Book> favoriteBooks=new ArrayList<Book>();
 
     @FXML
     public void goBack() throws IOException {

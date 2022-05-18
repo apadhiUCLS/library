@@ -36,7 +36,7 @@ public class RatingController {
 
     private Book b;
 
-    private Rating r;
+    private Rating r=new Rating();
 
     @FXML
     public void goBack() throws IOException {

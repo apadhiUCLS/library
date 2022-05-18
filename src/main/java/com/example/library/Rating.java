@@ -3,6 +3,9 @@ package com.example.library;
 public class Rating {
     private String review;
     private int stars;
+
+    public Rating(){}
+
     public Rating(String s, int i){
         review=s;
         stars=i;

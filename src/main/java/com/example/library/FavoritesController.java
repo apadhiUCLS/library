@@ -27,28 +27,34 @@ public class FavoritesController {
     @FXML
     private Button backToBrowse;
 
-    private ArrayList<Book> favoriteBooks=new ArrayList<Book>();
+    private ArrayList<Book> favoriteBooks;
+
+    private Person p;
+
 
     @FXML
     public void goBack() throws IOException {
-        LibraryApplication.switchToMainView();
+        LibraryApplication.switchToMainView(p);
     }
 
-    public void setFavoriteBooks(ArrayList<Book> favoriteBooks){
-        this.favoriteBooks = favoriteBooks;
+    public void setPerson(Person p){
+        this.p= p;
+        this.favoriteBooks = this.p.getFavorites();
+
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
+
+        table.setItems(FXCollections.observableList(favoriteBooks));
     }
 
     @FXML
     private void showOverview() throws Exception {
         Book b = (Book) table.getSelectionModel().getSelectedItem();
-        LibraryApplication.switchToOverview(b);
+        LibraryApplication.switchToOverview(b,p);
     }
 
     @FXML
     public void initialize() {
-        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
-        table.setItems(FXCollections.observableList(favoriteBooks));
     }
 }

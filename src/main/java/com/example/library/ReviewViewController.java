@@ -27,6 +27,8 @@ public class ReviewViewController {
 
     private Book b=new Book();
 
+    private Person p;
+
     public void setBook(Book book){
         this.b=book;
         bookList=b.getRatings();
@@ -35,9 +37,13 @@ public class ReviewViewController {
         table.setItems(FXCollections.observableList(bookList));
     }
 
+    public void setPerson(Person p){
+        this.p=p;
+    }
+
     @FXML
     public void goBack() throws IOException {
-        LibraryApplication.switchToOverview(b);
+        LibraryApplication.switchToOverview(b,p);
     }
 
     @FXML

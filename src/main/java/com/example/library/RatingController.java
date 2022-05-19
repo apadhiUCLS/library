@@ -36,6 +36,8 @@ public class RatingController {
 
     private Book b;
 
+    private Person p;
+
     private Rating r=new Rating();
 
     @FXML
@@ -44,7 +46,7 @@ public class RatingController {
         if (r.getStars() >= 1 && r.getStars() <= 5) {
             b.addRating(r);
         }
-        LibraryApplication.switchToOverview(b);
+        LibraryApplication.switchToOverview(b,p);
     }
 
     public void setBook(Book b) {

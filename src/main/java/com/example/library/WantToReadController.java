@@ -27,28 +27,35 @@ public class WantToReadController {
     @FXML
     private Button backToBrowse;
 
+    private Person p;
+
     private ArrayList<Book> books=new ArrayList<Book>();
 
     @FXML
     public void goBack() throws IOException {
-        LibraryApplication.switchToMainView();
+        LibraryApplication.switchToMainView(p);
     }
 
     public void setBooks(ArrayList<Book> books){
         this.books = books;
+
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
+        table.setItems(FXCollections.observableList(books));
     }
 
     @FXML
     private void showOverview() throws Exception {
         Book b = (Book) table.getSelectionModel().getSelectedItem();
-        LibraryApplication.switchToOverview(b);
+        LibraryApplication.switchToOverview(b,p);
     }
 
     @FXML
     public void initialize() {
-        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
-        table.setItems(FXCollections.observableList(books));
+    }
+
+    public void setPerson(Person p) {
+        this.p=p;
     }
 }

@@ -26,7 +26,7 @@ public class LibraryApplication extends Application {
         s.show();
     }
 
-    public static void switchToMainView() throws IOException {
+    public static void switchToMainView(Person p) throws IOException {
 /*        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);*/
@@ -35,7 +35,7 @@ public class LibraryApplication extends Application {
         s.setScene(home); // the initialize method will get called in here
     }
 
-    public static void switchToCheckoutView(String m) throws IOException {
+    public static void switchToCheckoutView(String m, Person p) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("checkout-page.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
@@ -49,12 +49,12 @@ public class LibraryApplication extends Application {
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         FavoritesController favoriteBooks = loader.getController();
-        favoriteBooks.setFavoriteBooks(p.getFavorites());
+        favoriteBooks.setPerson(p);
         s.setScene(myScene); // the initialize method will get called in here
     }
 
 
-    public static void switchToRateView(Book b) throws IOException {
+    public static void switchToRateView(Book b, Person p) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("rating-view.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
@@ -81,24 +81,27 @@ public class LibraryApplication extends Application {
         Scene myScene = new Scene(root);
         WantToReadController wantToReadBooks = loader.getController();
         wantToReadBooks.setBooks(p.getWantToRead());
+        wantToReadBooks.setPerson(p);
         s.setScene(myScene); // the initialize method will get called in here
     }
 
-    public static void switchToOverview(Book book) throws IOException {
+    public static void switchToOverview(Book book, Person p) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("BookOverview.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         BookOverviewController bookController = loader.getController();
+        bookController.setPerson(p);
         bookController.setBook(book);
         s.setScene(myScene); // the initialize method will get called in here
     }
 
-    public static void switchToReview(Book book) throws IOException {
+    public static void switchToReview(Book book, Person p) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("review-view.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         ReviewViewController reviewViewController = loader.getController();
         reviewViewController.setBook(book);
+        reviewViewController.setPerson(p);
         reviewViewController.update();
         s.setScene(myScene); // the initialize method will get called in here
     }

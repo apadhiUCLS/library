@@ -44,11 +44,20 @@ public class CheckedOutBooksController {
 
     @FXML
     public void goBack() throws IOException {
-        LibraryApplication.switchToMainView();
+        LibraryApplication.switchToMainView(p);
     }
 
     public void setCheckedOutBooks(ArrayList<Book> checkedOutBooks){
         this.checkedOutBooks = checkedOutBooks;
+
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        hardcoverCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numHardcoverCheckedOut"));
+        paperbackCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numPaperbackCheckedOut"));
+        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
+        returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
+        table.setItems(FXCollections.observableList(checkedOutBooks));
     }
 
     public void setPerson(Person p){
@@ -58,19 +67,11 @@ public class CheckedOutBooksController {
     @FXML
     private void showOverview() throws Exception {
         Book b = (Book) table.getSelectionModel().getSelectedItem();
-        LibraryApplication.switchToOverview(b);
+        LibraryApplication.switchToOverview(b,p);
     }
 
     @FXML
     public void initialize() {
-        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        hardcoverCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numHardcoverCheckedOut"));
-        paperbackCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numPaperbackCheckedOut"));
-        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
-        returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
-        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
-        table.setItems(FXCollections.observableList(checkedOutBooks));
     }
 
 }

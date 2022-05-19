@@ -45,7 +45,7 @@ public class BrowseController {
     @FXML
     private Button wantToRead;
 
-    private Person p=new Person();
+    private Person p=new Person ();
 
     public Person getPerson(){
         return p;
@@ -54,7 +54,7 @@ public class BrowseController {
     @FXML
     private void showOverview() throws Exception {
         Book b = (Book) table.getSelectionModel().getSelectedItem();
-        LibraryApplication.switchToOverview(b);
+        LibraryApplication.switchToOverview(b, p);
     }
 
     public void goCheckedOut() throws IOException {

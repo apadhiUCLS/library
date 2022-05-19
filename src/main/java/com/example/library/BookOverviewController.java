@@ -40,31 +40,31 @@ public class BookOverviewController {
     private Button btnRate;
     private Book b;
 
-    private Person p=new Person("Person");
+    private Person p;
 
     @FXML
     public void goBack() throws IOException {
-         LibraryApplication.switchToMainView();
+         LibraryApplication.switchToMainView(p);
     }
 
     @FXML
     public void checkoutHardcover() throws IOException {
-        LibraryApplication.switchToCheckoutView(b.checkoutHardcover(p));
+        LibraryApplication.switchToCheckoutView(b.checkoutHardcover(p),p);
     }
 
     @FXML
     public void goToReviews() throws IOException {
-        LibraryApplication.switchToReview(b);
+        LibraryApplication.switchToReview(b,p);
     }
 
     @FXML
     public void goToRate() throws IOException {
-        LibraryApplication.switchToRateView(b);
+        LibraryApplication.switchToRateView(b,p);
     }
 
     @FXML
     public void checkoutPaperback() throws IOException {
-        LibraryApplication.switchToCheckoutView(b.checkoutPaperback(p));
+        LibraryApplication.switchToCheckoutView(b.checkoutPaperback(p),p);
     }
 
     @FXML
@@ -79,14 +79,18 @@ public class BookOverviewController {
         LibraryApplication.switchToWantToReadView(p);
     }
 
+    public void setPerson(Person p){
+        this.p=p;
+    }
+
     @FXML
     public void returnHardcover() throws IOException {
-            LibraryApplication.switchToCheckoutView(b.returnHardcover(p));
+            LibraryApplication.switchToCheckoutView(b.returnHardcover(p),p);
     }
 
     @FXML
     public void returnPaperback() throws IOException {
-        LibraryApplication.switchToCheckoutView(b.returnPaperback(p));
+        LibraryApplication.switchToCheckoutView(b.returnPaperback(p),p);
     }
 
     public void setBook(Book b) {
@@ -98,6 +102,7 @@ public class BookOverviewController {
         this.lblHardcoverCopies.setText(Integer.toString(b.getInvHardcover()));
         this.ratings.setText(Double.toString(b.getAvgRating()));
     }
+
 
     @FXML
     public void initialize() {

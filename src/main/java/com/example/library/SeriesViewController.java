@@ -25,9 +25,11 @@ public class SeriesViewController {
     private TableView table;
     private Series bookSeries;
 
+    private Person p;
+
     @FXML
     public void backToBrowse() throws IOException {
-        LibraryApplication.switchToMainView();
+        LibraryApplication.switchToMainView(p);
     }
 
     @FXML
@@ -42,7 +44,7 @@ public class SeriesViewController {
     @FXML
     private void showOverview() throws Exception {
         Book b = (Book) table.getSelectionModel().getSelectedItem();
-        LibraryApplication.switchToOverview(b);
+        LibraryApplication.switchToOverview(b,p);
     }
 
     @FXML

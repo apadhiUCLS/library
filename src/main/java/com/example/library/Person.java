@@ -6,7 +6,7 @@ public class Person {
     private ArrayList<Book>  checkedOutBooks;
     private ArrayList<Book>  heldBooks;
     private ArrayList<Book>  overdue;
-    private ArrayList<Book>  favorites;
+    private ArrayList<Book>  favorites=new ArrayList<Book>();
     private String name;
 
     public Person(String name){
@@ -20,6 +20,8 @@ public class Person {
 
     public void addFavorite(Book b){
         favorites.add(b);
+        System.out.println(this+" ");
+        System.out.println(favorites);
     }
 
     public void removeFavorite(Book b){

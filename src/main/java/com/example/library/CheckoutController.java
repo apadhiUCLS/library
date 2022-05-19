@@ -20,9 +20,11 @@ public class CheckoutController {
     @FXML
     private Button backToBrowse;
 
+    private Person p;
+
     @FXML
     public void goBackToBrowse() throws IOException {
-        LibraryApplication.switchToMainView();
+        LibraryApplication.switchToMainView(p);
     }
 
     @FXML
@@ -31,7 +33,7 @@ public class CheckoutController {
 
     @FXML
     public void goBack() throws IOException {
-        LibraryApplication.switchToMainView();
+        LibraryApplication.switchToMainView(p);
     }
 
     public void setMessage(String m){

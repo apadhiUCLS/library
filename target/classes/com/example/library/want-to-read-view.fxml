@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.WantToReadController">
+   <children>
+      <TableView fx:id="table" layoutY="58.0" onMouseClicked="#showOverview" onMousePressed="#showOverview" prefHeight="342.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Title" />
+          <TableColumn fx:id="authorColumn" prefWidth="75.0" text="Author" />
+            <TableColumn fx:id="ratingsColumn" prefWidth="75.0" text="Rating" />
+        </columns>
+      </TableView>
+      <Button fx:id="backToBrowse" layoutX="470.0" layoutY="20.0" mnemonicParsing="false" onAction="#goBack" text="Back To Browse" />
+      <Label layoutX="32.0" layoutY="25.0" text="Want To read List" />
+   </children>
+</AnchorPane>

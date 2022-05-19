@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.RatingController">
+   <children>
+      <Label fx:id="lblTitle" layoutX="27.0" layoutY="23.0" />
+      <Button fx:id="btnBack" layoutX="427.0" layoutY="19.0" mnemonicParsing="false" onAction="#goBack" text="Back to Book Overview" />
+      <Label layoutX="25.0" layoutY="93.0" text="Make Your Review:" />
+      <Button fx:id="oneStar" layoutX="27.0" layoutY="119.0" mnemonicParsing="false" onAction="#setOneStar" text="1 Star " />
+      <Button fx:id="fourStar" layoutX="263.0" layoutY="119.0" mnemonicParsing="false" onAction="#setFourStar" text="4 Stars" />
+      <Button fx:id="threeStar" layoutX="184.0" layoutY="119.0" mnemonicParsing="false" onAction="#setThreeStar" text="3 Stars" />
+      <Button fx:id="twoStar" layoutX="101.0" layoutY="119.0" mnemonicParsing="false" onAction="#setTwoStar" prefHeight="26.0" prefWidth="67.0" text="2 Stars " />
+      <Button fx:id="fiveStar" layoutX="340.0" layoutY="119.0" mnemonicParsing="false" onAction="#setFiveStar" text="5 Stars" />
+      <Label layoutX="27.0" layoutY="183.0" text="What did you think about the book?" />
+      <TextArea fx:id="review" layoutX="27.0" layoutY="207.0" prefHeight="145.0" prefWidth="377.0" />
+   </children>
+</AnchorPane>

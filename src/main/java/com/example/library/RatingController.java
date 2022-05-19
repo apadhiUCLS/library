@@ -40,6 +40,7 @@ public class RatingController {
 
     @FXML
     public void goBack() throws IOException {
+        this.setReview();
         if (r.getStars() >= 1 && r.getStars() <= 5) {
             b.addRating(r);
         }

@@ -29,6 +29,10 @@ public class ReviewViewController {
 
     public void setBook(Book book){
         this.b=book;
+        bookList=b.getRatings();
+        stars.setCellValueFactory(new PropertyValueFactory<>("stars"));
+        review.setCellValueFactory(new PropertyValueFactory<>("review"));
+        table.setItems(FXCollections.observableList(bookList));
     }
 
     @FXML
@@ -38,10 +42,12 @@ public class ReviewViewController {
 
     @FXML
     public void initialize() {
+        /**
         bookList=b.getRatings();
         stars.setCellValueFactory(new PropertyValueFactory<>("stars"));
         review.setCellValueFactory(new PropertyValueFactory<>("review"));
         table.setItems(FXCollections.observableList(bookList));
+         **/
     }
 
     @FXML

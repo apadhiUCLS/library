@@ -6,16 +6,18 @@ public class Person {
     private ArrayList<Book>  checkedOutBooks;
     private ArrayList<Book>  heldBooks;
     private ArrayList<Book>  overdue;
-    private ArrayList<Book>  favorites=new ArrayList<Book>();
+    private ArrayList<Book>  favorites;
     private String name;
+    private ArrayList<Book> didNotFinish;
 
     public Person(String name){
         this.checkedOutBooks = new ArrayList<Book>();
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
         this.wantToRead = new ArrayList<Book>();
-        this.favorites=new ArrayList<Book>();
+        this.favorites = new ArrayList<Book>();
         this.name = name;
+        this.didNotFinish = new ArrayList<Book>();
     }
 
     public void addFavorite(Book b){
@@ -111,5 +113,15 @@ public class Person {
 
     public void clearWantToRead() {
         this.wantToRead = new ArrayList<Book>();
+    }
+
+    //should this delete the book from anywhere else (like wantToRead?)
+    public void addDidNotFinish(Book b) {
+        this.didNotFinish.add(b);
+    }
+
+    public void removeDidNotFinish(Book b) {
+        int index = this.didNotFinish.indexOf(b);
+        this.didNotFinish.remove(index);
     }
 }

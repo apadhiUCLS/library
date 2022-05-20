@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class Book {
     private Author author;
@@ -43,21 +44,23 @@ public class Book {
     }
 
     public String determineCallNum(){
-        String c="";
+        String c=genre.toUpperCase(Locale.ROOT)+" ";
         String letters=author.getLastName().substring(0,3);
         c+=letters;
         return c;
     }
 
-    public Book(String title, Author author, int invPaperback, int invHardcover){
+    public Book(String title, Author author, int invPaperback, int invHardcover,String genre){
         this.title=title;
         this.author=author;
         this.invHardcover=invHardcover;
         this.invPaperback=invPaperback;
         inventory=invPaperback+invHardcover;
+        this.genre=genre;
+        callNum=determineCallNum();
     }
 
-    public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries){
+    public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries, String genre){
         this.title=title;
         this.author=author;
         this.invHardcover=invHardcover;
@@ -65,6 +68,8 @@ public class Book {
         this.series=series;
         this.numInSeries=numInSeries;
         inventory=invPaperback+invHardcover;
+        this.genre=genre;
+        callNum=determineCallNum();
     }
 
     public ArrayList<Rating> getRatings(){

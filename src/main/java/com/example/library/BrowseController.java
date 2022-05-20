@@ -37,6 +37,9 @@ public class BrowseController {
     private TableColumn ratingsColumn;
 
     @FXML
+    private TableColumn callNumColumn;
+
+    @FXML
     private Button checkedOutBooks;
 
     @FXML
@@ -75,17 +78,17 @@ public class BrowseController {
         Author HarperLee = new Author("Harper", "Lee");
         Author JKRowling = new Author("JK", "Rowling");
         Series harryPotter=new Series("Harry Potter");
-        bookList.add(new Book("To Kill A MockingBird", HarperLee, 3,1));
-        Book b1=new Book("Sorcerer's Stone", JKRowling, 4,1,harryPotter,1);
+        bookList.add(new Book("To Kill A MockingBird", HarperLee, 3,1,"FICTION"));
+        Book b1=new Book("Sorcerer's Stone", JKRowling, 4,1,harryPotter,1,"FICTION");
         harryPotter.addToSeries(b1);
         bookList.add(b1);
-        Book b2=new Book("Chamber of Secrets", JKRowling, 4,1,harryPotter,2);
+        Book b2=new Book("Chamber of Secrets", JKRowling, 4,1,harryPotter,2,"FICTION");
         bookList.add(b2);
         harryPotter.addToSeries(b2);
-        Book b3=new Book("Prisoner of Azkaban", JKRowling, 4,1,harryPotter,3);
+        Book b3=new Book("Prisoner of Azkaban", JKRowling, 4,1,harryPotter,3,"FICTION");
         bookList.add(b3);
         harryPotter.addToSeries(b3);
-        Book b4=new Book("Goblet of Fire", JKRowling, 4,1,harryPotter,4);
+        Book b4=new Book("Goblet of Fire", JKRowling, 4,1,harryPotter,4,"FICTION");
         bookList.add(b4);
         harryPotter.addToSeries(b4);
 
@@ -95,6 +98,7 @@ public class BrowseController {
         paperbackColumn.setCellValueFactory(new PropertyValueFactory<>("invPaperback"));
         seriesColumn.setCellValueFactory(new PropertyValueFactory<>("seriesTitle"));
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
+        callNumColumn.setCellValueFactory(new PropertyValueFactory<>("callNum"));
         table.setItems(FXCollections.observableList(bookList));
 
     }

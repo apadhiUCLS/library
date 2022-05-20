@@ -23,6 +23,8 @@ public class Book {
     private Series series;
     private int numInSeries;
     public ArrayList<Rating> ratings=new ArrayList<Rating>();
+    private String callNum;
+    private String genre;
 
     public Book(String title, Author author){
         this.title=title;
@@ -31,6 +33,21 @@ public class Book {
     }
 
     public Book(){}
+
+    public String getCallNum() {
+        return callNum;
+    }
+
+    public void setCallNum(String s){
+        callNum=s;
+    }
+
+    public String determineCallNum(){
+        String c="";
+        String letters=author.getLastName().substring(0,3);
+        c+=letters;
+        return c;
+    }
 
     public Book(String title, Author author, int invPaperback, int invHardcover){
         this.title=title;

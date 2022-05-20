@@ -34,5 +34,6 @@
       </TabPane>
       <Button fx:id="favorites" layoutX="365.0" layoutY="10.0" mnemonicParsing="false" onAction="#goFavorites" text="Favorites" />
       <Button fx:id="wantToRead" layoutX="248.0" layoutY="10.0" mnemonicParsing="false" onAction="#goWantToRead" text="Want To Read" />
+      <Button fx:id="didNotFinish" layoutX="589.0" layoutY="10.0" mnemonicParsing="false" onAction="#goDidNotFinish" text="Did Not Finish" />
    </children>
 </AnchorPane>

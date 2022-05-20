@@ -43,6 +43,7 @@ public class Person {
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
         this.wantToRead = new ArrayList<Book>();
+        this.didNotFinish = new ArrayList<Book>();
         this.name = "anonymous";
     }
 
@@ -115,13 +116,21 @@ public class Person {
         this.wantToRead = new ArrayList<Book>();
     }
 
-    //should this delete the book from anywhere else (like wantToRead?)
     public void addDidNotFinish(Book b) {
-        this.didNotFinish.add(b);
+        if (this.didNotFinish.indexOf(b) < 0) {
+            this.didNotFinish.add(b);
+        }
+        if (this.wantToRead.indexOf(b) > 0) {
+            this.wantToRead.remove(this.wantToRead.indexOf(b));
+        }
     }
 
     public void removeDidNotFinish(Book b) {
         int index = this.didNotFinish.indexOf(b);
         this.didNotFinish.remove(index);
+    }
+
+    public ArrayList<Book> getDidNotFinish(){
+        return this.didNotFinish;
     }
 }

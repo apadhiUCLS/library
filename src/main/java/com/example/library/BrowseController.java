@@ -45,6 +45,9 @@ public class BrowseController {
     @FXML
     private Button wantToRead;
 
+    @FXML
+    private Button didNotFinish;
+
     private Person p=new Person ();
 
     public Person getPerson(){
@@ -57,16 +60,24 @@ public class BrowseController {
         LibraryApplication.switchToOverview(b, p);
     }
 
+    @FXML
     public void goCheckedOut() throws IOException {
         LibraryApplication.switchToCheckedOutBooks(p);
     }
 
+    @FXML
     public void goFavorites() throws IOException {
         LibraryApplication.switchToFavoriteView(p);
     }
 
+    @FXML
     public void goWantToRead() throws IOException {
         LibraryApplication.switchToWantToReadView(p);
+    }
+
+    @FXML
+    public void goDidNotFinish() throws IOException {
+        LibraryApplication.switchToDidNotFinishView(p);
     }
 
     @FXML

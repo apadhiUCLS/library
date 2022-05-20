@@ -38,6 +38,11 @@ public class BookOverviewController {
     private Button btnReview;
     @FXML
     private Button btnRate;
+    @FXML
+    private Button btnDidNotFinish;
+    @FXML
+    private Button btnFinish;
+
     private Book b;
 
     private Person p;
@@ -77,6 +82,16 @@ public class BookOverviewController {
     public void setBtnWantToRead() throws IOException {
         p.addWantToRead(b);
         LibraryApplication.switchToWantToReadView(p);
+    }
+
+    @FXML
+    public void setBtnDidNotFinish() throws IOException {
+        p.addDidNotFinish(b);
+        LibraryApplication.switchToDidNotFinishView(p);
+    }
+
+    @FXML void setBtnFinish() {
+        p.removeDidNotFinish(b);
     }
 
     public void setPerson(Person p){

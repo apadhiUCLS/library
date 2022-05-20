@@ -53,6 +53,15 @@ public class LibraryApplication extends Application {
         s.setScene(myScene); // the initialize method will get called in here
     }
 
+    public static void switchToDidNotFinishView(Person p) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("did-not-finish-view.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        DidNotFinishViewController didNotFinish = loader.getController();
+        didNotFinish.setPerson(p);
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
 
     public static void switchToRateView(Book b, Person p) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("rating-view.fxml"));

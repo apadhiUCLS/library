@@ -8,8 +8,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,6 +112,16 @@ public class BrowseController {
         seriesColumn.setCellValueFactory(new PropertyValueFactory<>("seriesTitle"));
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         table.setItems(FXCollections.observableList(bookList));
+
+
+        String home = System.getProperty("user.home");
+        Path folderPath = Paths.get(home + "/.libraryUsers");
+        if (!Files.exists(folderPath)){
+            try{
+                Files.createDirectory(folderPath);
+            } catch (Exception e) {
+                e.printStackTrace();
+        }
 
     }
     public void update(){

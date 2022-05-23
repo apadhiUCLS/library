@@ -28,5 +28,6 @@
       <Button fx:id="btnReview" layoutX="265.0" layoutY="21.0" mnemonicParsing="false" onAction="#goToReviews" prefHeight="26.0" prefWidth="110.0" text="Go To Reviews" />
       <Button fx:id="btnRate" layoutX="520.0" layoutY="61.0" mnemonicParsing="false" onAction="#goToRate" text="Rate" />
       <Button fx:id="btnWantToRead" layoutX="491.0" layoutY="90.0" mnemonicParsing="false" onAction="#setBtnWantToRead" text="Want To Read" />
+      <Button fx:id="btnDidNotFinish" layoutX="491.0" layoutY="122.0" mnemonicParsing="false" onAction="#setBtnDidNotFinish" text="Did Not Finish" />
    </children>
 </AnchorPane>

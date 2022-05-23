@@ -54,6 +54,7 @@ public class BookOverviewController {
 
     @FXML
     public void checkoutHardcover() throws IOException {
+        p.addCheckout(b);
         LibraryApplication.switchToCheckoutView(b.checkoutHardcover(p),p);
     }
 
@@ -69,6 +70,7 @@ public class BookOverviewController {
 
     @FXML
     public void checkoutPaperback() throws IOException {
+        p.addCheckout(b);
         LibraryApplication.switchToCheckoutView(b.checkoutPaperback(p),p);
     }
 

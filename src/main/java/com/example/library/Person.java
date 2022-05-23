@@ -1,7 +1,10 @@
 package com.example.library;
+import java.io.Serializable;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
-public class Person {
+public class Person implements Serializable {
     private ArrayList<Book> wantToRead;
     private ArrayList<Book>  checkedOutBooks;
     private ArrayList<Book>  heldBooks;
@@ -55,6 +58,11 @@ public class Person {
         if (this.wantToRead.indexOf(book) > 0) {
             this.removeWantToRead(book);
         }
+
+        String home = System.getProperty("user.home");
+        Path folderPath = Paths.get(home + "/.libraryUsers/users.ser");
+
+
     }
 
     public void addHold(Book book) {

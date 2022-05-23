@@ -114,15 +114,6 @@ public class BrowseController {
         table.setItems(FXCollections.observableList(bookList));
 
 
-        String home = System.getProperty("user.home");
-        Path folderPath = Paths.get(home + "/.libraryUsers");
-        if (!Files.exists(folderPath)){
-            try{
-                Files.createDirectory(folderPath);
-            } catch (Exception e) {
-                e.printStackTrace();
-        }
-
     }
     public void update(){
         table.refresh();

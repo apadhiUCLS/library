@@ -3,11 +3,12 @@ package com.example.library;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class Book {
+public class Book implements java.io.Serializable {
     private Author author;
     private String title;
     private Date releaseDate;
@@ -84,6 +85,14 @@ public class Book {
         numInSeries=s;
     }
 
+    public void setGenre(String s){
+        genre=s;
+    }
+
+    public String getGenre(){
+        return genre;
+    }
+
     public double getAvgRating(){
         return avgRating;
     }
@@ -129,6 +138,10 @@ public class Book {
 
     public Series getSeries(){
         return series;
+    }
+
+    public void setSeries(Series s){
+        this.series=s;
     }
 
     public void setReturnDate(){

@@ -7,10 +7,11 @@ import javafx.scene.control.TextField;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class NewBookController {
 
-    private Book b=null;
+    private Book b=new Book();
 
     @FXML
     private TextField title;
@@ -27,9 +28,15 @@ public class NewBookController {
     @FXML
     private TextField numInSeries;
     @FXML
-    private TextField Genre;
+    private TextField genre;
     @FXML
     private Button done;
+
+    private Person p;
+
+    public void setPerson(Person p){
+        this.p=p;
+    }
 
 
     public void doneButtonHandler() throws IOException {
@@ -38,7 +45,35 @@ public class NewBookController {
             b.setAuthor(new Author(authorFName.getText(), authorLName.getText()));
             b.setInvPaperback(Integer.parseInt(paperInv.getText()));
             b.setInvHardcover(Integer.parseInt(hardcoverInv.getText()));
+            b.setGenre(genre.getText());
+            for (int i=0; i<BrowseController.getBookList().size(); i++){
+                if (authorFName.getText().equals(BrowseController.getBookList().get(i).getAuthor().getFirstName()) && authorLName.getText().equals(BrowseController.getBookList().get(i).getAuthor().getLastName())){
+                    b.setAuthor(BrowseController.getBookList().get(i).getAuthor());
+                }
+                if (b.getAuthor()==null){
+                    b.setAuthor(new Author(authorFName.getText(),authorLName.getText()));
+                }
+            }
+            for (int i=0; i<BrowseController.getBookList().size(); i++){
+                if (series.getText().equals(BrowseController.getBookList().get(i).getSeries().getTitle())){
+                    b.setSeries(BrowseController.getBookList().get(i).getSeries());
+                }
+                if (b.getSeries()==null){
+                    b.setSeries(new Series(series.getText(), new ArrayList<Book>()));
+                }
+            }
 
+            BrowseController.addToBookList(b);
         }
+        try {
+            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.library/library.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(BrowseController.getBookList());
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+        LibraryApplication.switchToMainView(p);
     }
 }

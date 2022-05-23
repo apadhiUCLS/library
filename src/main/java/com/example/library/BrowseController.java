@@ -9,7 +9,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,11 +53,22 @@ public class BrowseController {
     @FXML
     private Button wantToRead;
 
+    @FXML
+    private Button newBook;
+
+    private Path path;
+
+    private static List<Book> bookList=new ArrayList<Book>();
+
     private Person p=new Person ();
 
     public Person getPerson(){
         return p;
     }
+
+    public static List<Book> getBookList(){return bookList;}
+
+    public static void addToBookList(Book b){bookList.add(b);}
 
     @FXML
     private void showOverview() throws Exception {
@@ -72,9 +88,13 @@ public class BrowseController {
         LibraryApplication.switchToWantToReadView(p);
     }
 
+    public void goNewBook() throws IOException {
+        LibraryApplication.switchToNew(p);
+    }
+
     @FXML
-    public void initialize() {
-        List<Book> bookList = new ArrayList<Book>();
+    public void initialize() throws IOException {
+/*        List<Book> bookList = new ArrayList<Book>();
         Author HarperLee = new Author("Harper", "Lee");
         Author JKRowling = new Author("JK", "Rowling");
         Series harryPotter=new Series("Harry Potter");
@@ -91,6 +111,32 @@ public class BrowseController {
         Book b4=new Book("Goblet of Fire", JKRowling, 4,1,harryPotter,4,"FICTION");
         bookList.add(b4);
         harryPotter.addToSeries(b4);
+
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        hardcoverColumn.setCellValueFactory(new PropertyValueFactory<>("invHardcover"));
+        paperbackColumn.setCellValueFactory(new PropertyValueFactory<>("invPaperback"));
+        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("seriesTitle"));
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
+        callNumColumn.setCellValueFactory(new PropertyValueFactory<>("callNum"));
+        table.setItems(FXCollections.observableList(bookList));*/
+
+        path = FileSystems.getDefault().getPath(System.getProperty("user.home"), ".library");
+        if (!Files.exists(path)){
+            Path p=Files.createDirectory(path);
+        }
+        Book b = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(path+"/library.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            bookList = (ArrayList<Book>) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        } catch (ClassNotFoundException c) {
+            c.printStackTrace();
+        }
 
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));

@@ -2,7 +2,7 @@ package com.example.library;
 
 import java.util.ArrayList;
 
-public class Series {
+public class Series implements java.io.Serializable{
     private String title;
     private ArrayList<Book> books=new ArrayList<Book>();
 
@@ -18,6 +18,8 @@ public class Series {
     public ArrayList<Book> getBooks(){
         return books;
     }
+
+    public String getTitle(){return title;}
 
     public void addToSeries(Book b){
         books.add(b);

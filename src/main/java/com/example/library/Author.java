@@ -2,7 +2,7 @@ package com.example.library;
 
 import java.util.ArrayList;
 
-public class Author {
+public class Author implements java.io.Serializable{
     private String firstName;
     private String lastName;
     private ArrayList<Book> bookList;

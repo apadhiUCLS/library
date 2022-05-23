@@ -45,6 +45,9 @@ public class BrowseController {
     @FXML
     private Button wantToRead;
 
+    @FXML
+    private Button chooseUser;
+
     private Person p=new Person ();
 
     public Person getPerson(){
@@ -59,6 +62,10 @@ public class BrowseController {
 
     public void goCheckedOut() throws IOException {
         LibraryApplication.switchToCheckedOutBooks(p);
+    }
+
+    public void setChooseUser() throws IOException {
+        LibraryApplication.switchToChooseUser();
     }
 
     public void goFavorites() throws IOException {

@@ -53,6 +53,14 @@ public class LibraryApplication extends Application {
         s.setScene(myScene); // the initialize method will get called in here
     }
 
+    public static void switchToChooseUser() throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("choose-user.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        ChooseUserController person = loader.getController();
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
 
     public static void switchToRateView(Book b, Person p) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("rating-view.fxml"));

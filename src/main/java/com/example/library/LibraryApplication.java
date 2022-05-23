@@ -35,6 +35,21 @@ public class LibraryApplication extends Application {
         s.setScene(home); // the initialize method will get called in here
     }
 
+    public static void switchToMainView(Person p, ArrayList<Person> people) throws IOException {
+/*        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);*/
+        BrowseController browseController = loader.getController();
+        browseController.update();
+        s.setScene(home); // the initialize method will get called in here
+
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("choose-user.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        ChooseUserController loginController = loader.getController();
+        loginController.setUserList(people);
+    }
+
     public static void switchToCheckoutView(String m, Person p) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("checkout-page.fxml"));
         Parent root = loader.load();
@@ -53,11 +68,21 @@ public class LibraryApplication extends Application {
         s.setScene(myScene); // the initialize method will get called in here
     }
 
-    public static void switchToChooseUser() throws IOException {
+    public static void switchToChooseUser(Person p) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("choose-user.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         ChooseUserController person = loader.getController();
+        person.setPerson(p);
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
+    public static void switchToSignUpView(Person p) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("sign-up-view.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        signUpController newPersonController = loader.getController();
+        newPersonController.setPerson(p);
         s.setScene(myScene); // the initialize method will get called in here
     }
 

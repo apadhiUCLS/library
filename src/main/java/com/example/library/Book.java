@@ -1,8 +1,8 @@
 package com.example.library;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -158,6 +158,9 @@ public class Book {
     }
 
     public String checkoutPaperback(Person p){
+        ArrayList<Book> temp = BrowseController.getBookList();
+        int i = temp.indexOf(this);
+
         if (invPaperback>0){
             invPaperback-=1;
             p.addCheckout(this);
@@ -168,6 +171,20 @@ public class Book {
                 p.removeHold(this);
             }
             inventory=invPaperback+invHardcover;
+            try {
+                String s = System.getProperty("user.home");
+
+                FileOutputStream fileOut = new FileOutputStream( s + "/.library/library.ser");
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
+
+                out.writeObject(a);
+                out.close();
+                fileOut.close();
+                System.out.printf("Serialized data is saved in PatientDB.ser");
+            } catch (IOException i) {
+                i.printStackTrace();
+            }
             return "Checkout successful! The return date is " +returnDate;
         } else{
             hold(p);

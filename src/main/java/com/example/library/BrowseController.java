@@ -65,7 +65,7 @@ public class BrowseController {
     }
 
     public void setChooseUser() throws IOException {
-        LibraryApplication.switchToChooseUser();
+        LibraryApplication.switchToChooseUser(p);
     }
 
     public void goFavorites() throws IOException {

@@ -46,6 +46,8 @@ public class NewBookController {
             b.setInvPaperback(Integer.parseInt(paperInv.getText()));
             b.setInvHardcover(Integer.parseInt(hardcoverInv.getText()));
             b.setGenre(genre.getText());
+            Series s=new Series(series.getText(), new ArrayList<Book>());
+            b.setSeries(s);
             for (int i=0; i<BrowseController.getBookList().size(); i++){
                 if (authorFName.getText().equals(BrowseController.getBookList().get(i).getAuthor().getFirstName()) && authorLName.getText().equals(BrowseController.getBookList().get(i).getAuthor().getLastName())){
                     b.setAuthor(BrowseController.getBookList().get(i).getAuthor());
@@ -57,9 +59,6 @@ public class NewBookController {
             for (int i=0; i<BrowseController.getBookList().size(); i++){
                 if (series.getText().equals(BrowseController.getBookList().get(i).getSeries().getTitle())){
                     b.setSeries(BrowseController.getBookList().get(i).getSeries());
-                }
-                if (b.getSeries()==null){
-                    b.setSeries(new Series(series.getText(), new ArrayList<Book>()));
                 }
             }
 

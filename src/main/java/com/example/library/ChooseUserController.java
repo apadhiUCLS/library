@@ -8,13 +8,15 @@ import java.util.*;
 import javafx.fxml.FXML;
 
 public class ChooseUserController {
-    private ArrayList<Person> people;
+    private static ArrayList<Person> people;
 
-    public ArrayList<Person> getUserList() {
+    public static ArrayList<Person> getUserList() {
         return people;
     }
 
-    public void setUserList(ArrayList<Person> users) {
+    //tell Elizabeth to change how she is calling it since it is now static (should just have
+    //to make sure she is calling on the class and delete the getting controller stuff)
+    public static void setUserList(ArrayList<Person> users) {
         people = users;
 
         String home = System.getProperty("user.home");

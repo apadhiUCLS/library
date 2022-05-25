@@ -1,4 +1,7 @@
 package com.example.library;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -59,9 +62,22 @@ public class Person implements Serializable {
             this.removeWantToRead(book);
         }
 
+        //this is the stuff to reserialize because I assume it is needed after changing a person in the list,
+        //but is there anything else I need to do to make sure the changes are save and do I need to do this at all?
+       ArrayList<Person> p = ChooseUserController.getUserList();
         String home = System.getProperty("user.home");
-        Path folderPath = Paths.get(home + "/.libraryUsers/users.ser");
-
+        Path folderPath = Paths.get(home + "/.libraryUsers");
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream(folderPath + "/users.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(p);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in users.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
 
     }
 

@@ -63,7 +63,7 @@ public class BrowseController {
 
     private Path path;
 
-    private static List<Book> bookList=new ArrayList<Book>();
+    private static ArrayList<Book> bookList=new ArrayList<Book>();
 
     @FXML
     private Button didNotFinish;
@@ -77,7 +77,7 @@ public class BrowseController {
         return p;
     }
 
-    public static List<Book> getBookList(){return bookList;}
+    public static ArrayList<Book> getBookList(){return bookList;}
 
     public static void addToBookList(Book b){bookList.add(b);}
 

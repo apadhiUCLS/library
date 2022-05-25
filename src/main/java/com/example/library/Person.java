@@ -50,6 +50,7 @@ public class Person implements Serializable {
         this.overdue = new ArrayList<Book>();
         this.wantToRead = new ArrayList<Book>();
         this.didNotFinish = new ArrayList<Book>();
+        this.favorites = new ArrayList<Book>();
         this.name = "anonymous";
     }
 

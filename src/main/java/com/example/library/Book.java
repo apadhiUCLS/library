@@ -217,8 +217,8 @@ public class Book implements java.io.Serializable {
                 out.close();
                 fileOut.close();
                 System.out.printf("Serialized data is saved in library.ser");
-            } catch (IOException i) {
-                i.printStackTrace();
+            } catch (IOException c) {
+                c.printStackTrace();
             }
             return "Checkout successful! The return date is " +returnDate;
         } else{

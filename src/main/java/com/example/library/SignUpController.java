@@ -10,7 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class signUpController {
+public class SignUpController {
     @FXML
     private Button back;
 
@@ -37,6 +37,7 @@ public class signUpController {
     }
 
     public void setPeople(ArrayList<Person> people){
+        this.people = new ArrayList<Person>();
         this.people= people;
     }
 
@@ -48,7 +49,7 @@ public class signUpController {
         String temp = name.getText();
         Boolean existing = false;
         for (int i = 0; i < people.size(); i++) {
-            if ((temp).equals(people[i].getPerson().getName())) {
+            if ((temp).equals(people.get(i).getName())) {
                 existing = true;
             }
         }

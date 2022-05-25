@@ -80,7 +80,7 @@ public class LibraryApplication extends Application {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("sign-up-view.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
-        signUpController newPersonController = loader.getController();
+        SignUpController newPersonController = loader.getController();
         newPersonController.setPerson(p);
         newPersonController.setPeople(ChooseUserController.getUserList());
         s.setScene(myScene); // the initialize method will get called in here

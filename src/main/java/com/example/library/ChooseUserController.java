@@ -32,12 +32,9 @@ public class ChooseUserController {
     private Label message;
 
     private Person p;
-    private ArrayList<Person> people;
+    private static ArrayList<Person> people;
 
 
-    @FXML
-    public void initialize() {
-    }
 
     public void setPerson(Person p) {
         this.p = p;
@@ -47,9 +44,9 @@ public class ChooseUserController {
         String tempU = username.getText();
         Boolean loggedIn = false;
         for (int i = 0; i < people.size(); i++) {
-            if ((tempU).equals(people[i].getPerson().getName())) {
+            if ((tempU).equals(people.get(i).getName())) {
                 loggedIn = true;
-                p = people[i].getPerson();
+                p = people.get(i);
             }
         }
         if (loggedIn) {
@@ -67,7 +64,6 @@ public class ChooseUserController {
     public void goBack() throws IOException {
         LibraryApplication.switchToMainView(p);
     }
-    private static ArrayList<Person> people;
 
     public static ArrayList<Person> getUserList() {
         return people;

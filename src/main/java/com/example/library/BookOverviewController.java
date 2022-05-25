@@ -38,6 +38,13 @@ public class BookOverviewController {
     private Button btnReview;
     @FXML
     private Button btnRate;
+    @FXML
+    private Button btnDidNotFinish;
+    @FXML
+    private Button btnFinish;
+
+    @FXML
+    private Label callNum;
     private Book b;
 
     private Person p;
@@ -49,6 +56,7 @@ public class BookOverviewController {
 
     @FXML
     public void checkoutHardcover() throws IOException {
+        p.addCheckout(b);
         LibraryApplication.switchToCheckoutView(b.checkoutHardcover(p),p);
     }
 

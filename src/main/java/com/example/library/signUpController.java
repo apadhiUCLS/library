@@ -59,5 +59,8 @@ public class signUpController {
             Person tempP = new Person(name.getText());
             people.add(tempP);
         }
+public class signUpController {
+    public void initialize() {
+
     }
 }

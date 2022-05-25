@@ -1,21 +1,29 @@
 package com.example.library;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
-public class Person {
+public class Person implements Serializable {
     private ArrayList<Book> wantToRead;
     private ArrayList<Book>  checkedOutBooks;
     private ArrayList<Book>  heldBooks;
     private ArrayList<Book>  overdue;
-    private ArrayList<Book>  favorites=new ArrayList<Book>();
+    private ArrayList<Book>  favorites;
     private String name;
+    private ArrayList<Book> didNotFinish;
 
     public Person(String name){
         this.checkedOutBooks = new ArrayList<Book>();
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
         this.wantToRead = new ArrayList<Book>();
-        this.favorites=new ArrayList<Book>();
+        this.favorites = new ArrayList<Book>();
         this.name = name;
+        this.didNotFinish = new ArrayList<Book>();
     }
 
     public void addFavorite(Book b){
@@ -41,6 +49,7 @@ public class Person {
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
         this.wantToRead = new ArrayList<Book>();
+        this.didNotFinish = new ArrayList<Book>();
         this.name = "anonymous";
     }
 
@@ -52,6 +61,24 @@ public class Person {
         if (this.wantToRead.indexOf(book) > 0) {
             this.removeWantToRead(book);
         }
+
+        //this is the stuff to reserialize because I assume it is needed after changing a person in the list,
+        //but is there anything else I need to do to make sure the changes are save and do I need to do this at all?
+       ArrayList<Person> p = ChooseUserController.getUserList();
+        String home = System.getProperty("user.home");
+        Path folderPath = Paths.get(home + "/.libraryUsers");
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream(folderPath + "/users.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(p);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in users.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+
     }
 
     public void addHold(Book book) {
@@ -111,5 +138,23 @@ public class Person {
 
     public void clearWantToRead() {
         this.wantToRead = new ArrayList<Book>();
+    }
+
+    public void addDidNotFinish(Book b) {
+        if (this.didNotFinish.indexOf(b) < 0) {
+            this.didNotFinish.add(b);
+        }
+        if (this.wantToRead.indexOf(b) > 0) {
+            this.wantToRead.remove(this.wantToRead.indexOf(b));
+        }
+    }
+
+    public void removeDidNotFinish(Book b) {
+        int index = this.didNotFinish.indexOf(b);
+        this.didNotFinish.remove(index);
+    }
+
+    public ArrayList<Book> getDidNotFinish(){
+        return this.didNotFinish;
     }
 }

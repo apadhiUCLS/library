@@ -38,6 +38,8 @@ public class BookOverviewController {
     private Button btnReview;
     @FXML
     private Button btnRate;
+    @FXML
+    private Label callNum;
     private Book b;
 
     private Person p;
@@ -101,6 +103,7 @@ public class BookOverviewController {
         this.lblPaperbackCopies.setText(Integer.toString(b.getInvPaperback()));
         this.lblHardcoverCopies.setText(Integer.toString(b.getInvHardcover()));
         this.ratings.setText(Double.toString(b.getAvgRating()));
+        this.callNum.setText(b.getCallNum());
     }
 
 

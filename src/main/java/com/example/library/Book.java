@@ -3,10 +3,12 @@ package com.example.library;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
-public class Book {
+public class Book implements java.io.Serializable {
     private Author author;
     private String title;
     private Date releaseDate;
@@ -23,6 +25,8 @@ public class Book {
     private Series series;
     private int numInSeries;
     public ArrayList<Rating> ratings=new ArrayList<Rating>();
+    private String callNum;
+    private String genre;
 
     public Book(String title, Author author){
         this.title=title;
@@ -32,15 +36,32 @@ public class Book {
 
     public Book(){}
 
-    public Book(String title, Author author, int invPaperback, int invHardcover){
+    public String getCallNum() {
+        return callNum;
+    }
+
+    public void setCallNum(String s){
+        callNum=s;
+    }
+
+    public String determineCallNum(){
+        String c=genre.toUpperCase(Locale.ROOT)+" ";
+        String letters=author.getLastName().substring(0,3);
+        c+=letters;
+        return c;
+    }
+
+    public Book(String title, Author author, int invPaperback, int invHardcover,String genre){
         this.title=title;
         this.author=author;
         this.invHardcover=invHardcover;
         this.invPaperback=invPaperback;
         inventory=invPaperback+invHardcover;
+        this.genre=genre;
+        callNum=determineCallNum();
     }
 
-    public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries){
+    public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries, String genre){
         this.title=title;
         this.author=author;
         this.invHardcover=invHardcover;
@@ -48,6 +69,8 @@ public class Book {
         this.series=series;
         this.numInSeries=numInSeries;
         inventory=invPaperback+invHardcover;
+        this.genre=genre;
+        callNum=determineCallNum();
     }
 
     public ArrayList<Rating> getRatings(){
@@ -60,6 +83,14 @@ public class Book {
 
     public void setNumInSeries(int s){
         numInSeries=s;
+    }
+
+    public void setGenre(String s){
+        genre=s;
+    }
+
+    public String getGenre(){
+        return genre;
     }
 
     public double getAvgRating(){
@@ -107,6 +138,10 @@ public class Book {
 
     public Series getSeries(){
         return series;
+    }
+
+    public void setSeries(Series s){
+        this.series=s;
     }
 
     public void setReturnDate(){

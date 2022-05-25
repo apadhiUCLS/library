@@ -43,11 +43,7 @@ public class LibraryApplication extends Application {
         browseController.update();
         s.setScene(home); // the initialize method will get called in here
 
-        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("choose-user.fxml"));
-        Parent root = loader.load();
-        Scene myScene = new Scene(root);
-        ChooseUserController loginController = loader.getController();
-        loginController.setUserList(people);
+        ChooseUserController.setUserList(people);
     }
 
     public static void switchToCheckoutView(String m, Person p) throws IOException {
@@ -83,6 +79,7 @@ public class LibraryApplication extends Application {
         Scene myScene = new Scene(root);
         signUpController newPersonController = loader.getController();
         newPersonController.setPerson(p);
+        newPersonController.setPeople(ChooseUserController.getUserList());
         s.setScene(myScene); // the initialize method will get called in here
     }
 

@@ -36,6 +36,10 @@ public class signUpController {
         this.p= p;
     }
 
+    public void setPeople(ArrayList<Person> people){
+        this.people= people;
+    }
+
     @FXML
     public void initialize() {
     }

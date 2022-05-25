@@ -23,6 +23,8 @@ public class LibraryApplication extends Application {
         home=scene;
         s.setTitle("Hello!");
         s.setScene(home);
+        s.setWidth(1000);
+        s.setHeight(600);
         s.show();
     }
 
@@ -30,9 +32,10 @@ public class LibraryApplication extends Application {
 /*        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);*/
-        BrowseController browseController = loader.getController();
-        browseController.update();
-        s.setScene(home); // the initialize method will get called in here
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        s.setScene(myScene); // the initialize method will get called in here
     }
 
     public static void switchToCheckoutView(String m, Person p) throws IOException {
@@ -112,6 +115,15 @@ public class LibraryApplication extends Application {
         reviewViewController.setBook(book);
         reviewViewController.setPerson(p);
         reviewViewController.update();
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
+    public static void switchToNew(Person p) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("newBook.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        NewBookController newBookController = loader.getController();
+        newBookController.setPerson(p);
         s.setScene(myScene); // the initialize method will get called in here
     }
 

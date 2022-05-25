@@ -43,6 +43,8 @@ public class BookOverviewController {
     @FXML
     private Button btnFinish;
 
+    @FXML
+    private Label callNum;
     private Book b;
 
     private Person p;
@@ -70,7 +72,6 @@ public class BookOverviewController {
 
     @FXML
     public void checkoutPaperback() throws IOException {
-        p.addCheckout(b);
         LibraryApplication.switchToCheckoutView(b.checkoutPaperback(p),p);
     }
 
@@ -84,16 +85,6 @@ public class BookOverviewController {
     public void setBtnWantToRead() throws IOException {
         p.addWantToRead(b);
         LibraryApplication.switchToWantToReadView(p);
-    }
-
-    @FXML
-    public void setBtnDidNotFinish() throws IOException {
-        p.addDidNotFinish(b);
-        LibraryApplication.switchToDidNotFinishView(p);
-    }
-
-    @FXML void setBtnFinish() {
-        p.removeDidNotFinish(b);
     }
 
     public void setPerson(Person p){

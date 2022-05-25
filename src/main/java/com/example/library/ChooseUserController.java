@@ -8,6 +8,13 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import javafx.fxml.FXML;
+
 public class ChooseUserController {
     @FXML
     private Button back;
@@ -28,25 +35,24 @@ public class ChooseUserController {
     private ArrayList<Person> people;
 
 
-
     @FXML
     public void initialize() {
     }
 
-    public void setPerson(Person p){
-        this.p= p;
+    public void setPerson(Person p) {
+        this.p = p;
     }
 
     public void setLogin() {
         String tempU = username.getText();
         Boolean loggedIn = false;
-        for(int i = 0; i < people.size(); i++){
-            if ((tempU).equals(people[i].getPerson().getName())){
+        for (int i = 0; i < people.size(); i++) {
+            if ((tempU).equals(people[i].getPerson().getName())) {
                 loggedIn = true;
                 p = people[i].getPerson();
             }
         }
-        if (loggedIn){
+        if (loggedIn) {
             message.setText("Login Successful. Welcome " + p);
         } else {
             message.setText("Login is not successful, try again.");
@@ -61,15 +67,6 @@ public class ChooseUserController {
     public void goBack() throws IOException {
         LibraryApplication.switchToMainView(p);
     }
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import javafx.fxml.FXML;
-
-public class ChooseUserController {
     private static ArrayList<Person> people;
 
     public static ArrayList<Person> getUserList() {

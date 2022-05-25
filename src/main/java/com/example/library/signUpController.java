@@ -47,20 +47,17 @@ public class signUpController {
     public void setSignUp() {
         String temp = name.getText();
         Boolean existing = false;
-        for(int i = 0; i < people.size(); i++){
-            if ((temp).equals(people[i].getPerson().getName())){
+        for (int i = 0; i < people.size(); i++) {
+            if ((temp).equals(people[i].getPerson().getName())) {
                 existing = true;
             }
         }
-        if (existing){
+        if (existing) {
             message.setText("That Username Already exists. Choose another one.");
         } else {
             message.setText("Thank You For Signing Up! Welcome " + p);
             Person tempP = new Person(name.getText());
             people.add(tempP);
         }
-public class signUpController {
-    public void initialize() {
-
     }
 }

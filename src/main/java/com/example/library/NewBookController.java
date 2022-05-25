@@ -63,6 +63,7 @@ public class NewBookController {
             }
 
             BrowseController.addToBookList(b);
+            System.out.println(b.getCallNum());
         }
         try {
             FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.library/library.ser");

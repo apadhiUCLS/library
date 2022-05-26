@@ -101,6 +101,16 @@ public class BookOverviewController {
         LibraryApplication.switchToCheckoutView(b.returnPaperback(p),p);
     }
 
+    @FXML
+    public void setBtnDidNotFinish() throws IOException {
+        LibraryApplication.switchToDidNotFinishView(p);
+    }
+
+    @FXML
+    public void setBtnFinish() throws IOException {
+        LibraryApplication.switchToDidNotFinishView(p);
+    }
+
     public void setBook(Book b) {
         this.b = b;
         this.lblTitle.setText(b.getTitle());

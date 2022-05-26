@@ -33,7 +33,7 @@ public class ChooseUserController {
 
     private Person p;
     private static ArrayList<Person> people = new ArrayList<Person>();
-
+/** person not null**/
 
 
     public void setPerson(Person p) {

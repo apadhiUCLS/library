@@ -55,7 +55,7 @@ public class SignUpController {
         if (existing) {
             message.setText("That Username Already exists. Choose another one.");
         } else {
-            message.setText("Thank You For Signing Up! Welcome " + p);
+            message.setText("Thank You For Signing Up! Welcome " + p.getName());
             Person tempP = new Person(name.getText());
             people.add(tempP);
             p = tempP;

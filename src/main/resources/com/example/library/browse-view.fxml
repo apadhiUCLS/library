@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -36,5 +37,6 @@
       <Button fx:id="chooseUser" layoutX="596.0" layoutY="10.0" mnemonicParsing="false" onAction="#setChooseUser" text="Login" />
       <Button fx:id="didNotFinish" layoutX="147.0" layoutY="10.0" mnemonicParsing="false" onAction="#goDidNotFinish" text="Did Not Finish" />
       <Button fx:id="newBook" layoutX="654.0" layoutY="10.0" mnemonicParsing="false" onAction="#goNewBook" text="New Book" />
+      <Label fx:id="lblPerson" layoutX="845.0" layoutY="15.0" prefHeight="17.0" prefWidth="138.0" text="Label" />
    </children>
 </AnchorPane>

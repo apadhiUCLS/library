@@ -35,7 +35,10 @@ public class ChooseUserController {
     private static ArrayList<Person> people = new ArrayList<Person>();
 
 
-
+// this controller and the sign up controller shouldn't need a set person and shouldn't need a person to get started
+    //but I am pretty sure that is not what is messing it up.
+    //I couldn't find a place here or when switching to main view that should change the person, but it might be useful
+    //have a static person we use everywhere (if we can't actually figure out what the problem is).
     public void setPerson(Person p) {
         this.p = p;
     }

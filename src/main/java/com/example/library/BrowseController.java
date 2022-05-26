@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
+import javafx.scene.control.Label;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -73,12 +74,16 @@ public class BrowseController {
 
     private Person p;
 
+    @FXML
+    private Label lblPerson;
+
     public Person getPerson(){
         return p;
     }
 
     public void setPerson(Person p){
         this.p = p;
+        lblPerson.setText(p.getName());
     }
 
     public static ArrayList<Book> getBookList(){return bookList;}

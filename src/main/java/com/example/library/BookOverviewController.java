@@ -108,7 +108,8 @@ public class BookOverviewController {
 
     @FXML
     public void setBtnFinish() throws IOException {
-        LibraryApplication.switchToDidNotFinishView(p);
+        p.removeDidNotFinish(b);
+        //LibraryApplication.switchToDidNotFinishView(p);
     }
 
     public void setBook(Book b) {

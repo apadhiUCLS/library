@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class LibraryApplication extends Application {
+public class  LibraryApplication extends Application {
     private static Stage s;
     private static Scene home;
     private static FXMLLoader loader;
@@ -35,6 +35,8 @@ public class LibraryApplication extends Application {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);
+        BrowseController browseController = loader.getController();
+        browseController.setPerson(p);
         s.setScene(myScene); // the initialize method will get called in here
     }
 
@@ -44,6 +46,7 @@ public class LibraryApplication extends Application {
         Scene myScene = new Scene(root);*/
         BrowseController browseController = loader.getController();
         browseController.update();
+        browseController.setPerson(p);
         s.setScene(home); // the initialize method will get called in here
 
         ChooseUserController.setUserList(people);

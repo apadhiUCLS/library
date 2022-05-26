@@ -77,6 +77,10 @@ public class BrowseController {
         return p;
     }
 
+    public void setPerson(Person p){
+        this.p = p;
+    }
+
     public static ArrayList<Book> getBookList(){return bookList;}
 
     public static void addToBookList(Book b){bookList.add(b);}

@@ -25,7 +25,7 @@ public class SignUpController {
     private Label message;
 
     private Person p;
-    private ArrayList<Person> people;
+    private ArrayList<Person> people=new ArrayList<Person>();
 
     @FXML
     public void goBack() throws IOException {
@@ -37,7 +37,6 @@ public class SignUpController {
     }
 
     public void setPeople(ArrayList<Person> people){
-        this.people = new ArrayList<Person>();
         this.people= people;
     }
 
@@ -59,6 +58,7 @@ public class SignUpController {
             message.setText("Thank You For Signing Up! Welcome " + p);
             Person tempP = new Person(name.getText());
             people.add(tempP);
+            p = tempP;
         }
     }
 }

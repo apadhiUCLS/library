@@ -77,6 +77,7 @@ public class BookOverviewController {
 
     @FXML
     public void setBtnFavorite() throws IOException {
+        System.out.println(p);
         p.addFavorite(b);
         LibraryApplication.switchToFavoriteView(p);
     }

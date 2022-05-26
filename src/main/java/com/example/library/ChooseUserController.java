@@ -33,7 +33,7 @@ public class ChooseUserController {
 
     private Person p;
     private static ArrayList<Person> people = new ArrayList<Person>();
-/** person not null**/
+
 
 
     public void setPerson(Person p) {
@@ -47,10 +47,12 @@ public class ChooseUserController {
             if ((tempU).equals(people.get(i).getName())) {
                 loggedIn = true;
                 p = people.get(i);
+                System.out.println(p);
+                System.out.println(people);
             }
         }
         if (loggedIn) {
-            message.setText("Login Successful. Welcome " + p);
+            message.setText("Login Successful. Welcome " + p.getName());
         } else {
             message.setText("Login is not successful, try again.");
         }
@@ -108,6 +110,9 @@ public class ChooseUserController {
             people = (ArrayList<Person>) in.readObject();
             in.close();
             fileIn.close();
+            if (people==null){
+                people=new ArrayList<Person>();
+            }
         } catch (IOException i) {
             i.printStackTrace();
             return;

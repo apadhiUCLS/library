@@ -32,7 +32,7 @@ public class ChooseUserController {
     private Label message;
 
     private Person p;
-    private static ArrayList<Person> people;
+    private static ArrayList<Person> people = new ArrayList<Person>();
 
 
 

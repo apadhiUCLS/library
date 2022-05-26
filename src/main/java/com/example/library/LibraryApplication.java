@@ -64,6 +64,8 @@ public class LibraryApplication extends Application {
         Scene myScene = new Scene(root);
         FavoritesController favoriteBooks = loader.getController();
         favoriteBooks.setPerson(p);
+        favoriteBooks.update();
+        System.out.println(p);
         s.setScene(myScene); // the initialize method will get called in here
     }
 

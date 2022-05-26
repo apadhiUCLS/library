@@ -71,7 +71,7 @@ public class BrowseController {
     @FXML
     private Button chooseUser;
 
-    private Person p=new Person ();
+    private Person p;
 
     public Person getPerson(){
         return p;
@@ -143,7 +143,6 @@ public class BrowseController {
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         callNumColumn.setCellValueFactory(new PropertyValueFactory<>("callNum"));
         table.setItems(FXCollections.observableList(bookList));*/
-
         path = FileSystems.getDefault().getPath(System.getProperty("user.home"), ".library");
         if (!Files.exists(path)){
             Path p=Files.createDirectory(path);

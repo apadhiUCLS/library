@@ -201,7 +201,7 @@ public class Book implements java.io.Serializable {
 
         if (invPaperback>0){
             invPaperback-=1;
-            p.addCheckout(this);
+            p.addCheckoutPaperback(this);
             checkedOut=true;
             numPaperbackCheckedOut+=1;
             setReturnDate();
@@ -231,7 +231,7 @@ public class Book implements java.io.Serializable {
         ArrayList<Book> temp = BrowseController.getBookList();
         if (invHardcover>0){
             invHardcover-=1;
-            p.addCheckout(this);
+            p.addCheckoutHardcover(this);
             checkedOut=true;
             numHardcoverCheckedOut+=1;
             setReturnDate();
@@ -261,7 +261,7 @@ public class Book implements java.io.Serializable {
         ArrayList<Book> temp = BrowseController.getBookList();
         if (numPaperbackCheckedOut>0){
             invPaperback +=1;
-            p.returnBook(this);
+            p.returnPaperbackBook(this);
             returnDate=null;
             numPaperbackCheckedOut-=1;
             inventory=invPaperback+invHardcover;
@@ -286,7 +286,7 @@ public class Book implements java.io.Serializable {
         ArrayList<Book> temp = BrowseController.getBookList();
         if (numHardcoverCheckedOut>0){
             invHardcover +=1;
-            p.returnBook(this);
+            p.returnHardcoverBook(this);
             returnDate=null;
             numHardcoverCheckedOut-=1;
             inventory=invPaperback+invHardcover;

@@ -84,30 +84,28 @@ public class ChooseUserController {
     public static void setUserList(ArrayList<Person> users) throws IOException {
         people = users;
 
-        /*String home = System.getProperty("user.home");
-        Path folderPath = Paths.get(home + "/.libraryUsers");*/
-        path = FileSystems.getDefault().getPath(System.getProperty("user.home"), ".libraryUsers");
+        String home = System.getProperty("user.home");
+        Path folderPath = Paths.get(home + "/.libraryUsers");
+        /*path = FileSystems.getDefault().getPath(System.getProperty("user.home"), ".libraryUsers");
         if (!Files.exists(path)){
             Path p=Files.createDirectory(path);
-        }
+        }*/
 
         try {
-            FileInputStream fileIn = new FileInputStream(path+"/library.ser");
+            /*FileInputStream fileIn = new FileInputStream(path+"/library.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             people = (ArrayList<Person>) in.readObject();
             in.close();
-            fileIn.close();
-            /*FileOutputStream fileOut = new FileOutputStream(folderPath + "/users.ser");
+            fileIn.close();*/
+            FileOutputStream fileOut = new FileOutputStream(folderPath + "/users.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(people);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in users.ser");*/
+            System.out.printf("Serialized data is saved in users.ser");
 
         } catch (IOException i) {
             i.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
 
     }

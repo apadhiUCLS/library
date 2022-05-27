@@ -10,14 +10,19 @@ import java.util.*;
 public class Person implements Serializable {
     private ArrayList<Book> wantToRead;
     private ArrayList<Book>  checkedOutBooks;
+    private ArrayList<Book>  paperbackChecked;
+    private ArrayList<Book>  hardcoverChecked;
     private ArrayList<Book>  heldBooks;
     private ArrayList<Book>  overdue;
     private ArrayList<Book>  favorites;
     private String name;
     private ArrayList<Book> didNotFinish;
 
+
     public Person(String name){
         this.checkedOutBooks = new ArrayList<Book>();
+        this.hardcoverChecked = new ArrayList<Book>();
+        this.paperbackChecked = new ArrayList<Book>();
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
         this.wantToRead = new ArrayList<Book>();
@@ -30,10 +35,12 @@ public class Person implements Serializable {
         favorites.add(b);
         System.out.println(this+" ");
         System.out.println(favorites);
+        this.reserialize();
     }
 
     public void removeFavorite(Book b){
         favorites.remove(b);
+        this.reserialize();
     }
 
     public ArrayList<Book> getFavorites(){
@@ -46,6 +53,8 @@ public class Person implements Serializable {
 
     public Person(){
         this.checkedOutBooks = new ArrayList<Book>();
+        this.hardcoverChecked = new ArrayList<Book>();
+        this.paperbackChecked = new ArrayList<Book>();
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
         this.wantToRead = new ArrayList<Book>();
@@ -54,7 +63,10 @@ public class Person implements Serializable {
         this.name = "anonymous";
     }
 
-    public void addCheckout(Book book) {
+
+
+    public void addCheckoutPaperback(Book book) {
+        paperbackChecked.add(book);
         checkedOutBooks.add(book);
         if (this.heldBooks.indexOf(book) > 0) {
             removeHold(book);
@@ -65,12 +77,11 @@ public class Person implements Serializable {
 
         //this is the stuff to reserialize because I assume it is needed after changing a person in the list,
         //but is there anything else I need to do to make sure the changes are save and do I need to do this at all?
-       ArrayList<Person> p = ChooseUserController.getUserList();
+        ArrayList<Person> p = ChooseUserController.getUserList();
         String home = System.getProperty("user.home");
         Path folderPath = Paths.get(home + "/.libraryUsers");
         try {
-            FileOutputStream fileOut =
-                    new FileOutputStream(folderPath + "/users.ser");
+            FileOutputStream fileOut = new FileOutputStream(folderPath + "/users.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(p);
             out.close();
@@ -79,16 +90,43 @@ public class Person implements Serializable {
         } catch (IOException i) {
             i.printStackTrace();
         }
+    }
+    public void addCheckoutHardcover(Book book) {
+        hardcoverChecked.add(book);
+        checkedOutBooks.add(book);
+        if (this.heldBooks.indexOf(book) > 0) {
+            removeHold(book);
+        }
+        if (this.wantToRead.indexOf(book) > 0) {
+            this.removeWantToRead(book);
+        }
 
+        //this is the stuff to reserialize because I assume it is needed after changing a person in the list,
+        //but is there anything else I need to do to make sure the changes are save and do I need to do this at all?
+        ArrayList<Person> p = ChooseUserController.getUserList();
+        String home = System.getProperty("user.home");
+        Path folderPath = Paths.get(home + "/.libraryUsers");
+        try {
+            FileOutputStream fileOut = new FileOutputStream(folderPath + "/users.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(p);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in users.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
 
     public void addHold(Book book) {
         heldBooks.add(book);
+        this.reserialize();
     }
 
     public void removeHold(Book book) {
         int index = this.heldBooks.indexOf(book);
         this.heldBooks.remove(index);
+        this.reserialize();
     }
 
     public boolean inHolds(Book book) {
@@ -103,17 +141,43 @@ public class Person implements Serializable {
     public ArrayList<Book> getOverdue() {return overdue;}
     public String getName() {return name;}
 
-    public void returnBook(Book book) {
+    public void returnHardcoverBook(Book book) {
         Book tempB = new Book();
-        for ( int i = 0; i < checkedOutBooks.size(); i++) {
-            tempB = checkedOutBooks.get(i);
+        for ( int i = 0; i < hardcoverChecked.size(); i++) {
+            tempB = hardcoverChecked.get(i);
             if (tempB.getTitle().equals(book.getTitle())) {
-                checkedOutBooks.remove(checkedOutBooks.indexOf(book));
+                if (tempB.getInvHardcover() > 0) {
+                    if (hardcoverChecked.indexOf(book) >= 0) {
+                        hardcoverChecked.remove(hardcoverChecked.indexOf(book));
+                        checkedOutBooks.remove(checkedOutBooks.indexOf(book));
+                    }
+                }
             }
         }
         if (this.overdue.indexOf(book) >= 0) {
             overdue.remove(overdue.indexOf(book));
         }
+
+        this.reserialize();
+    }
+
+
+    public void returnPaperbackBook(Book book) {
+        Book tempB = new Book();
+        for ( int i = 0; i < paperbackChecked.size(); i++) {
+            tempB = paperbackChecked.get(i);
+            if (tempB.getTitle().equals(book.getTitle())) {
+                if (paperbackChecked.indexOf(book)>=0){
+                    paperbackChecked.remove(paperbackChecked.indexOf(book));
+                    checkedOutBooks.remove(checkedOutBooks.indexOf(book));
+                }
+            }
+        }
+        if (this.overdue.indexOf(book) >= 0) {
+            overdue.remove(overdue.indexOf(book));
+        }
+
+        this.reserialize();
     }
 
     public boolean checkOverdue() {
@@ -134,15 +198,21 @@ public class Person implements Serializable {
 
     public void addWantToRead(Book b){
         this.wantToRead.add(b);
+
+        this.reserialize();
     }
 
     public void removeWantToRead(Book b) {
         int index = this.wantToRead.indexOf(b);
         this.wantToRead.remove(index);
+
+        this.reserialize();
     }
 
     public void clearWantToRead() {
         this.wantToRead = new ArrayList<Book>();
+
+        this.reserialize();
     }
 
     public void addDidNotFinish(Book b) {
@@ -151,12 +221,16 @@ public class Person implements Serializable {
         }
         if (this.wantToRead.indexOf(b) > 0) {
             this.wantToRead.remove(this.wantToRead.indexOf(b));
+
+            this.reserialize();
         }
     }
 
     public void removeDidNotFinish(Book b) {
         int index = this.didNotFinish.indexOf(b);
         this.didNotFinish.remove(index);
+
+        this.reserialize();
     }
 
     public ArrayList<Book> getDidNotFinish(){
@@ -166,5 +240,21 @@ public class Person implements Serializable {
     @Override
     public String toString(){
         return this.getName();
+    }
+
+    public void reserialize() {
+        ArrayList<Person> p = ChooseUserController.getUserList();
+        String home = System.getProperty("user.home");
+        Path folderPath = Paths.get(home + "/.libraryUsers");
+        try {
+            FileOutputStream fileOut = new FileOutputStream(folderPath + "/users.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(p);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in users.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
 }

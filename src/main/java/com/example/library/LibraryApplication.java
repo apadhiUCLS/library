@@ -21,7 +21,7 @@ public class  LibraryApplication extends Application {
         loader=fxmlLoader;
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         home=scene;
-        s.setTitle("Hello!");
+        s.setTitle("Library Book Bonanza");
         s.setScene(home);
         s.setWidth(1000);
         s.setHeight(600);
@@ -58,6 +58,7 @@ public class  LibraryApplication extends Application {
         Scene myScene = new Scene(root);
         CheckoutController checkoutBook = loader.getController();
         checkoutBook.setLabel(m);
+        checkoutBook.setPerson(p);
         s.setScene(myScene); // the initialize method will get called in here
     }
 
@@ -117,7 +118,8 @@ public class  LibraryApplication extends Application {
         Scene myScene = new Scene(root);
         CheckedOutBooksController listOfBooks = loader.getController();
         listOfBooks.setPerson(p);
-        listOfBooks.setCheckedOutBooks(p.getCheckedOutBooks());
+        listOfBooks.update();
+        System.out.println(p);
         System.out.println(p.getCheckedOutBooks());
         s.setScene(myScene); // the initialize method will get called in here
     }

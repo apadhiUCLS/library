@@ -72,6 +72,7 @@ public class ChooseUserController {
     @FXML
     public void goBack() throws IOException {
         LibraryApplication.switchToMainView(p);
+        System.out.println(people);
     }
 
     public static ArrayList<Person> getUserList() {
@@ -91,7 +92,7 @@ public class ChooseUserController {
         }
 
         try {
-            FileInputStream fileIn = new FileInputStream(path+"/patientdb.ser");
+            FileInputStream fileIn = new FileInputStream(path+"/library.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             people = (ArrayList<Person>) in.readObject();
             in.close();

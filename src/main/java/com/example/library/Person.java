@@ -104,8 +104,12 @@ public class Person implements Serializable {
     public String getName() {return name;}
 
     public void returnBook(Book book) {
-        if (checkedOutBooks.indexOf(book) >= 0) {
-            checkedOutBooks.remove(checkedOutBooks.indexOf(book));
+        Book tempB = new Book();
+        for ( int i = 0; i < checkedOutBooks.size(); i++) {
+            tempB = checkedOutBooks.get(i);
+            if (tempB.getTitle().equals(book.getTitle())) {
+                checkedOutBooks.remove(checkedOutBooks.indexOf(book));
+            }
         }
         if (this.overdue.indexOf(book) >= 0) {
             overdue.remove(overdue.indexOf(book));
@@ -157,5 +161,10 @@ public class Person implements Serializable {
 
     public ArrayList<Book> getDidNotFinish(){
         return this.didNotFinish;
+    }
+
+    @Override
+    public String toString(){
+        return this.getName();
     }
 }

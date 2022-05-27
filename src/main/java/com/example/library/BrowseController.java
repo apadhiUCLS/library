@@ -72,7 +72,7 @@ public class BrowseController {
     @FXML
     private Button chooseUser;
 
-    private Person p;
+    private Person p = new Person("Guest");
 
     @FXML
     private Label lblPerson;

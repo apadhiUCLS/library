@@ -47,8 +47,9 @@ public class CheckedOutBooksController {
         LibraryApplication.switchToMainView(p);
     }
 
-    public void setCheckedOutBooks(ArrayList<Book> checkedOutBooks){
-        this.checkedOutBooks = checkedOutBooks;
+    public void setPerson(Person p){
+        this.p = p;
+        this.checkedOutBooks = p.getCheckedOutBooks();
 
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -58,10 +59,7 @@ public class CheckedOutBooksController {
         returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         table.setItems(FXCollections.observableList(checkedOutBooks));
-    }
 
-    public void setPerson(Person p){
-        this.p = p;
     }
 
     @FXML
@@ -72,6 +70,10 @@ public class CheckedOutBooksController {
 
     @FXML
     public void initialize() {
+    }
+
+    public void update() {
+        table.refresh();
     }
 
 }

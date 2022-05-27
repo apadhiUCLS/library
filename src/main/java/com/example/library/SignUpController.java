@@ -30,6 +30,7 @@ public class SignUpController {
     @FXML
     public void goBack() throws IOException {
         LibraryApplication.switchToMainView(p, people);
+        System.out.println(people);
     }
 
     public void setPerson(Person p){

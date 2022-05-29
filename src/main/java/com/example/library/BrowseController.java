@@ -77,6 +77,9 @@ public class BrowseController {
     @FXML
     private Label lblPerson;
 
+    public BrowseController() throws IOException {
+    }
+
     public Person getPerson(){
         return p;
     }

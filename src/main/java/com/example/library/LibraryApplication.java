@@ -37,6 +37,7 @@ public class  LibraryApplication extends Application {
         Scene myScene = new Scene(root);
         BrowseController browseController = loader.getController();
         browseController.setPerson(p);
+        System.out.println(browseController.getBookList());
         s.setScene(myScene); // the initialize method will get called in here
     }
 

@@ -1,17 +1,12 @@
 package com.example.library;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
 public class Person implements Serializable {
     private ArrayList<Book> wantToRead;
-    private ArrayList<Book>  checkedOutBooks;
-    private ArrayList<Book>  paperbackChecked;
-    private ArrayList<Book>  hardcoverChecked;
+    private ArrayList<PersonalBook>  checkedOutBooks;
     private ArrayList<Book>  heldBooks;
     private ArrayList<Book>  overdue;
     private ArrayList<Book>  favorites;
@@ -19,10 +14,8 @@ public class Person implements Serializable {
     private ArrayList<Book> didNotFinish;
 
 
-    public Person(String name){
-        this.checkedOutBooks = new ArrayList<Book>();
-        this.hardcoverChecked = new ArrayList<Book>();
-        this.paperbackChecked = new ArrayList<Book>();
+    public Person(String name) throws FileNotFoundException, IOException {
+        this.checkedOutBooks = new ArrayList<PersonalBook>();
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
         this.wantToRead = new ArrayList<Book>();
@@ -47,14 +40,12 @@ public class Person implements Serializable {
         return favorites;
     }
 
-    public ArrayList<Book> getCheckedOutBooks(){
+    public ArrayList<PersonalBook> getCheckedOutBooks(){
         return checkedOutBooks;
     }
 
-    public Person(){
-        this.checkedOutBooks = new ArrayList<Book>();
-        this.hardcoverChecked = new ArrayList<Book>();
-        this.paperbackChecked = new ArrayList<Book>();
+    public Person() throws FileNotFoundException, IOException {
+        this.checkedOutBooks = new ArrayList<PersonalBook>();
         this.heldBooks = new ArrayList<Book>();
         this.overdue = new ArrayList<Book>();
         this.wantToRead = new ArrayList<Book>();
@@ -65,14 +56,22 @@ public class Person implements Serializable {
 
 
 
-    public void addCheckoutPaperback(Book book) {
-        paperbackChecked.add(book);
-        checkedOutBooks.add(book);
-        if (this.heldBooks.indexOf(book) > 0) {
-            removeHold(book);
+    public void addCheckoutPaperback(PersonalBook book) {
+        boolean contains = false;
+        for (int i = 0; i < checkedOutBooks.size(); i++){
+            if (book.getTitle().equals(checkedOutBooks.get(i).getTitle()))
+                book.setNumPaperbackCheckedOut(book.getNumPaperbackCheckedOut() + 1);
+                contains = true;
+                break;
         }
-        if (this.wantToRead.indexOf(book) > 0) {
-            this.removeWantToRead(book);
+        if (!contains){
+            checkedOutBooks.add(book);
+            if (this.heldBooks.indexOf(book) > 0) {
+                removeHold(book.getBook());
+            }
+            if (this.wantToRead.indexOf(book) > 0) {
+                this.removeWantToRead(book.getBook());
+            }
         }
 
         //this is the stuff to reserialize because I assume it is needed after changing a person in the list,
@@ -91,14 +90,22 @@ public class Person implements Serializable {
             i.printStackTrace();
         }
     }
-    public void addCheckoutHardcover(Book book) {
-        hardcoverChecked.add(book);
-        checkedOutBooks.add(book);
-        if (this.heldBooks.indexOf(book) > 0) {
-            removeHold(book);
+    public void addCheckoutHardcover(PersonalBook book) {
+        boolean contains = false;
+        for (int i = 0; i < checkedOutBooks.size(); i++){
+            if (book.getTitle().equals(checkedOutBooks.get(i).getTitle()))
+            book.setNumHardcoverCheckedOut(book.getNumHardcoverCheckedOut() + 1);
+            contains = true;
+            break;
         }
-        if (this.wantToRead.indexOf(book) > 0) {
-            this.removeWantToRead(book);
+        if (!contains){
+            checkedOutBooks.add(book);
+            if (this.heldBooks.indexOf(book) > 0) {
+                removeHold(book.getBook());
+            }
+            if (this.wantToRead.indexOf(book) > 0) {
+                this.removeWantToRead(book.getBook());
+            }
         }
 
         //this is the stuff to reserialize because I assume it is needed after changing a person in the list,
@@ -142,14 +149,15 @@ public class Person implements Serializable {
     public String getName() {return name;}
 
     public void returnHardcoverBook(Book book) {
-        Book tempB = new Book();
-        for ( int i = 0; i < hardcoverChecked.size(); i++) {
-            tempB = hardcoverChecked.get(i);
-            if (tempB.getTitle().equals(book.getTitle())) {
-                if (tempB.getInvHardcover() > 0) {
-                    if (hardcoverChecked.indexOf(book) >= 0) {
-                        hardcoverChecked.remove(hardcoverChecked.indexOf(book));
-                        checkedOutBooks.remove(checkedOutBooks.indexOf(book));
+        String title = book.getTitle();
+        for ( int i = 0; i < checkedOutBooks.size(); i++) {
+            String tempT = checkedOutBooks.get(i).getBook().getTitle();
+            if (title.equals(tempT)) {
+                if (checkedOutBooks.get(i).getNumHardcoverCheckedOut() > 0) {
+                    checkedOutBooks.get(i).setNumHardcoverCheckedOut(checkedOutBooks.get(i).getNumHardcoverCheckedOut() - 1);
+                    if (checkedOutBooks.get(i).getNumHardcoverCheckedOut() <= 0) {
+                        checkedOutBooks.remove(i);
+                        break;
                     }
                 }
             }
@@ -163,13 +171,16 @@ public class Person implements Serializable {
 
 
     public void returnPaperbackBook(Book book) {
-        Book tempB = new Book();
-        for ( int i = 0; i < paperbackChecked.size(); i++) {
-            tempB = paperbackChecked.get(i);
-            if (tempB.getTitle().equals(book.getTitle())) {
-                if (paperbackChecked.indexOf(book)>=0){
-                    paperbackChecked.remove(paperbackChecked.indexOf(book));
-                    checkedOutBooks.remove(checkedOutBooks.indexOf(book));
+        String title = book.getTitle();
+        for ( int i = 0; i < checkedOutBooks.size(); i++) {
+            String tempT = checkedOutBooks.get(i).getBook().getTitle();
+            if (title.equals(tempT)) {
+                if (checkedOutBooks.get(i).getNumPaperbackCheckedOut() > 0) {
+                    checkedOutBooks.get(i).setNumPaperbackCheckedOut(checkedOutBooks.get(i).getNumPaperbackCheckedOut() - 1);
+                    if (checkedOutBooks.get(i).getNumPaperbackCheckedOut() <= 0) {
+                        checkedOutBooks.remove(i);
+                        break;
+                    }
                 }
             }
         }
@@ -184,9 +195,9 @@ public class Person implements Serializable {
         boolean existsOverdue = false;
         Date today = new Date();
         for (int i = 0; i < checkedOutBooks.size(); i++) {
-            if (checkedOutBooks.get(i).getReleaseDate().compareTo(today) > 0) {
+            if (checkedOutBooks.get(i).getBook().getReleaseDate().compareTo(today) > 0) {
                 existsOverdue = true;
-                this.overdue.add(checkedOutBooks.get(i));
+                this.overdue.add(checkedOutBooks.get(i).getBook());
             }
         }
         return existsOverdue;

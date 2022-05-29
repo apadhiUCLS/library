@@ -7,12 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class CheckedOutBooksController {
@@ -44,7 +39,7 @@ public class CheckedOutBooksController {
     @FXML
     private Button backToBrowse;
 
-    private ArrayList<Book> checkedOutBooks=new ArrayList<Book>();
+    private ArrayList<PersonalBook> checkedOutBooks=new ArrayList<PersonalBook>();
     private Person p;
     @FXML
     public void goBack() throws IOException {

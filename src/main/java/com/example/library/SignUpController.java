@@ -45,7 +45,7 @@ public class SignUpController {
     public void initialize() {
     }
 
-    public void setSignUp() {
+    public void setSignUp() throws IOException {
         String temp = name.getText();
         Boolean existing = false;
         for (int i = 0; i < people.size(); i++) {

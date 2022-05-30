@@ -40,7 +40,7 @@ public class Book implements java.io.Serializable {
     public Book(){}
 
     public String getCallNum() {
-        return callNum;
+        return this.determineCallNum();
     }
 
     public void setCallNum(String s){

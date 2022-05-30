@@ -3,11 +3,12 @@ package com.example.library;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class PersonalBook {
+public class PersonalBook implements java.io.Serializable {
     private Book b;
     private Author author;
     private String title;

@@ -49,7 +49,8 @@ public class CheckedOutBooksController {
     public void setPerson(Person p){
         this.p = p;
         this.checkedOutBooks = p.getCheckedOutBooks();
-
+        this.update();
+/*
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         hardcoverCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numHardcoverCheckedOut"));
@@ -58,7 +59,7 @@ public class CheckedOutBooksController {
         returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         table.setItems(FXCollections.observableList(checkedOutBooks));
-
+*/
     }
 
     @FXML
@@ -69,7 +70,14 @@ public class CheckedOutBooksController {
 
     @FXML
     public void initialize() throws IOException {
-
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        hardcoverCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numHardcoverCheckedOut"));
+        paperbackCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numPaperbackCheckedOut"));
+        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
+        returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
+        table.setItems(FXCollections.observableList(checkedOutBooks));
     }
 
     public void update() {

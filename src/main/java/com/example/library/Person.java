@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class Person implements Serializable {
+public class Person implements java.io.Serializable {
     private ArrayList<Book> wantToRead;
     private ArrayList<PersonalBook>  checkedOutBooks;
     private ArrayList<Book>  heldBooks;

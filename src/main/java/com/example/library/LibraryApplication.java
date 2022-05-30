@@ -118,8 +118,8 @@ public class  LibraryApplication extends Application {
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         CheckedOutBooksController listOfBooks = loader.getController();
+        //listOfBooks.update(); this doesn't seem to be doing anything (when it is included, excluded, moved nothing changes)
         listOfBooks.setPerson(p);
-        listOfBooks.update();
         System.out.println(p);
         System.out.println(p.getCheckedOutBooks());
         s.setScene(myScene); // the initialize method will get called in here

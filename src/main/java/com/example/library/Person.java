@@ -59,13 +59,16 @@ public class Person implements java.io.Serializable {
     public void addCheckoutPaperback(PersonalBook book) {
         boolean contains = false;
         for (int i = 0; i < checkedOutBooks.size(); i++){
-            if (book.getTitle().equals(checkedOutBooks.get(i).getTitle()))
+            if (book.getTitle().equals(checkedOutBooks.get(i).getTitle())) {
                 book.setNumPaperbackCheckedOut(book.getNumPaperbackCheckedOut() + 1);
                 contains = true;
                 break;
+            }
         }
-        if (!contains){
+        if (!contains) {
             checkedOutBooks.add(book);
+        }
+            book.setNumPaperbackCheckedOut(1);
             if (this.heldBooks.indexOf(book) > 0) {
                 removeHold(book.getBook());
             }
@@ -93,13 +96,16 @@ public class Person implements java.io.Serializable {
     public void addCheckoutHardcover(PersonalBook book) {
         boolean contains = false;
         for (int i = 0; i < checkedOutBooks.size(); i++){
-            if (book.getTitle().equals(checkedOutBooks.get(i).getTitle()))
-            book.setNumHardcoverCheckedOut(book.getNumHardcoverCheckedOut() + 1);
-            contains = true;
-            break;
+            if (book.getTitle().equals(checkedOutBooks.get(i).getTitle())) {
+                book.setNumHardcoverCheckedOut(book.getNumHardcoverCheckedOut() + 1);
+                contains = true;
+                break;
+            }
         }
-        if (!contains){
+        if (!contains) {
             checkedOutBooks.add(book);
+        }
+            book.setNumHardcoverCheckedOut(1);
             if (this.heldBooks.indexOf(book) > 0) {
                 removeHold(book.getBook());
             }
@@ -155,10 +161,9 @@ public class Person implements java.io.Serializable {
             if (title.equals(tempT)) {
                 if (checkedOutBooks.get(i).getNumHardcoverCheckedOut() > 0) {
                     checkedOutBooks.get(i).setNumHardcoverCheckedOut(checkedOutBooks.get(i).getNumHardcoverCheckedOut() - 1);
-                    if (checkedOutBooks.get(i).getNumHardcoverCheckedOut() <= 0) {
-                        checkedOutBooks.remove(i);
-                        break;
-                    }
+                } else if (checkedOutBooks.get(i).getNumHardcoverCheckedOut() <= 0) {
+                    checkedOutBooks.remove(i);
+                    break;
                 }
             }
         }
@@ -177,10 +182,9 @@ public class Person implements java.io.Serializable {
             if (title.equals(tempT)) {
                 if (checkedOutBooks.get(i).getNumPaperbackCheckedOut() > 0) {
                     checkedOutBooks.get(i).setNumPaperbackCheckedOut(checkedOutBooks.get(i).getNumPaperbackCheckedOut() - 1);
-                    if (checkedOutBooks.get(i).getNumPaperbackCheckedOut() <= 0) {
-                        checkedOutBooks.remove(i);
-                        break;
-                    }
+                } else if (checkedOutBooks.get(i).getNumPaperbackCheckedOut() <= 0) {
+                    checkedOutBooks.remove(i);
+                    break;
                 }
             }
         }

@@ -49,7 +49,12 @@ public class Book implements java.io.Serializable {
 
     public String determineCallNum(){
         String c=genre.toUpperCase(Locale.ROOT)+" ";
-        String letters=author.getLastName().substring(0,3);
+        String letters="";
+        if (author.getLastName().length()<3){
+            letters=author.getLastName();
+        } else{
+            letters=author.getLastName().substring(0,3);
+        }
         c+=letters;
         return c;
     }

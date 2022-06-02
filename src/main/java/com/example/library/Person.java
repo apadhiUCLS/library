@@ -69,16 +69,19 @@ public class Person implements java.io.Serializable {
             checkedOutBooks.add(book);
             book.setNumPaperbackCheckedOut(1);
         }
-        if (this.heldBooks.indexOf(book) > 0) {
-            removeHold(book.getBook());
-        }
-        if (this.wantToRead.indexOf(book) > 0) {
-            this.removeWantToRead(book.getBook());
+
+        for (int i = 0; i < heldBooks.size(); i++) {
+            if (book.getTitle().equals(heldBooks.get(i).getTitle())) {
+                heldBooks.remove(i);
+            }
         }
 
+        for (int i = 0; i < wantToRead.size(); i++) {
+            if (book.getTitle().equals(wantToRead.get(i).getTitle())) {
+                wantToRead.remove(i);
+            }
+        }
 
-        //this is the stuff to reserialize because I assume it is needed after changing a person in the list,
-        //but is there anything else I need to do to make sure the changes are save and do I need to do this at all?
         ArrayList<Person> p = ChooseUserController.getUserList();
         String home = System.getProperty("user.home");
         Path folderPath = Paths.get(home + "/.libraryUsers");
@@ -108,16 +111,18 @@ public class Person implements java.io.Serializable {
             book.setNumHardcoverCheckedOut(1);
         }
 
-        if (this.heldBooks.indexOf(book) > 0) {
-            removeHold(book.getBook());
-        }
-        if (this.wantToRead.indexOf(book) > 0) {
-            this.removeWantToRead(book.getBook());
+        for (int i = 0; i < heldBooks.size(); i++) {
+            if (book.getTitle().equals(heldBooks.get(i).getTitle())) {
+                heldBooks.remove(i);
+            }
         }
 
+        for (int i = 0; i < wantToRead.size(); i++) {
+            if (book.getTitle().equals(wantToRead.get(i).getTitle())) {
+                wantToRead.remove(i);
+            }
+        }
 
-    //this is the stuff to reserialize because I assume it is needed after changing a person in the list,
-    //but is there anything else I need to do to make sure the changes are save and do I need to do this at all?
     ArrayList<Person> p = ChooseUserController.getUserList();
     String home = System.getProperty("user.home");
     Path folderPath = Paths.get(home + "/.libraryUsers");
@@ -268,8 +273,9 @@ public class Person implements java.io.Serializable {
 
     public void removeDidNotFinish(Book b) {
         int index = this.didNotFinish.indexOf(b);
-        this.didNotFinish.remove(index);
-
+        if (index > -1) {
+            this.didNotFinish.remove(index);
+        }
         this.reserialize();
     }
 

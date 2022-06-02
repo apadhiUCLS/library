@@ -11,9 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.control.Label;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -183,8 +181,33 @@ public class BrowseController {
 
 
     }
+
+    public void removeBook(Book b) {
+        for (int i=0; i<bookList.size(); i++){
+            System.out.println(bookList.get(i).getTitle());
+            if (b.getTitle().equals(bookList.get(i).getTitle())){
+                bookList.remove(i);
+            }
+        }
+
+        this.reserialize();
+    }
     public void update(){
         table.refresh();
     }
 
+    public void reserialize() {
+        String home = System.getProperty("user.home");
+        Path folderPath = Paths.get(home + ".library");
+        try {
+            FileOutputStream fileOut = new FileOutputStream(folderPath + "/library.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(bookList);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in library.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
 }

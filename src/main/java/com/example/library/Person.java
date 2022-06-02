@@ -32,7 +32,11 @@ public class Person implements java.io.Serializable {
     }
 
     public void removeFavorite(Book b) {
-        favorites.remove(b);
+        int index = this.inFavorites(b);
+        if (index >= 0){
+            this.favorites.remove(index);
+        }
+
         this.reserialize();
     }
 
@@ -169,13 +173,26 @@ public class Person implements java.io.Serializable {
         return false;
     }
 
-    public boolean inWantToRead(Book book){
+    public int inWantToRead(Book book){
+        System.out.println(book.getTitle());
         for (int i=0; i<wantToRead.size(); i++){
-            if (book.getTitle()==wantToRead.get(i).getTitle()){
-                return true;
+            System.out.println(wantToRead.get(i).getTitle());
+            if (book.getTitle().equals(wantToRead.get(i).getTitle())){
+                return i;
             }
         }
-        return false;
+        return -1;
+    }
+
+    public int inFavorites(Book book){
+        System.out.println(book.getTitle());
+        for (int i=0; i<favorites.size(); i++){
+            System.out.println(favorites.get(i).getTitle());
+            if (book.getTitle().equals(favorites.get(i).getTitle())){
+                return i;
+            }
+        }
+        return -1;
     }
 
     public ArrayList<Book> getHolds() {return heldBooks;}
@@ -247,9 +264,12 @@ public class Person implements java.io.Serializable {
         this.reserialize();
     }
 
+
     public void removeWantToRead(Book b) {
-        int index = this.wantToRead.indexOf(b);
-        this.wantToRead.remove(index);
+        int index = this.inWantToRead(b);
+        if (index >= 0){
+            this.wantToRead.remove(index);
+        }
 
         this.reserialize();
     }

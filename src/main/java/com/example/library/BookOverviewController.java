@@ -23,7 +23,11 @@ public class BookOverviewController {
     @FXML
     private Button btnFavorite;
     @FXML
+    private Button btnRemoveFavorite;
+    @FXML
     private Button btnWantToRead;
+    @FXML
+    private Button btnRemoveFromWantToRead;
     @FXML
     private Label lblHardcoverCopies;
     @FXML
@@ -86,8 +90,20 @@ public class BookOverviewController {
     }
 
     @FXML
+    public void setBtnRemoveFavorite() throws IOException {
+        p.removeFavorite(b);
+        LibraryApplication.switchToFavoriteView(p);
+    }
+
+    @FXML
     public void setBtnWantToRead() throws IOException {
         p.addWantToRead(b);
+        LibraryApplication.switchToWantToReadView(p);
+    }
+
+    @FXML
+    public void setBtnRemoveFromWantToRead() throws IOException {
+        p.removeWantToRead(b);
         LibraryApplication.switchToWantToReadView(p);
     }
 
@@ -126,6 +142,7 @@ public class BookOverviewController {
         this.lblHardcoverCopies.setText(Integer.toString(b.getInvHardcover()));
         this.ratings.setText(Double.toString(b.getAvgRating()));
     }
+
 
 
     @FXML

@@ -214,7 +214,7 @@ public class Book implements java.io.Serializable {
                 p.removeHold(this);
             }
 
-            if (p.inWantToRead(this)){
+            if (p.inWantToRead(this) >= 0){
                 p.removeWantToRead(this);
             }
             inventory=invPaperback+invHardcover;
@@ -246,7 +246,7 @@ public class Book implements java.io.Serializable {
             if (p.inHolds(this)){
                 p.removeHold(this);
             }
-            if (p.inWantToRead(this)){
+            if (p.inWantToRead(this) >= 0){
                 p.removeWantToRead(this);
             }
             inventory=invPaperback+invHardcover;

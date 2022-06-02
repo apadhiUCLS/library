@@ -1,12 +1,17 @@
 package com.example.library;
 
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
-public class Book {
+public class Book implements java.io.Serializable {
     private Author author;
     private String title;
     private Date releaseDate;
@@ -23,6 +28,8 @@ public class Book {
     private Series series;
     private int numInSeries;
     public ArrayList<Rating> ratings=new ArrayList<Rating>();
+    private String callNum;
+    private String genre;
 
     public Book(String title, Author author){
         this.title=title;
@@ -32,15 +39,37 @@ public class Book {
 
     public Book(){}
 
-    public Book(String title, Author author, int invPaperback, int invHardcover){
+    public String getCallNum() {
+        return this.determineCallNum();
+    }
+
+    public void setCallNum(String s){
+        callNum=s;
+    }
+
+    public String determineCallNum(){
+        String c=genre.toUpperCase(Locale.ROOT)+" ";
+        String letters="";
+        if (author.getLastName().length()<3){
+            letters=author.getLastName();
+        } else{
+            letters=author.getLastName().substring(0,3);
+        }
+        c+=letters;
+        return c;
+    }
+
+    public Book(String title, Author author, int invPaperback, int invHardcover,String genre){
         this.title=title;
         this.author=author;
         this.invHardcover=invHardcover;
         this.invPaperback=invPaperback;
         inventory=invPaperback+invHardcover;
+        this.genre=genre;
+        callNum=determineCallNum();
     }
 
-    public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries){
+    public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries, String genre){
         this.title=title;
         this.author=author;
         this.invHardcover=invHardcover;
@@ -48,6 +77,8 @@ public class Book {
         this.series=series;
         this.numInSeries=numInSeries;
         inventory=invPaperback+invHardcover;
+        this.genre=genre;
+        callNum=determineCallNum();
     }
 
     public ArrayList<Rating> getRatings(){
@@ -60,6 +91,14 @@ public class Book {
 
     public void setNumInSeries(int s){
         numInSeries=s;
+    }
+
+    public void setGenre(String s){
+        genre=s;
+    }
+
+    public String getGenre(){
+        return genre;
     }
 
     public double getAvgRating(){
@@ -107,6 +146,10 @@ public class Book {
 
     public Series getSeries(){
         return series;
+    }
+
+    public void setSeries(Series s){
+        this.series=s;
     }
 
     public void setReturnDate(){
@@ -158,16 +201,34 @@ public class Book {
     }
 
     public String checkoutPaperback(Person p){
+        ArrayList<Book> temp = BrowseController.getBookList();
+        int i = temp.indexOf(this);
+
         if (invPaperback>0){
             invPaperback-=1;
-            p.addCheckout(this);
             checkedOut=true;
             numPaperbackCheckedOut+=1;
             setReturnDate();
+
             if (p.inHolds(this)){
                 p.removeHold(this);
             }
+
+            if (p.inWantToRead(this)){
+                p.removeWantToRead(this);
+            }
             inventory=invPaperback+invHardcover;
+            try {
+                String s = System.getProperty("user.home");
+                FileOutputStream fileOut = new FileOutputStream( s + "/.library/library.ser");
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(temp);
+                out.close();
+                fileOut.close();
+                System.out.printf("Serialized data is saved in library.ser");
+            } catch (IOException c) {
+                c.printStackTrace();
+            }
             return "Checkout successful! The return date is " +returnDate;
         } else{
             hold(p);
@@ -176,16 +237,30 @@ public class Book {
     }
 
     public String checkoutHardcover(Person p){
+        ArrayList<Book> temp = BrowseController.getBookList();
         if (invHardcover>0){
             invHardcover-=1;
-            p.addCheckout(this);
             checkedOut=true;
             numHardcoverCheckedOut+=1;
             setReturnDate();
             if (p.inHolds(this)){
                 p.removeHold(this);
             }
+            if (p.inWantToRead(this)){
+                p.removeWantToRead(this);
+            }
             inventory=invPaperback+invHardcover;
+            try {
+                String s = System.getProperty("user.home");
+                FileOutputStream fileOut = new FileOutputStream( s + "/.library/library.ser");
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(temp);
+                out.close();
+                fileOut.close();
+                System.out.printf("Serialized data is saved in library.ser");
+            } catch (IOException i) {
+                i.printStackTrace();
+            }
             return "Checkout successful! The return date is " +returnDate;
         } else{
             hold(p);
@@ -194,12 +269,24 @@ public class Book {
     }
 
     public String returnPaperback(Person p){
+        ArrayList<Book> temp = BrowseController.getBookList();
         if (numPaperbackCheckedOut>0){
             invPaperback +=1;
-            p.returnBook(this);
+            p.returnPaperbackBook(this);
             returnDate=null;
             numPaperbackCheckedOut-=1;
             inventory=invPaperback+invHardcover;
+            try {
+                String s = System.getProperty("user.home");
+                FileOutputStream fileOut = new FileOutputStream( s + "/.library/library.ser");
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(temp);
+                out.close();
+                fileOut.close();
+                System.out.printf("Serialized data is saved in library.ser");
+            } catch (IOException i) {
+                i.printStackTrace();
+            }
             return "Return successful!";
         } else{
             return "This book was not checked out, so you can't return it:(";
@@ -207,12 +294,24 @@ public class Book {
     }
 
     public String returnHardcover(Person p){
+        ArrayList<Book> temp = BrowseController.getBookList();
         if (numHardcoverCheckedOut>0){
             invHardcover +=1;
-            p.returnBook(this);
+            p.returnHardcoverBook(this);
             returnDate=null;
             numHardcoverCheckedOut-=1;
             inventory=invPaperback+invHardcover;
+            try {
+                String s = System.getProperty("user.home");
+                FileOutputStream fileOut = new FileOutputStream( s + "/.library/library.ser");
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(temp);
+                out.close();
+                fileOut.close();
+                System.out.printf("Serialized data is saved in library.ser");
+            } catch (IOException i) {
+                i.printStackTrace();
+            }
             return "Return successful!";
         } else{
             return "This book was not checked out, so you can't return it:(";

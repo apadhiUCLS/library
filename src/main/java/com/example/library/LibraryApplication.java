@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class LibraryApplication extends Application {
+public class  LibraryApplication extends Application {
     private static Stage s;
     private static Scene home;
     private static FXMLLoader loader;
@@ -21,8 +21,10 @@ public class LibraryApplication extends Application {
         loader=fxmlLoader;
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         home=scene;
-        s.setTitle("Hello!");
+        s.setTitle("Library Book Bonanza");
         s.setScene(home);
+        s.setWidth(1000);
+        s.setHeight(600);
         s.show();
     }
 
@@ -30,9 +32,25 @@ public class LibraryApplication extends Application {
 /*        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
         Parent root = loader.load();
         Scene myScene = new Scene(root);*/
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        BrowseController browseController = loader.getController();
+        browseController.setPerson(p);
+        System.out.println(browseController.getBookList());
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
+    public static void switchToMainView(Person p, ArrayList<Person> people) throws IOException {
+/*        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);*/
         BrowseController browseController = loader.getController();
         browseController.update();
+        browseController.setPerson(p);
         s.setScene(home); // the initialize method will get called in here
+
+        ChooseUserController.setUserList(people);
     }
 
     public static void switchToCheckoutView(String m, Person p) throws IOException {
@@ -41,6 +59,7 @@ public class LibraryApplication extends Application {
         Scene myScene = new Scene(root);
         CheckoutController checkoutBook = loader.getController();
         checkoutBook.setLabel(m);
+        checkoutBook.setPerson(p);
         s.setScene(myScene); // the initialize method will get called in here
     }
 
@@ -50,6 +69,27 @@ public class LibraryApplication extends Application {
         Scene myScene = new Scene(root);
         FavoritesController favoriteBooks = loader.getController();
         favoriteBooks.setPerson(p);
+        favoriteBooks.update();
+        System.out.println(p);
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
+    public static void switchToChooseUser(Person p) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("choose-user.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        ChooseUserController person = loader.getController();
+        person.setPerson(p);
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
+    public static void switchToSignUpView(Person p) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("sign-up-view.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        SignUpController newPersonController = loader.getController();
+        newPersonController.setPerson(p);
+        newPersonController.setPeople(ChooseUserController.getUserList());
         s.setScene(myScene); // the initialize method will get called in here
     }
 
@@ -78,8 +118,9 @@ public class LibraryApplication extends Application {
         Parent root = loader.load();
         Scene myScene = new Scene(root);
         CheckedOutBooksController listOfBooks = loader.getController();
+        //listOfBooks.update(); this doesn't seem to be doing anything (when it is included, excluded, moved nothing changes)
         listOfBooks.setPerson(p);
-        listOfBooks.setCheckedOutBooks(p.getCheckedOutBooks());
+        System.out.println(p);
         System.out.println(p.getCheckedOutBooks());
         s.setScene(myScene); // the initialize method will get called in here
     }
@@ -112,6 +153,15 @@ public class LibraryApplication extends Application {
         reviewViewController.setBook(book);
         reviewViewController.setPerson(p);
         reviewViewController.update();
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
+    public static void switchToNew(Person p) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("newBook.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        NewBookController newBookController = loader.getController();
+        newBookController.setPerson(p);
         s.setScene(myScene); // the initialize method will get called in here
     }
 

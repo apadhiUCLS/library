@@ -39,16 +39,17 @@ public class CheckedOutBooksController {
     @FXML
     private Button backToBrowse;
 
-    private ArrayList<Book> checkedOutBooks=new ArrayList<Book>();
+    private ArrayList<PersonalBook> checkedOutBooks=new ArrayList<PersonalBook>();
     private Person p;
-
     @FXML
     public void goBack() throws IOException {
         LibraryApplication.switchToMainView(p);
     }
 
-    public void setCheckedOutBooks(ArrayList<Book> checkedOutBooks){
-        this.checkedOutBooks = checkedOutBooks;
+    public void setPerson(Person p){
+        this.p = p;
+        this.checkedOutBooks = p.getCheckedOutBooks();
+
 
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -58,10 +59,7 @@ public class CheckedOutBooksController {
         returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         table.setItems(FXCollections.observableList(checkedOutBooks));
-    }
-
-    public void setPerson(Person p){
-        this.p = p;
+        this.update();
     }
 
     @FXML
@@ -71,7 +69,21 @@ public class CheckedOutBooksController {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        /*
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        hardcoverCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numHardcoverCheckedOut"));
+        paperbackCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numPaperbackCheckedOut"));
+        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
+        returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
+        table.setItems(FXCollections.observableList(checkedOutBooks));
+        */
+    }
+
+    public void update() {
+        table.refresh();
     }
 
 }

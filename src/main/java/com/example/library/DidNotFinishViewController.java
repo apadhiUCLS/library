@@ -30,6 +30,7 @@ public class DidNotFinishViewController {
     public void setPerson(Person p){
         this.p= p;
         this.didNotFinishBooks = this.p.getDidNotFinish();
+        System.out.println("!!"+didNotFinishBooks);
 
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));

@@ -44,4 +44,8 @@ public class CheckoutController {
         action.setText(l);
 
     }
+
+    public void setPerson(Person p){
+        this.p = p;
+    }
 }

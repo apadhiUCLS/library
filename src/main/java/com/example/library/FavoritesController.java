@@ -57,4 +57,8 @@ public class FavoritesController {
     @FXML
     public void initialize() {
     }
+
+    public void update() {
+        table.refresh();
+    }
 }

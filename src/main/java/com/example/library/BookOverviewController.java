@@ -107,6 +107,7 @@ public class BookOverviewController {
 
     @FXML
     public void setBtnDidNotFinish() throws IOException {
+        p.addDidNotFinish(b);
         LibraryApplication.switchToDidNotFinishView(p);
     }
 

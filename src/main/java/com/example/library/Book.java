@@ -209,8 +209,13 @@ public class Book implements java.io.Serializable {
             checkedOut=true;
             numPaperbackCheckedOut+=1;
             setReturnDate();
+
             if (p.inHolds(this)){
                 p.removeHold(this);
+            }
+
+            if (p.inWantToRead(this)){
+                p.removeWantToRead(this);
             }
             inventory=invPaperback+invHardcover;
             try {
@@ -240,6 +245,9 @@ public class Book implements java.io.Serializable {
             setReturnDate();
             if (p.inHolds(this)){
                 p.removeHold(this);
+            }
+            if (p.inWantToRead(this)){
+                p.removeWantToRead(this);
             }
             inventory=invPaperback+invHardcover;
             try {

@@ -151,11 +151,26 @@ public class Person implements java.io.Serializable {
     }
 
     public boolean inHolds(Book book) {
-        if (this.heldBooks.indexOf(book) < 0) {
+        /*if (this.heldBooks.indexOf(book) < 0) {
             return false;
         } else {
             return true;
+        }*/
+        for (int i=0; i<heldBooks.size(); i++){
+            if (book.getTitle()==heldBooks.get(i).getTitle()){
+                return true;
+            }
         }
+        return false;
+    }
+
+    public boolean inWantToRead(Book book){
+        for (int i=0; i<wantToRead.size(); i++){
+            if (book.getTitle()==wantToRead.get(i).getTitle()){
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<Book> getHolds() {return heldBooks;}

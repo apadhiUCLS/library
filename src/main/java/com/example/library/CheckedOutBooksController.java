@@ -49,7 +49,6 @@ public class CheckedOutBooksController {
     public void setPerson(Person p){
         this.p = p;
         this.checkedOutBooks = p.getCheckedOutBooks();
-        System.out.println("!!"+checkedOutBooks);
 
 
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));

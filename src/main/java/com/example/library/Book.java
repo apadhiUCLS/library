@@ -330,13 +330,18 @@ public class Book implements java.io.Serializable {
         }
     }
 
-    public String renew(){
-        if (checkedOut==true){
+    public String renewHardcover(Person p){
+        if (numHardcoverCheckedOut > 0){
             setReturnDate();
-            return "Renew successful!";
+            p.renewHardcover(this);
+            return "Renew successful! The new due date is " + returnDate;
         } else{
             return "You need to check this book out before renewing it";
         }
+    }
+
+    public String renewPaperBack(Person p) {
+
     }
 
     public String hold(Person p){

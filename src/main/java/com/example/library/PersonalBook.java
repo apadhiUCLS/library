@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class PersonalBook implements java.io.Serializable {
+public class PersonalBook extends Book implements java.io.Serializable {
     private Book b;
     private Author author;
     private String title;
@@ -94,6 +94,10 @@ public class PersonalBook implements java.io.Serializable {
 
     public Date getReturnDate(){
         return returnDate;
+    }
+
+    public void setReturnDate(Date d) {
+        returnDate = d;
     }
 
 }

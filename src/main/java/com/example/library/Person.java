@@ -6,10 +6,10 @@ import java.util.*;
 
 public class Person implements java.io.Serializable {
     private ArrayList<Book> wantToRead;
-    private ArrayList<PersonalBook>  checkedOutBooks;
-    private ArrayList<Book>  heldBooks;
-    private ArrayList<Book>  overdue;
-    private ArrayList<Book>  favorites;
+    private ArrayList<PersonalBook> checkedOutBooks;
+    private ArrayList<Book> heldBooks;
+    private ArrayList<Book> overdue;
+    private ArrayList<Book> favorites;
     private String name;
     private ArrayList<Book> didNotFinish;
 
@@ -24,23 +24,23 @@ public class Person implements java.io.Serializable {
         this.didNotFinish = new ArrayList<Book>();
     }
 
-    public void addFavorite(Book b){
+    public void addFavorite(Book b) {
         favorites.add(b);
-        System.out.println(this+" ");
+        System.out.println(this + " ");
         System.out.println(favorites);
         this.reserialize();
     }
 
-    public void removeFavorite(Book b){
+    public void removeFavorite(Book b) {
         favorites.remove(b);
         this.reserialize();
     }
 
-    public ArrayList<Book> getFavorites(){
+    public ArrayList<Book> getFavorites() {
         return favorites;
     }
 
-    public ArrayList<PersonalBook> getCheckedOutBooks(){
+    public ArrayList<PersonalBook> getCheckedOutBooks() {
         return checkedOutBooks;
     }
 
@@ -55,27 +55,27 @@ public class Person implements java.io.Serializable {
     }
 
 
-
     public void addCheckoutPaperback(PersonalBook book) {
         boolean contains = false;
-        for (int i = 0; i < checkedOutBooks.size(); i++){
+        for (int i = 0; i < checkedOutBooks.size(); i++) {
             if (book.getTitle().equals(checkedOutBooks.get(i).getTitle())) {
-                book.setNumPaperbackCheckedOut(book.getNumPaperbackCheckedOut() + 1);
+                checkedOutBooks.get(i).setNumPaperbackCheckedOut(checkedOutBooks.get(i).getNumPaperbackCheckedOut() + 1);
+                System.out.println(book.getNumPaperbackCheckedOut());
                 contains = true;
                 break;
             }
         }
         if (!contains) {
             checkedOutBooks.add(book);
-        }
             book.setNumPaperbackCheckedOut(1);
-            if (this.heldBooks.indexOf(book) > 0) {
-                removeHold(book.getBook());
-            }
-            if (this.wantToRead.indexOf(book) > 0) {
-                this.removeWantToRead(book.getBook());
-            }
         }
+        if (this.heldBooks.indexOf(book) > 0) {
+            removeHold(book.getBook());
+        }
+        if (this.wantToRead.indexOf(book) > 0) {
+            this.removeWantToRead(book.getBook());
+        }
+
 
         //this is the stuff to reserialize because I assume it is needed after changing a person in the list,
         //but is there anything else I need to do to make sure the changes are save and do I need to do this at all?
@@ -93,43 +93,51 @@ public class Person implements java.io.Serializable {
             i.printStackTrace();
         }
     }
+
     public void addCheckoutHardcover(PersonalBook book) {
         boolean contains = false;
-        for (int i = 0; i < checkedOutBooks.size(); i++){
+        for (int i = 0; i < checkedOutBooks.size(); i++) {
             if (book.getTitle().equals(checkedOutBooks.get(i).getTitle())) {
-                book.setNumHardcoverCheckedOut(book.getNumHardcoverCheckedOut() + 1);
+                checkedOutBooks.get(i).setNumHardcoverCheckedOut(checkedOutBooks.get(i).getNumHardcoverCheckedOut() + 1);
                 contains = true;
                 break;
             }
         }
         if (!contains) {
             checkedOutBooks.add(book);
-        }
             book.setNumHardcoverCheckedOut(1);
-            if (this.heldBooks.indexOf(book) > 0) {
-                removeHold(book.getBook());
-            }
-            if (this.wantToRead.indexOf(book) > 0) {
-                this.removeWantToRead(book.getBook());
-            }
         }
 
-        //this is the stuff to reserialize because I assume it is needed after changing a person in the list,
-        //but is there anything else I need to do to make sure the changes are save and do I need to do this at all?
-        ArrayList<Person> p = ChooseUserController.getUserList();
-        String home = System.getProperty("user.home");
-        Path folderPath = Paths.get(home + "/.libraryUsers");
-        try {
-            FileOutputStream fileOut = new FileOutputStream(folderPath + "/users.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(p);
-            out.close();
-            fileOut.close();
-            System.out.printf("Serialized data is saved in users.ser");
-        } catch (IOException i) {
-            i.printStackTrace();
+        if (this.heldBooks.indexOf(book) > 0) {
+            removeHold(book.getBook());
         }
+        if (this.wantToRead.indexOf(book) > 0) {
+            this.removeWantToRead(book.getBook());
+        }
+
+
+    //this is the stuff to reserialize because I assume it is needed after changing a person in the list,
+    //but is there anything else I need to do to make sure the changes are save and do I need to do this at all?
+    ArrayList<Person> p = ChooseUserController.getUserList();
+    String home = System.getProperty("user.home");
+    Path folderPath = Paths.get(home + "/.libraryUsers");
+        try
+
+    {
+        FileOutputStream fileOut = new FileOutputStream(folderPath + "/users.ser");
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(p);
+        out.close();
+        fileOut.close();
+        System.out.printf("Serialized data is saved in users.ser");
+    } catch(
+    IOException i)
+
+    {
+        i.printStackTrace();
     }
+
+}
 
     public void addHold(Book book) {
         heldBooks.add(book);
@@ -161,7 +169,8 @@ public class Person implements java.io.Serializable {
             if (title.equals(tempT)) {
                 if (checkedOutBooks.get(i).getNumHardcoverCheckedOut() > 0) {
                     checkedOutBooks.get(i).setNumHardcoverCheckedOut(checkedOutBooks.get(i).getNumHardcoverCheckedOut() - 1);
-                } else if (checkedOutBooks.get(i).getNumHardcoverCheckedOut() <= 0) {
+                }
+                if (checkedOutBooks.get(i).getNumHardcoverCheckedOut() == 0 && checkedOutBooks.get(i).getNumPaperbackCheckedOut() == 0) {
                     checkedOutBooks.remove(i);
                     break;
                 }
@@ -182,7 +191,8 @@ public class Person implements java.io.Serializable {
             if (title.equals(tempT)) {
                 if (checkedOutBooks.get(i).getNumPaperbackCheckedOut() > 0) {
                     checkedOutBooks.get(i).setNumPaperbackCheckedOut(checkedOutBooks.get(i).getNumPaperbackCheckedOut() - 1);
-                } else if (checkedOutBooks.get(i).getNumPaperbackCheckedOut() <= 0) {
+                }
+                if (checkedOutBooks.get(i).getNumHardcoverCheckedOut() == 0 && checkedOutBooks.get(i).getNumPaperbackCheckedOut() == 0) {
                     checkedOutBooks.remove(i);
                     break;
                 }

@@ -30,6 +30,10 @@ public class NewBookController {
     @FXML
     private TextField genre;
     @FXML
+    private TextField publisher;
+    @FXML
+    private TextField releaseYear;
+    @FXML
     private Button done;
 
     private Person p;
@@ -40,7 +44,7 @@ public class NewBookController {
 
 
     public void doneButtonHandler() throws IOException {
-        if (title.getText() != null && authorFName.getText() != null && authorLName.getText() != null && paperInv.getText() != null && hardcoverInv.getText() != null && series.getText() != null && numInSeries.getText() != null && genre.getText() != null) {
+        if (title.getText() != null && authorFName.getText() != null && authorLName.getText() != null && paperInv.getText() != null && hardcoverInv.getText() != null && series.getText() != null && numInSeries.getText() != null && genre.getText() != null && publisher.getText()!=null && releaseYear.getText()!=null) {
             b.setTitle(title.getText());
             b.setAuthor(new Author(authorFName.getText(), authorLName.getText()));
             b.setInvPaperback(Integer.parseInt(paperInv.getText()));
@@ -48,6 +52,8 @@ public class NewBookController {
             b.setGenre(genre.getText());
             Series s=new Series(series.getText(), new ArrayList<Book>());
             b.setSeries(s);
+            b.setPublisher(publisher.getText());
+            b.setReleaseYear(Integer.parseInt(releaseYear.getText()));
             for (int i=0; i<BrowseController.getBookList().size(); i++){
                 if (authorFName.getText().equals(BrowseController.getBookList().get(i).getAuthor().getFirstName()) && authorLName.getText().equals(BrowseController.getBookList().get(i).getAuthor().getLastName())){
                     b.setAuthor(BrowseController.getBookList().get(i).getAuthor());

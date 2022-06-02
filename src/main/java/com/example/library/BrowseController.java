@@ -51,6 +51,12 @@ public class BrowseController {
     private TableColumn callNumColumn;
 
     @FXML
+    private TableColumn publisher;
+
+    @FXML
+    private TableColumn releaseYear;
+
+    @FXML
     private Button checkedOutBooks;
 
     @FXML
@@ -179,6 +185,8 @@ public class BrowseController {
         seriesColumn.setCellValueFactory(new PropertyValueFactory<>("seriesTitle"));
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         callNumColumn.setCellValueFactory(new PropertyValueFactory<>("callNum"));
+        publisher.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        releaseYear.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
         table.setItems(FXCollections.observableList(bookList));
 
 

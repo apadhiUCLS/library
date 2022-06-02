@@ -14,7 +14,8 @@ import java.util.Locale;
 public class Book implements java.io.Serializable {
     private Author author;
     private String title;
-    private Date releaseDate;
+    private String publisher;
+    private int releaseYear;
     private Date returnDate;
     private String description;
     private int inventory;
@@ -30,6 +31,7 @@ public class Book implements java.io.Serializable {
     public ArrayList<Rating> ratings=new ArrayList<Rating>();
     private String callNum;
     private String genre;
+    private String citation;
 
     public Book(String title, Author author){
         this.title=title;
@@ -38,6 +40,33 @@ public class Book implements java.io.Serializable {
     }
 
     public Book(){}
+
+    public String getCitation(){
+        return citation;
+    }
+
+    public void setCitation(String s){
+        citation=s;
+    }
+
+    public String getPublisher(){
+        return publisher;
+    }
+
+    public void setPublisher(String s){
+        publisher=s;
+    }
+
+    public String determineCitation(){
+        String c=getAuthor().getLastName();
+        c+=", ";
+        c+=getAuthor().getFirstName();
+        c+=". ";
+        c+=getTitle();
+        c+=". ";
+        c+=releaseYear;
+        return c;
+    }
 
     public String getCallNum() {
         return this.determineCallNum();
@@ -67,9 +96,10 @@ public class Book implements java.io.Serializable {
         inventory=invPaperback+invHardcover;
         this.genre=genre;
         callNum=determineCallNum();
+        citation=determineCitation();
     }
 
-    public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries, String genre){
+    public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries, String genre, String publisher, int releaseYear){
         this.title=title;
         this.author=author;
         this.invHardcover=invHardcover;
@@ -79,6 +109,8 @@ public class Book implements java.io.Serializable {
         inventory=invPaperback+invHardcover;
         this.genre=genre;
         callNum=determineCallNum();
+        this.publisher=publisher;
+        this.releaseYear=releaseYear;
     }
 
     public ArrayList<Rating> getRatings(){
@@ -120,8 +152,8 @@ public class Book implements java.io.Serializable {
         author=a;
     }
 
-    public void setReleaseDate(Date d){
-        releaseDate=d;
+    public void setReleaseYear(int d){
+        releaseYear=d;
     }
 
     public void setDescription(String d){
@@ -140,8 +172,8 @@ public class Book implements java.io.Serializable {
         return description;
     }
 
-    public Date getReleaseDate(){
-        return releaseDate;
+    public int getReleaseYear(){
+        return releaseYear;
     }
 
     public Series getSeries(){

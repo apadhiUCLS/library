@@ -32,5 +32,9 @@
       <Button fx:id="btnFinish" layoutX="516.0" layoutY="152.0" mnemonicParsing="false" onAction="#setBtnFinish" text="Finish" />
       <Label layoutX="45.0" layoutY="181.0" text="Call Number:" />
       <Label fx:id="callNum" layoutX="137.0" layoutY="181.0" prefHeight="17.0" prefWidth="132.0" />
+      <Label layoutX="391.0" layoutY="216.0" text="Publisher: " />
+      <Label layoutX="375.0" layoutY="264.0" text="Release Year: " />
+      <Label fx:id="publisher" layoutX="494.0" layoutY="216.0" />
+      <Label fx:id="year" layoutX="491.0" layoutY="264.0" />
    </children>
 </AnchorPane>

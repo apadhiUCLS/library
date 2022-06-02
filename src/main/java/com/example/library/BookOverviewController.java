@@ -35,6 +35,10 @@ public class BookOverviewController {
     @FXML
     private Label ratings;
     @FXML
+    private Label publisher;
+    @FXML
+    private Label year;
+    @FXML
     private Button btnReview;
     @FXML
     private Button btnRate;
@@ -125,6 +129,8 @@ public class BookOverviewController {
         this.lblPaperbackCopies.setText(Integer.toString(b.getInvPaperback()));
         this.lblHardcoverCopies.setText(Integer.toString(b.getInvHardcover()));
         this.ratings.setText(Double.toString(b.getAvgRating()));
+        this.publisher.setText(b.getPublisher());
+        this.year.setText(Integer.toString(b.getReleaseYear()));
     }
 
 

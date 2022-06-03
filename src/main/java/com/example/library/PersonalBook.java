@@ -108,8 +108,15 @@ public class PersonalBook extends Book implements java.io.Serializable {
         }
     }
 
-    public String renewPaperBack(Person p) {
+    public String renewPaperBack() throws IOException {
+        if (numPaperbackCheckedOut > 0){
+            super.setReturnDate();
 
+            super.serialize();
+            return "Renew successful! The new due date is " + returnDate;
+        } else{
+            return "You need to check this book out before renewing it";
+        }
     }
 
 }

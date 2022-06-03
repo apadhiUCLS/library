@@ -284,24 +284,26 @@ public class Person implements java.io.Serializable {
         return this.didNotFinish;
     }
     //should be good
-    public void renewHardcover(Book b) throws IOException {
+    public String renewHardcover(Book b) throws IOException {
         for (int i = 0; i < checkedOutBooks.size(); i++) {
             if (b.getTitle().equals(checkedOutBooks.get(i).getTitle())) {
-                checkedOutBooks.get(i).renewHardcover();
+                this.checkOverdue();
+                this.reserialize();
+                return checkedOutBooks.get(i).renewHardcover();
             }
         }
-        this.checkOverdue();
-        this.reserialize();
+        return "You must check out this book in order to renew it";
     }
 
-    public void renewPaperback(Book b) {
+    public String renewPaperback(Book b) throws IOException {
         for (int i = 0; i < checkedOutBooks.size(); i++) {
             if (b.getTitle().equals(checkedOutBooks.get(i).getTitle())) {
-                checkedOutBooks.get(i).renewPaperback();
+                this.checkOverdue();
+                this.reserialize();
+                return checkedOutBooks.get(i).renewPaperBack();
             }
         }
-        this.checkOverdue();
-        this.reserialize();
+        return "You must check out this book in order to renew it";
     }
 
     @Override

@@ -331,20 +331,28 @@ public class Book implements java.io.Serializable {
     }
 
     //still needs work
-    public void renewHardcover(Person p) throws IOException {
+    public String renewHardcover(Person p) throws IOException {
         if (numHardcoverCheckedOut > 0){
             //setReturnDate();
-            p.renewHardcover(this);
+            //p.renewHardcover(this);
 
             //this.serialize();
-            //return "Renew successful! The new due date is " + returnDate;
+            return p.renewHardcover(this);
         } else{
-           // return "You need to check this book out before renewing it";
+            return "You need to check this book out before renewing it";
         }
     }
 
-    public String renewPaperBack(Person p) {
+    public String renewPaperback(Person p) throws IOException {
+        if (numHardcoverCheckedOut > 0){
+            //setReturnDate();
+            //p.renewHardcover(this);
 
+            //this.serialize();
+            return p.renewPaperback(this);
+        } else{
+            return "You need to check this book out before renewing it";
+        }
     }
 
     public String hold(Person p){

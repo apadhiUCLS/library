@@ -42,7 +42,7 @@ public class Book implements java.io.Serializable {
     public Book(){}
 
     public String getCitation(){
-        return citation;
+        return this.determineCitation();
     }
 
     public void setCitation(String s){
@@ -70,6 +70,7 @@ public class Book implements java.io.Serializable {
         c+=", ";
         c+=releaseYear;
         c+=".";
+        System.out.println(c);
         return c;
     }
 
@@ -117,6 +118,7 @@ public class Book implements java.io.Serializable {
         callNum=determineCallNum();
         this.publisher=publisher;
         this.releaseYear=releaseYear;
+        citation=determineCitation();
     }
 
     public ArrayList<Rating> getRatings(){

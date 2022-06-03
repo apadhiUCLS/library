@@ -38,5 +38,6 @@
       <Label fx:id="year" layoutX="491.0" layoutY="264.0" />
       <Label layoutX="61.0" layoutY="365.0" text="Citation" />
       <Label fx:id="citation" layoutX="137.0" layoutY="365.0" />
+      <Button fx:id="authorView" layoutX="394.0" layoutY="360.0" mnemonicParsing="false" onAction="#goAuthor" text="View Author Info" />
    </children>
 </AnchorPane>

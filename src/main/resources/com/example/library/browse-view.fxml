@@ -20,8 +20,8 @@
             <TableColumn fx:id="ratingsColumn" prefWidth="60.0" text="Rating" />
             <TableColumn fx:id="callNumColumn" prefWidth="112.0" text="Call Number" />
             <TableColumn fx:id="publisher" prefWidth="75.0" text="Publisher" />
-            <TableColumn fx:id="releaseYear" prefWidth="119.0" text="Release Year" />
-            <TableColumn fx:id="citation" prefWidth="75.0" text="Citation" />
+            <TableColumn fx:id="releaseYear" prefWidth="85.0" text="Release Year" />
+            <TableColumn fx:id="citation" prefWidth="128.0" text="Citation" />
         </columns>
       </TableView>
       <Button fx:id="checkedOutBooks" layoutX="447.0" layoutY="10.0" mnemonicParsing="false" onAction="#goCheckedOut" text="Checked Out Books" />

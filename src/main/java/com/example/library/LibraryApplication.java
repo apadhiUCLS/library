@@ -145,6 +145,17 @@ public class  LibraryApplication extends Application {
         s.setScene(myScene); // the initialize method will get called in here
     }
 
+    public static void switchToAuthorView(Book book, Person p) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("authorView.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        AuthorViewController authorViewController = loader.getController();
+        authorViewController.setPerson(p);
+        authorViewController.setBook(book);
+
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
     public static void switchToReview(Book book, Person p) throws IOException {
         FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("review-view.fxml"));
         Parent root = loader.load();

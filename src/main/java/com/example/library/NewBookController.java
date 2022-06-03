@@ -69,6 +69,7 @@ public class NewBookController {
             }
 
             BrowseController.addToBookList(b);
+            b.getAuthor().addBook(b);
             System.out.println(b.getCallNum());
         }
         try {

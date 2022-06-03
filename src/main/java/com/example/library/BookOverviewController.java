@@ -48,6 +48,8 @@ public class BookOverviewController {
     private Button btnDidNotFinish;
     @FXML
     private Button btnFinish;
+    @FXML
+    private Button authorView;
 
     @FXML
     private Label callNum;
@@ -58,6 +60,11 @@ public class BookOverviewController {
     @FXML
     public void goBack() throws IOException {
          LibraryApplication.switchToMainView(p);
+    }
+
+    @FXML
+    public void goAuthor() throws IOException {
+        LibraryApplication.switchToAuthorView(b, p);
     }
 
     @FXML
@@ -134,6 +141,7 @@ public class BookOverviewController {
         this.publisher.setText(b.getPublisher());
         this.year.setText(Integer.toString(b.getReleaseYear()));
         this.citation.setText(b.getCitation());
+        System.out.println(b.getAuthor());
     }
 
 

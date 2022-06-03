@@ -184,6 +184,17 @@ public class Person implements java.io.Serializable {
         return -1;
     }
 
+    public int inDidNotFinish(Book book){
+        System.out.println(book.getTitle());
+        for (int i=0; i<didNotFinish.size(); i++){
+            System.out.println(didNotFinish.get(i).getTitle());
+            if (book.getTitle().equals(didNotFinish.get(i).getTitle())){
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public int inFavorites(Book book){
         System.out.println(book.getTitle());
         for (int i=0; i<favorites.size(); i++){
@@ -292,7 +303,7 @@ public class Person implements java.io.Serializable {
     }
 
     public void removeDidNotFinish(Book b) {
-        int index = this.didNotFinish.indexOf(b);
+        int index = inDidNotFinish(b);
         if (index > -1) {
             this.didNotFinish.remove(index);
         }

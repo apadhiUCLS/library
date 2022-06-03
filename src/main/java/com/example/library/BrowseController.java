@@ -192,20 +192,18 @@ public class BrowseController {
 
         this.reserialize();
     }
+
     public void update(){
         table.refresh();
     }
 
     public void reserialize() {
-        String home = System.getProperty("user.home");
-        Path folderPath = Paths.get(home + ".library");
         try {
-            FileOutputStream fileOut = new FileOutputStream(folderPath + "/library.ser");
+            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.library/library.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(bookList);
+            out.writeObject(BrowseController.getBookList());
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in library.ser");
         } catch (IOException i) {
             i.printStackTrace();
         }

@@ -65,8 +65,14 @@ public class Book implements java.io.Serializable {
         c+=getTitle();
         c+=". ";
         c+=releaseYear;
+        c+=". ";
+        c+=publisher;
+        c+=", ";
+        c+=releaseYear;
+        c+=".";
         return c;
     }
+
 
     public String getCallNum() {
         return this.determineCallNum();

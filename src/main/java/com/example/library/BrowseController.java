@@ -57,6 +57,9 @@ public class BrowseController {
     private TableColumn releaseYear;
 
     @FXML
+    private TableColumn citation;
+
+    @FXML
     private Button checkedOutBooks;
 
     @FXML
@@ -187,6 +190,7 @@ public class BrowseController {
         callNumColumn.setCellValueFactory(new PropertyValueFactory<>("callNum"));
         publisher.setCellValueFactory(new PropertyValueFactory<>("publisher"));
         releaseYear.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
+        citation.setCellValueFactory(new PropertyValueFactory<>("citation"));
         table.setItems(FXCollections.observableList(bookList));
 
 

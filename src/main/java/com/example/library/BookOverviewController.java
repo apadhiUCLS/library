@@ -39,6 +39,8 @@ public class BookOverviewController {
     @FXML
     private Label year;
     @FXML
+    private Label citation;
+    @FXML
     private Button btnReview;
     @FXML
     private Button btnRate;
@@ -131,6 +133,7 @@ public class BookOverviewController {
         this.ratings.setText(Double.toString(b.getAvgRating()));
         this.publisher.setText(b.getPublisher());
         this.year.setText(Integer.toString(b.getReleaseYear()));
+        this.citation.setText(b.getCitation());
     }
 
 

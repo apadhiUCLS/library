@@ -41,6 +41,20 @@ public class  LibraryApplication extends Application {
         s.setScene(myScene); // the initialize method will get called in here
     }
 
+    public static void switchToMainViewRemoveBook(Person p, Book b) throws IOException {
+/*        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);*/
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        BrowseController browseController = loader.getController();
+        browseController.setPerson(p);
+        browseController.removeBook(b);
+        System.out.println(browseController.getBookList());
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
     public static void switchToMainView(Person p, ArrayList<Person> people) throws IOException {
 /*        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
         Parent root = loader.load();

@@ -25,6 +25,8 @@ public class BookOverviewController {
     @FXML
     private Button btnRemoveFavorite;
     @FXML
+    private Button btnRemove;
+    @FXML
     private Button btnWantToRead;
     @FXML
     private Button btnRemoveFromWantToRead;
@@ -56,6 +58,11 @@ public class BookOverviewController {
     @FXML
     public void goBack() throws IOException {
          LibraryApplication.switchToMainView(p);
+    }
+
+    @FXML
+    public void setBtnRemove() throws IOException {
+        LibraryApplication.switchToMainViewRemoveBook(p,b);
     }
 
     @FXML
@@ -94,6 +101,7 @@ public class BookOverviewController {
         p.removeFavorite(b);
         LibraryApplication.switchToFavoriteView(p);
     }
+
 
     @FXML
     public void setBtnWantToRead() throws IOException {

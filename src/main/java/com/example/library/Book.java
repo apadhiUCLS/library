@@ -209,6 +209,8 @@ public class Book implements java.io.Serializable {
             checkedOut=true;
             numPaperbackCheckedOut+=1;
             setReturnDate();
+            PersonalBook pb = new PersonalBook(this);
+            p.addCheckoutPaperback(pb);
 
             if (p.inHolds(this)){
                 p.removeHold(this);
@@ -243,6 +245,8 @@ public class Book implements java.io.Serializable {
             checkedOut=true;
             numHardcoverCheckedOut+=1;
             setReturnDate();
+            PersonalBook pb = new PersonalBook(this);
+            p.addCheckoutPaperback(pb);
             if (p.inHolds(this)){
                 p.removeHold(this);
             }
@@ -335,23 +339,21 @@ public class Book implements java.io.Serializable {
         if (numHardcoverCheckedOut > 0){
             //setReturnDate();
             //p.renewHardcover(this);
-
             //this.serialize();
             return p.renewHardcover(this);
         } else{
-            return "You need to check this book out before renewing it";
+            return "You need to check this book out before renewing it (BOOK)";
         }
     }
 
     public String renewPaperback(Person p) throws IOException {
-        if (numHardcoverCheckedOut > 0){
+        if (numPaperbackCheckedOut > 0){
             //setReturnDate();
             //p.renewHardcover(this);
-
             //this.serialize();
             return p.renewPaperback(this);
         } else{
-            return "You need to check this book out before renewing it";
+            return "You need to check this book out before renewing it (BOOK)";
         }
     }
 

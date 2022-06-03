@@ -283,7 +283,7 @@ public class Person implements java.io.Serializable {
     public ArrayList<Book> getDidNotFinish(){
         return this.didNotFinish;
     }
-    //should be good
+
     public String renewHardcover(Book b) throws IOException {
         for (int i = 0; i < checkedOutBooks.size(); i++) {
             if (b.getTitle().equals(checkedOutBooks.get(i).getTitle())) {
@@ -292,7 +292,7 @@ public class Person implements java.io.Serializable {
                 return checkedOutBooks.get(i).renewHardcover();
             }
         }
-        return "You must check out this book in order to renew it";
+        return "You must check out this book before renewing it (PERSON)";
     }
 
     public String renewPaperback(Book b) throws IOException {
@@ -303,7 +303,7 @@ public class Person implements java.io.Serializable {
                 return checkedOutBooks.get(i).renewPaperBack();
             }
         }
-        return "You must check out this book in order to renew it";
+        return "You must check out this book in order to renew it (PERSON)";
     }
 
     @Override

@@ -122,13 +122,13 @@ public class BookOverviewController {
     }
 
     @FXML
-    public void setBtnRenewHardcover(){
+    public void setBtnRenewHardcover() throws IOException {
         String message = b.renewHardcover(p);
         LibraryApplication.switchToRenewView(p, message);
     }
 
     @FXML
-    public void setBtnRenewPaperback(){
+    public void setBtnRenewPaperback() throws IOException {
         String message = b.renewPaperback(p);
         LibraryApplication.switchToRenewView(p, message);
     }

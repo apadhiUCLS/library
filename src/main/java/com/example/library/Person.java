@@ -228,6 +228,7 @@ public class Person implements java.io.Serializable {
     public boolean checkOverdue() {
         boolean existsOverdue = false;
         Date today = new Date();
+        this.overdue = new ArrayList<Book>();
         for (int i = 0; i < checkedOutBooks.size(); i++) {
             if (checkedOutBooks.get(i).getBook().getReleaseDate().compareTo(today) > 0) {
                 existsOverdue = true;
@@ -281,6 +282,26 @@ public class Person implements java.io.Serializable {
 
     public ArrayList<Book> getDidNotFinish(){
         return this.didNotFinish;
+    }
+    //should be good
+    public void renewHardcover(Book b) throws IOException {
+        for (int i = 0; i < checkedOutBooks.size(); i++) {
+            if (b.getTitle().equals(checkedOutBooks.get(i).getTitle())) {
+                checkedOutBooks.get(i).renewHardcover();
+            }
+        }
+        this.checkOverdue();
+        this.reserialize();
+    }
+
+    public void renewPaperback(Book b) {
+        for (int i = 0; i < checkedOutBooks.size(); i++) {
+            if (b.getTitle().equals(checkedOutBooks.get(i).getTitle())) {
+                checkedOutBooks.get(i).renewPaperback();
+            }
+        }
+        this.checkOverdue();
+        this.reserialize();
     }
 
     @Override

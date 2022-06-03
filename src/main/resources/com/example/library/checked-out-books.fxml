@@ -16,7 +16,7 @@
             <TableColumn fx:id="hardcoverCheckedOutColumn" prefWidth="116.0" text="Harcover Copies" />
             <TableColumn fx:id="paperbackCheckedOutColumn" prefWidth="127.0" text="Paperback Copies" />
             <TableColumn fx:id="seriesColumn" minWidth="7.0" prefWidth="64.0" text="Series" />
-            <TableColumn fx:id="returnDateColumn" prefWidth="75.0" text="Due Date" />
+            <TableColumn fx:id="overdueColumn" prefWidth="75.0" text="Overdue" />
             <TableColumn fx:id="ratingsColumn" prefWidth="67.0" text="Rating" />
         </columns>
       </TableView>

@@ -13,6 +13,7 @@ public class PersonalBook implements java.io.Serializable {
     private Author author;
     private String title;
     private Date returnDate;
+    private boolean overdue;
     private String description;
     private int numPaperbackCheckedOut = 0;
     private int numHardcoverCheckedOut = 0;
@@ -36,6 +37,9 @@ public class PersonalBook implements java.io.Serializable {
         ratings = book.getRatings();
         callNum = book.getCallNum();
         genre = book.getGenre();
+        overdue = false;
+        returnDate = b.getReturnDate();
+        System.out.println(returnDate);
     }
 
 
@@ -94,6 +98,17 @@ public class PersonalBook implements java.io.Serializable {
 
     public Date getReturnDate(){
         return returnDate;
+    }
+
+    public boolean getOverdue(){return overdue;}
+
+
+    public boolean checkOverdue(){
+        Date temp = new Date();
+        if (temp.after(returnDate)) {
+            overdue = true;
+        }
+        return overdue;
     }
 
 }

@@ -31,7 +31,7 @@ public class CheckedOutBooksController {
     private TableColumn seriesColumn;
 
     @FXML
-    private TableColumn returnDateColumn;
+    private TableColumn overdueColumn;
 
     @FXML
     private TableColumn ratingsColumn;
@@ -50,13 +50,17 @@ public class CheckedOutBooksController {
         this.p = p;
         this.checkedOutBooks = p.getCheckedOutBooks();
 
+        for (int i = 0; i < checkedOutBooks.size(); i++){
+            checkedOutBooks.get(i).checkOverdue();
+        }
+
 
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         hardcoverCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numHardcoverCheckedOut"));
         paperbackCheckedOutColumn.setCellValueFactory(new PropertyValueFactory<>("numPaperbackCheckedOut"));
         seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
-        returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+        overdueColumn.setCellValueFactory(new PropertyValueFactory<>("overdue"));
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("avgRating"));
         table.setItems(FXCollections.observableList(checkedOutBooks));
         this.update();

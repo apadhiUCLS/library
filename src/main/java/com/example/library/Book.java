@@ -152,18 +152,16 @@ public class Book implements java.io.Serializable {
         this.series=s;
     }
 
-    public void setReturnDate(){
-        returnDate=new Date();
+    public void setReturnDate() throws IOException {
+        returnDate = new Date();
         returnDate.setMonth(returnDate.getMonth()+1);
+
+        serialize();
+
     }
 
     public Date getReturnDate(){
         return returnDate;
-    }
-
-    public boolean isOverdue(){
-        Date today=new Date();
-        return returnDate.before(today);
     }
 
     public int getInventory(){
@@ -200,7 +198,7 @@ public class Book implements java.io.Serializable {
         return numPaperbackCheckedOut;
     }
 
-    public String checkoutPaperback(Person p){
+    public String checkoutPaperback(Person p) throws IOException {
         ArrayList<Book> temp = BrowseController.getBookList();
         int i = temp.indexOf(this);
 
@@ -236,7 +234,7 @@ public class Book implements java.io.Serializable {
         }
     }
 
-    public String checkoutHardcover(Person p){
+    public String checkoutHardcover(Person p) throws IOException {
         ArrayList<Book> temp = BrowseController.getBookList();
         if (invHardcover>0){
             invHardcover-=1;
@@ -320,7 +318,7 @@ public class Book implements java.io.Serializable {
 
     public  void serialize() throws IOException {
         try {
-            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.library/settings.ser");
+            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.library/library.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             out.close();
@@ -330,7 +328,7 @@ public class Book implements java.io.Serializable {
         }
     }
 
-    public String renew(){
+    public String renew() throws IOException {
         if (checkedOut==true){
             setReturnDate();
             return "Renew successful!";

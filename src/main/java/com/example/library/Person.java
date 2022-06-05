@@ -230,7 +230,7 @@ public class Person implements java.io.Serializable {
         Date today = new Date();
         this.overdue = new ArrayList<Book>();
         for (int i = 0; i < checkedOutBooks.size(); i++) {
-            if (checkedOutBooks.get(i).getBook().getReleaseDate().compareTo(today) > 0) {
+            if (checkedOutBooks.get(i).getBook().getReturnDate().compareTo(today) > 0) {
                 existsOverdue = true;
                 this.overdue.add(checkedOutBooks.get(i).getBook());
             }

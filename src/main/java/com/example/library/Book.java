@@ -14,7 +14,7 @@ import java.util.Locale;
 public class Book implements java.io.Serializable {
     private Author author;
     private String title;
-    private Date releaseDate;
+    //private Date releaseDate;
     private Date returnDate;
     private String description;
     private int inventory;
@@ -120,9 +120,7 @@ public class Book implements java.io.Serializable {
         author=a;
     }
 
-    public void setReleaseDate(Date d){
-        releaseDate=d;
-    }
+    //public void setReleaseDate(Date d){releaseDate=d;}
 
     public void setDescription(String d){
         description=d;
@@ -140,9 +138,7 @@ public class Book implements java.io.Serializable {
         return description;
     }
 
-    public Date getReleaseDate(){
-        return releaseDate;
-    }
+    //public Date getReleaseDate() {return releaseDate;}
 
     public Series getSeries(){
         return series;
@@ -334,7 +330,6 @@ public class Book implements java.io.Serializable {
         }
     }
 
-    //still needs work
     public String renewHardcover(Person p) throws IOException {
         if (numHardcoverCheckedOut > 0){
             //setReturnDate();

@@ -36,6 +36,7 @@ public class PersonalBook extends Book implements java.io.Serializable {
         ratings = book.getRatings();
         callNum = book.getCallNum();
         genre = book.getGenre();
+        returnDate = book.getReturnDate();
     }
 
 

@@ -37,5 +37,12 @@
       <Button fx:id="btnRemove" layoutX="491.0" layoutY="90.0" mnemonicParsing="false" onAction="#setBtnRemove" text="Remove Book" />
       <Button fx:id="btnRenewHardcover" layoutX="60.0" layoutY="295.0" mnemonicParsing="false" onAction="#setBtnRenewHardcover" prefHeight="26.0" prefWidth="77.0" text="Renew" />
       <Button fx:id="btnRenewPaperback" layoutX="246.0" layoutY="295.0" mnemonicParsing="false" onAction="#setBtnRenewPaperback" prefHeight="26.0" prefWidth="77.0" text="Renew" />
+      <Label layoutX="391.0" layoutY="216.0" text="Publisher: " />
+      <Label layoutX="375.0" layoutY="264.0" text="Release Year: " />
+      <Label fx:id="publisher" layoutX="494.0" layoutY="216.0" />
+      <Label fx:id="year" layoutX="491.0" layoutY="264.0" />
+      <Label layoutX="61.0" layoutY="365.0" text="Citation" />
+      <Label fx:id="citation" layoutX="137.0" layoutY="365.0" />
+      <Button fx:id="authorView" layoutX="394.0" layoutY="360.0" mnemonicParsing="false" onAction="#goAuthor" text="View Author Info" />
    </children>
 </AnchorPane>

@@ -17,7 +17,7 @@ public class  LibraryApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         s=stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LibraryApplication.class.getResource("choose-user.fxml"));
         loader=fxmlLoader;
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         home=scene;
@@ -56,9 +56,9 @@ public class  LibraryApplication extends Application {
     }
 
     public static void switchToMainView(Person p, ArrayList<Person> people) throws IOException {
-/*        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
         Parent root = loader.load();
-        Scene myScene = new Scene(root);*/
+        Scene myScene = new Scene(root);
         BrowseController browseController = loader.getController();
         browseController.update();
         browseController.setPerson(p);
@@ -156,6 +156,17 @@ public class  LibraryApplication extends Application {
         BookOverviewController bookController = loader.getController();
         bookController.setPerson(p);
         bookController.setBook(book);
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
+    public static void switchToAuthorView(Book book, Person p) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("authorView.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        AuthorViewController authorViewController = loader.getController();
+        authorViewController.setPerson(p);
+        authorViewController.setBook(book);
+
         s.setScene(myScene); // the initialize method will get called in here
     }
 

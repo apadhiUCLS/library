@@ -41,6 +41,12 @@ public class BookOverviewController {
     @FXML
     private Label ratings;
     @FXML
+    private Label publisher;
+    @FXML
+    private Label year;
+    @FXML
+    private Label citation;
+    @FXML
     private Button btnReview;
     @FXML
     private Button btnRate;
@@ -48,6 +54,8 @@ public class BookOverviewController {
     private Button btnDidNotFinish;
     @FXML
     private Button btnFinish;
+    @FXML
+    private Button authorView;
     @FXML
     private Button btnRenewHardcover;
     @FXML
@@ -67,6 +75,11 @@ public class BookOverviewController {
     @FXML
     public void setBtnRemove() throws IOException {
         LibraryApplication.switchToMainViewRemoveBook(p,b);
+    }
+
+    @FXML
+    public void goAuthor() throws IOException {
+        LibraryApplication.switchToAuthorView(b, p);
     }
 
     @FXML
@@ -110,12 +123,6 @@ public class BookOverviewController {
     @FXML
     public void setBtnWantToRead() throws IOException {
         p.addWantToRead(b);
-        LibraryApplication.switchToWantToReadView(p);
-    }
-
-    @FXML
-    public void setBtnRemoveFromWantToRead() throws IOException {
-        p.removeWantToRead(b);
         LibraryApplication.switchToWantToReadView(p);
     }
 
@@ -165,6 +172,10 @@ public class BookOverviewController {
         this.lblPaperbackCopies.setText(Integer.toString(b.getInvPaperback()));
         this.lblHardcoverCopies.setText(Integer.toString(b.getInvHardcover()));
         this.ratings.setText(Double.toString(b.getAvgRating()));
+        this.publisher.setText(b.getPublisher());
+        this.year.setText(Integer.toString(b.getReleaseYear()));
+        this.citation.setText(b.getCitation());
+        System.out.println(b.getAuthor());
     }
 
 

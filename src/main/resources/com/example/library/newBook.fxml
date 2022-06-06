@@ -25,6 +25,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label prefHeight="17.0" prefWidth="139.0" text="Title: " />
@@ -35,7 +37,7 @@
             <Label text="Series: " GridPane.rowIndex="5" />
             <Label text="Number In Series: " GridPane.rowIndex="6" />
             <Label text="Genre: " GridPane.rowIndex="7" />
-            <Button fx:id="done" mnemonicParsing="false" onAction="#doneButtonHandler" text="Done" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Button fx:id="done" mnemonicParsing="false" onAction="#doneButtonHandler" text="Done" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <TextField fx:id="title" GridPane.columnIndex="1" />
             <TextField fx:id="authorFName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="paperInv" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -44,6 +46,10 @@
             <TextField fx:id="numInSeries" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField fx:id="genre" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="authorLName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="publisher" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="releaseYear" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label text="Publisher:" GridPane.rowIndex="8" />
+            <Label text="Release Year:" GridPane.rowIndex="9" />
          </children>
       </GridPane>
    </children>

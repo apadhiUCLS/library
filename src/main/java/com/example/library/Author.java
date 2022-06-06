@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Author implements java.io.Serializable{
     private String firstName;
     private String lastName;
-    private ArrayList<Book> bookList;
+    private ArrayList<Book> bookList=new ArrayList<Book>();
 
     public Author (String firstName, String lastName){
         this.firstName=firstName;

@@ -329,9 +329,8 @@ public class Book implements java.io.Serializable {
         }
     }
 
-    public String renew() throws IOException {
-        if (checkedOut == true) {
-            public String renewHardcover (Person p){
+
+            public String renewHardcover(Person p){
                 if (numHardcoverCheckedOut > 0) {
                     setReturnDate();
                     p.renewHardcover(this);
@@ -342,8 +341,15 @@ public class Book implements java.io.Serializable {
             }
 
             public String renewPaperBack (Person p){
-
+                if (numPaperbackCheckedOut > 0) {
+                    setReturnDate();
+                    p.renewPaperback(this);
+                    return "Renew successful! The new due date is " + returnDate;
+                } else {
+                    return "You need to check this book out before renewing it";
+                }
             }
+
 
             public String hold (Person p){
                 if (inventory == 0) {
@@ -362,5 +368,3 @@ public class Book implements java.io.Serializable {
                 return "";
             }
         }
-    }
-}

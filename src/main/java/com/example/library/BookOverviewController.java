@@ -48,6 +48,10 @@ public class BookOverviewController {
     private Button btnDidNotFinish;
     @FXML
     private Button btnFinish;
+    @FXML
+    private Button btnRenewHardcover;
+    @FXML
+    private Button btnRenewPaperback;
 
     @FXML
     private Label callNum;
@@ -139,6 +143,18 @@ public class BookOverviewController {
     public void setBtnFinish() throws IOException {
         p.removeDidNotFinish(b);
         LibraryApplication.switchToDidNotFinishView(p);
+    }
+
+    @FXML
+    public void setBtnRenewHardcover(){
+        String message = b.renewHardcover(p);
+        LibraryApplication.switchToRenewView(p, message);
+    }
+
+    @FXML
+    public void setBtnRenewPaperback(){
+        String message = b.renewPaperback(p);
+        LibraryApplication.switchToRenewView(p, message);
     }
 
     public void setBook(Book b) {

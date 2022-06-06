@@ -20,181 +20,182 @@ public class Book implements java.io.Serializable {
     private int inventory;
     private int invPaperback;
     private int invHardcover;
-    boolean checkedOut=false;
-    private int numPaperbackCheckedOut=0;
-    private int numHardcoverCheckedOut=0;
+    boolean checkedOut = false;
+    private int numPaperbackCheckedOut = 0;
+    private int numHardcoverCheckedOut = 0;
     private int avgRating;
-    private int numRatings=0;
+    private int numRatings = 0;
     private Series series;
     private int numInSeries;
-    public ArrayList<Rating> ratings=new ArrayList<Rating>();
+    public ArrayList<Rating> ratings = new ArrayList<Rating>();
     private String callNum;
     private String genre;
 
-    public Book(String title, Author author){
-        this.title=title;
-        this.author=author;
-        this.inventory=0;
+    public Book(String title, Author author) {
+        this.title = title;
+        this.author = author;
+        this.inventory = 0;
     }
 
-    public Book(){}
+    public Book() {
+    }
 
     public String getCallNum() {
         return this.determineCallNum();
     }
 
-    public void setCallNum(String s){
-        callNum=s;
+    public void setCallNum(String s) {
+        callNum = s;
     }
 
-    public String determineCallNum(){
-        String c=genre.toUpperCase(Locale.ROOT)+" ";
-        String letters="";
-        if (author.getLastName().length()<3){
-            letters=author.getLastName();
-        } else{
-            letters=author.getLastName().substring(0,3);
+    public String determineCallNum() {
+        String c = genre.toUpperCase(Locale.ROOT) + " ";
+        String letters = "";
+        if (author.getLastName().length() < 3) {
+            letters = author.getLastName();
+        } else {
+            letters = author.getLastName().substring(0, 3);
         }
-        c+=letters;
+        c += letters;
         return c;
     }
 
-    public Book(String title, Author author, int invPaperback, int invHardcover,String genre){
-        this.title=title;
-        this.author=author;
-        this.invHardcover=invHardcover;
-        this.invPaperback=invPaperback;
-        inventory=invPaperback+invHardcover;
-        this.genre=genre;
-        callNum=determineCallNum();
+    public Book(String title, Author author, int invPaperback, int invHardcover, String genre) {
+        this.title = title;
+        this.author = author;
+        this.invHardcover = invHardcover;
+        this.invPaperback = invPaperback;
+        inventory = invPaperback + invHardcover;
+        this.genre = genre;
+        callNum = determineCallNum();
     }
 
-    public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries, String genre){
-        this.title=title;
-        this.author=author;
-        this.invHardcover=invHardcover;
-        this.invPaperback=invPaperback;
-        this.series=series;
-        this.numInSeries=numInSeries;
-        inventory=invPaperback+invHardcover;
-        this.genre=genre;
-        callNum=determineCallNum();
+    public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries, String genre) {
+        this.title = title;
+        this.author = author;
+        this.invHardcover = invHardcover;
+        this.invPaperback = invPaperback;
+        this.series = series;
+        this.numInSeries = numInSeries;
+        inventory = invPaperback + invHardcover;
+        this.genre = genre;
+        callNum = determineCallNum();
     }
 
-    public ArrayList<Rating> getRatings(){
+    public ArrayList<Rating> getRatings() {
         return ratings;
     }
 
-    public int getNumInSeries(){
+    public int getNumInSeries() {
         return numInSeries;
     }
 
-    public void setNumInSeries(int s){
-        numInSeries=s;
+    public void setNumInSeries(int s) {
+        numInSeries = s;
     }
 
-    public void setGenre(String s){
-        genre=s;
+    public void setGenre(String s) {
+        genre = s;
     }
 
-    public String getGenre(){
+    public String getGenre() {
         return genre;
     }
 
-    public double getAvgRating(){
+    public double getAvgRating() {
         return avgRating;
     }
 
-    public void addRating(Rating r){
+    public void addRating(Rating r) {
         ratings.add(r);
         System.out.println(ratings);
-        numRatings+=1;
-        avgRating=(avgRating*(numRatings-1)+r.getStars())/numRatings;
+        numRatings += 1;
+        avgRating = (avgRating * (numRatings - 1) + r.getStars()) / numRatings;
     }
 
-    public void setTitle(String t){
-        title=t;
+    public void setTitle(String t) {
+        title = t;
     }
 
-    public void setAuthor(Author a){
-        author=a;
+    public void setAuthor(Author a) {
+        author = a;
     }
 
-    public void setReleaseDate(Date d){
-        releaseDate=d;
+    public void setReleaseDate(Date d) {
+        releaseDate = d;
     }
 
-    public void setDescription(String d){
-        description=d;
+    public void setDescription(String d) {
+        description = d;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
 
-    public Author getAuthor(){
+    public Author getAuthor() {
         return author;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
-    public Date getReleaseDate(){
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public Series getSeries(){
+    public Series getSeries() {
         return series;
     }
 
-    public void setSeries(Series s){
-        this.series=s;
+    public void setSeries(Series s) {
+        this.series = s;
     }
 
     public void setReturnDate() throws IOException {
         returnDate = new Date();
-        returnDate.setMonth(returnDate.getMonth()+1);
+        returnDate.setMonth(returnDate.getMonth() + 1);
 
         serialize();
 
     }
 
-    public Date getReturnDate(){
+    public Date getReturnDate() {
         return returnDate;
     }
 
-    public int getInventory(){
+    public int getInventory() {
         return inventory;
     }
 
-    public void setInventory(int i){
-        inventory= i;
+    public void setInventory(int i) {
+        inventory = i;
     }
 
-    public int getInvPaperback(){
+    public int getInvPaperback() {
         return invPaperback;
     }
 
-    public void setInvPaperback(int i){
+    public void setInvPaperback(int i) {
         invPaperback = i;
-        inventory=invPaperback+invHardcover;
+        inventory = invPaperback + invHardcover;
     }
 
-    public int getInvHardcover(){
+    public int getInvHardcover() {
         return invHardcover;
     }
 
-    public void setInvHardcover(int i){
-        invHardcover= i;
-        inventory=invPaperback+invHardcover;
+    public void setInvHardcover(int i) {
+        invHardcover = i;
+        inventory = invPaperback + invHardcover;
     }
 
-    public int getNumHardcoverCheckedOut(){
+    public int getNumHardcoverCheckedOut() {
         return numHardcoverCheckedOut;
     }
 
-    public int getNumPaperbackCheckedOut(){
+    public int getNumPaperbackCheckedOut() {
         return numPaperbackCheckedOut;
     }
 
@@ -202,23 +203,23 @@ public class Book implements java.io.Serializable {
         ArrayList<Book> temp = BrowseController.getBookList();
         int i = temp.indexOf(this);
 
-        if (invPaperback>0){
-            invPaperback-=1;
-            checkedOut=true;
-            numPaperbackCheckedOut+=1;
+        if (invPaperback > 0) {
+            invPaperback -= 1;
+            checkedOut = true;
+            numPaperbackCheckedOut += 1;
             setReturnDate();
 
-            if (p.inHolds(this)){
+            if (p.inHolds(this)) {
                 p.removeHold(this);
             }
 
-            if (p.inWantToRead(this) >= 0){
+            if (p.inWantToRead(this) >= 0) {
                 p.removeWantToRead(this);
             }
-            inventory=invPaperback+invHardcover;
+            inventory = invPaperback + invHardcover;
             try {
                 String s = System.getProperty("user.home");
-                FileOutputStream fileOut = new FileOutputStream( s + "/.library/library.ser");
+                FileOutputStream fileOut = new FileOutputStream(s + "/.library/library.ser");
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(temp);
                 out.close();
@@ -227,8 +228,8 @@ public class Book implements java.io.Serializable {
             } catch (IOException c) {
                 c.printStackTrace();
             }
-            return "Checkout successful! The return date is " +returnDate;
-        } else{
+            return "Checkout successful! The return date is " + returnDate;
+        } else {
             hold(p);
             return "No copies available:( Hold has been placed.";
         }
@@ -236,21 +237,21 @@ public class Book implements java.io.Serializable {
 
     public String checkoutHardcover(Person p) throws IOException {
         ArrayList<Book> temp = BrowseController.getBookList();
-        if (invHardcover>0){
-            invHardcover-=1;
-            checkedOut=true;
-            numHardcoverCheckedOut+=1;
+        if (invHardcover > 0) {
+            invHardcover -= 1;
+            checkedOut = true;
+            numHardcoverCheckedOut += 1;
             setReturnDate();
-            if (p.inHolds(this)){
+            if (p.inHolds(this)) {
                 p.removeHold(this);
             }
-            if (p.inWantToRead(this) >= 0){
+            if (p.inWantToRead(this) >= 0) {
                 p.removeWantToRead(this);
             }
-            inventory=invPaperback+invHardcover;
+            inventory = invPaperback + invHardcover;
             try {
                 String s = System.getProperty("user.home");
-                FileOutputStream fileOut = new FileOutputStream( s + "/.library/library.ser");
+                FileOutputStream fileOut = new FileOutputStream(s + "/.library/library.ser");
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(temp);
                 out.close();
@@ -259,24 +260,24 @@ public class Book implements java.io.Serializable {
             } catch (IOException i) {
                 i.printStackTrace();
             }
-            return "Checkout successful! The return date is " +returnDate;
-        } else{
+            return "Checkout successful! The return date is " + returnDate;
+        } else {
             hold(p);
             return "No copies available:( Hold has been placed.";
         }
     }
 
-    public String returnPaperback(Person p){
+    public String returnPaperback(Person p) {
         ArrayList<Book> temp = BrowseController.getBookList();
-        if (numPaperbackCheckedOut>0){
-            invPaperback +=1;
+        if (numPaperbackCheckedOut > 0) {
+            invPaperback += 1;
             p.returnPaperbackBook(this);
-            returnDate=null;
-            numPaperbackCheckedOut-=1;
-            inventory=invPaperback+invHardcover;
+            returnDate = null;
+            numPaperbackCheckedOut -= 1;
+            inventory = invPaperback + invHardcover;
             try {
                 String s = System.getProperty("user.home");
-                FileOutputStream fileOut = new FileOutputStream( s + "/.library/library.ser");
+                FileOutputStream fileOut = new FileOutputStream(s + "/.library/library.ser");
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(temp);
                 out.close();
@@ -286,22 +287,22 @@ public class Book implements java.io.Serializable {
                 i.printStackTrace();
             }
             return "Return successful!";
-        } else{
+        } else {
             return "This book was not checked out, so you can't return it:(";
         }
     }
 
-    public String returnHardcover(Person p){
+    public String returnHardcover(Person p) {
         ArrayList<Book> temp = BrowseController.getBookList();
-        if (numHardcoverCheckedOut>0){
-            invHardcover +=1;
+        if (numHardcoverCheckedOut > 0) {
+            invHardcover += 1;
             p.returnHardcoverBook(this);
-            returnDate=null;
-            numHardcoverCheckedOut-=1;
-            inventory=invPaperback+invHardcover;
+            returnDate = null;
+            numHardcoverCheckedOut -= 1;
+            inventory = invPaperback + invHardcover;
             try {
                 String s = System.getProperty("user.home");
-                FileOutputStream fileOut = new FileOutputStream( s + "/.library/library.ser");
+                FileOutputStream fileOut = new FileOutputStream(s + "/.library/library.ser");
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(temp);
                 out.close();
@@ -311,12 +312,12 @@ public class Book implements java.io.Serializable {
                 i.printStackTrace();
             }
             return "Return successful!";
-        } else{
+        } else {
             return "This book was not checked out, so you can't return it:(";
         }
     }
 
-    public  void serialize() throws IOException {
+    public void serialize() throws IOException {
         try {
             FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.library/library.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -329,28 +330,37 @@ public class Book implements java.io.Serializable {
     }
 
     public String renew() throws IOException {
-        if (checkedOut==true){
-            setReturnDate();
-            return "Renew successful!";
-        } else{
-            return "You need to check this book out before renewing it";
-        }
-    }
+        if (checkedOut == true) {
+            public String renewHardcover (Person p){
+                if (numHardcoverCheckedOut > 0) {
+                    setReturnDate();
+                    p.renewHardcover(this);
+                    return "Renew successful! The new due date is " + returnDate;
+                } else {
+                    return "You need to check this book out before renewing it";
+                }
+            }
 
-    public String hold(Person p){
-        if (inventory==0){
-            p.addHold(this);
-            return "Hold successful";
-        } else{
-            return "There are copies available, so you can check this book out!";
-        }
-    }
+            public String renewPaperBack (Person p){
 
-    public String getSeriesTitle() {
+            }
 
-        if (series!=null){
-            return this.series.getSeriesTitle();
+            public String hold (Person p){
+                if (inventory == 0) {
+                    p.addHold(this);
+                    return "Hold successful";
+                } else {
+                    return "There are copies available, so you can check this book out!";
+                }
+            }
+
+            public String getSeriesTitle () {
+
+                if (series != null) {
+                    return this.series.getSeriesTitle();
+                }
+                return "";
+            }
         }
-        return "";
     }
 }

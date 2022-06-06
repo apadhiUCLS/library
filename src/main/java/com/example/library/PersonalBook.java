@@ -9,9 +9,6 @@ import java.util.Date;
 import java.util.Locale;
 
 public class PersonalBook extends Book implements java.io.Serializable {
-    private Book b;
-    private Author author;
-    private String title;
     private Date returnDate;
     private boolean overdue;
     private String description;
@@ -26,26 +23,23 @@ public class PersonalBook extends Book implements java.io.Serializable {
     private String genre;
 
     public PersonalBook(Book book) throws IOException {
-        b = book;
-        author = book.getAuthor();
-        title = book.getTitle();
+        super(book.getTitle(), book.getAuthor(), book.getSeries(), book.getNumInSeries(), book.getGenre());
         description = book.getDescription();
         avgRating = book.getAvgRating();
         numRatings = book.getRatings().size();
-        series = book.getSeries();
         numInSeries = book.getNumInSeries();
         ratings = book.getRatings();
         callNum = book.getCallNum();
         genre = book.getGenre();
         overdue = false;
         book.setReturnDate();
-        returnDate = b.getReturnDate();
+        returnDate = book.getReturnDate();
         System.out.println(returnDate);
     }
 
 
     public Book getBook() {
-        return b;
+        return this;
     }
 
     public int getNumHardcoverCheckedOut() {
@@ -79,14 +73,6 @@ public class PersonalBook extends Book implements java.io.Serializable {
 
     public double getAvgRating(){
         return avgRating;
-    }
-
-    public String getTitle(){
-        return title;
-    }
-
-    public Author getAuthor(){
-        return author;
     }
 
     public String getDescription(){

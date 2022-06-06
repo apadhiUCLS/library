@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.BookOverviewController">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.BookOverviewController">
    <children>
       <Label layoutX="46.0" layoutY="65.0" text="Author:" />
       <Label layoutX="44.0" layoutY="103.0" text="Blurb:" />
@@ -26,13 +26,13 @@
       <Label layoutX="260.0" layoutY="65.0" text="Average Rating:" />
       <Label fx:id="ratings" layoutX="382.0" layoutY="65.0" prefHeight="17.0" prefWidth="37.0" />
       <Button fx:id="btnReview" layoutX="265.0" layoutY="21.0" mnemonicParsing="false" onAction="#goToReviews" prefHeight="26.0" prefWidth="110.0" text="Go To Reviews" />
-      <Button fx:id="btnRate" layoutX="520.0" layoutY="302.0" mnemonicParsing="false" onAction="#goToRate" text="Rate" />
-      <Button fx:id="btnWantToRead" layoutX="494.0" layoutY="246.0" mnemonicParsing="false" onAction="#setBtnWantToRead" text="Want To Read" />
+      <Button fx:id="btnRate" layoutX="681.0" layoutY="120.0" mnemonicParsing="false" onAction="#goToRate" text="Rate" />
+      <Button fx:id="btnWantToRead" layoutX="654.0" layoutY="77.0" mnemonicParsing="false" onAction="#setBtnWantToRead" text="Want To Read" />
       <Button fx:id="btnDidNotFinish" layoutX="493.0" layoutY="120.0" mnemonicParsing="false" onAction="#setBtnDidNotFinish" text="Did Not Finish" />
       <Button fx:id="btnFinish" layoutX="513.0" layoutY="152.0" mnemonicParsing="false" onAction="#setBtnFinish" text="Finish" />
       <Label layoutX="45.0" layoutY="181.0" text="Call Number:" />
       <Label fx:id="callNum" layoutX="137.0" layoutY="181.0" prefHeight="17.0" prefWidth="132.0" />
-      <Button fx:id="btnRemoveFromWantToRead" layoutX="453.0" layoutY="211.0" mnemonicParsing="false" onAction="#setBtnRemoveFromWantToRead" text="Remove From Want to Read" />
+      <Button fx:id="btnRemoveFromWantToRead" layoutX="617.0" layoutY="34.0" mnemonicParsing="false" onAction="#setBtnRemoveFromWantToRead" text="Remove From Want to Read" />
       <Button fx:id="btnRemoveFavorite" layoutX="487.0" layoutY="61.0" mnemonicParsing="false" onAction="#setBtnRemoveFavorite" text="Remove Favorite" />
       <Button fx:id="btnRemove" layoutX="491.0" layoutY="90.0" mnemonicParsing="false" onAction="#setBtnRemove" text="Remove Book" />
       <Button fx:id="btnRenewHardcover" layoutX="60.0" layoutY="295.0" mnemonicParsing="false" onAction="#setBtnRenewHardcover" prefHeight="26.0" prefWidth="77.0" text="Renew" />

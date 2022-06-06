@@ -96,15 +96,6 @@ public class Book implements java.io.Serializable {
         c += letters;
         return c;
     }
-
-    public Book(String title, Author author, int invPaperback, int invHardcover, String genre) {
-        this.title = title;
-        this.author = author;
-        this.invHardcover = invHardcover;
-        this.invPaperback = invPaperback;
-        inventory = invPaperback + invHardcover;
-        this.genre = genre;
-        callNum = determineCallNum();
     public Book(String title, Author author, int invPaperback, int invHardcover,String genre){
         this.title=title;
         this.author=author;
@@ -117,18 +108,19 @@ public class Book implements java.io.Serializable {
     }
 
     public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries, String genre, String publisher, int releaseYear){
-        this.title=title;
-        this.author=author;
-        this.invHardcover=invHardcover;
-        this.invPaperback=invPaperback;
-        this.series=series;
-        this.numInSeries=numInSeries;
-        inventory=invPaperback+invHardcover;
-        this.genre=genre;
-        callNum=determineCallNum();
-        this.publisher=publisher;
-        this.releaseYear=releaseYear;
-        citation=determineCitation();
+            this.title = title;
+            this.author = author;
+            this.invHardcover = invHardcover;
+            this.invPaperback = invPaperback;
+            this.series = series;
+            this.numInSeries = numInSeries;
+            inventory = invPaperback + invHardcover;
+            this.genre = genre;
+            callNum = determineCallNum();
+            this.publisher = publisher;
+            this.releaseYear = releaseYear;
+            citation = determineCitation();
+    }
     public Book(String title, Author author, int invPaperback, int invHardcover, Series series, int numInSeries, String genre) {
         this.title = title;
         this.author = author;
@@ -137,6 +129,15 @@ public class Book implements java.io.Serializable {
         this.series = series;
         this.numInSeries = numInSeries;
         inventory = invPaperback + invHardcover;
+        this.genre = genre;
+        callNum = determineCallNum();
+    }
+
+    public Book(String title, Author author, Series series, int numInSeries, String genre) {
+        this.title = title;
+        this.author = author;
+        this.series = series;
+        this.numInSeries = numInSeries;
         this.genre = genre;
         callNum = determineCallNum();
     }
@@ -161,7 +162,6 @@ public class Book implements java.io.Serializable {
         return genre;
     }
 
-    public double getAvgRating() {
     public double getAvgRating(){
         avgRating=0;
         for (Rating r: ratings){
@@ -391,10 +391,11 @@ public class Book implements java.io.Serializable {
     }
 
     public void serialize() throws IOException {
+        ArrayList<Book> temp = BrowseController.getBookList();
         try {
             FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/.library/library.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(this);
+            out.writeObject(temp);
             out.close();
             fileOut.close();
         } catch (IOException i) {

@@ -164,6 +164,12 @@ public class BookOverviewController {
         LibraryApplication.switchToRenewView(p, message);
     }
 
+    @FXML
+    public void setBtnRemoveFromWantToRead() throws IOException {
+        p.removeWantToRead(b);
+        LibraryApplication.switchToWantToReadView(p);
+    }
+
     public void setBook(Book b) {
         this.b = b;
         this.lblTitle.setText(b.getTitle());

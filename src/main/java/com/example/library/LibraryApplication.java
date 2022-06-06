@@ -179,6 +179,16 @@ public class  LibraryApplication extends Application {
         s.setScene(myScene); // the initialize method will get called in here
     }
 
+    public static void switchToRenewView(Person p, String m) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("renew-view.fxml"));
+        Parent root = loader.load();
+        Scene myScene = new Scene(root);
+        RenewViewController renewView = loader.getController();
+        renewView.setMessage(m);
+        renewView.setPerson(p);
+        s.setScene(myScene); // the initialize method will get called in here
+    }
+
     public static void main(String[] args) {
         launch();
     }

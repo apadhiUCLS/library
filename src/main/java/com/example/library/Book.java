@@ -14,7 +14,7 @@ import java.util.Locale;
 public class Book implements java.io.Serializable {
     private Author author;
     private String title;
-    private Date releaseDate;
+    //private Date releaseDate;
     private Date returnDate;
     private String description;
     private int inventory;
@@ -121,9 +121,9 @@ public class Book implements java.io.Serializable {
         author = a;
     }
 
-    public void setReleaseDate(Date d) {
-        releaseDate = d;
-    }
+    //public void setReleaseDate(Date d) {
+    //    releaseDate = d;
+    //}
 
     public void setDescription(String d) {
         description = d;
@@ -141,9 +141,9 @@ public class Book implements java.io.Serializable {
         return description;
     }
 
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
+    //public Date getReleaseDate() {
+     //   return releaseDate;
+    //}
 
     public Series getSeries() {
         return series;
@@ -330,21 +330,18 @@ public class Book implements java.io.Serializable {
     }
 
 
-            public String renewHardcover(Person p){
+            public String renewHardcover(Person p) throws IOException {
                 if (numHardcoverCheckedOut > 0) {
-                    setReturnDate();
-                    p.renewHardcover(this);
-                    return "Renew successful! The new due date is " + returnDate;
+                    return p.renewHardcover(this);
                 } else {
                     return "You need to check this book out before renewing it";
                 }
             }
 
-            public String renewPaperBack (Person p){
+            public String renewPaperback(Person p) throws IOException {
                 if (numPaperbackCheckedOut > 0) {
-                    setReturnDate();
-                    p.renewPaperback(this);
-                    return "Renew successful! The new due date is " + returnDate;
+
+                    return p.renewPaperback(this);
                 } else {
                     return "You need to check this book out before renewing it";
                 }

@@ -25,7 +25,7 @@ public class PersonalBook extends Book implements java.io.Serializable {
     private String callNum;
     private String genre;
 
-    public PersonalBook(Book book) {
+    public PersonalBook(Book book) throws IOException {
         b = book;
         author = book.getAuthor();
         title = book.getTitle();
@@ -38,6 +38,7 @@ public class PersonalBook extends Book implements java.io.Serializable {
         callNum = book.getCallNum();
         genre = book.getGenre();
         overdue = false;
+        book.setReturnDate();
         returnDate = b.getReturnDate();
         System.out.println(returnDate);
     }
@@ -113,6 +114,28 @@ public class PersonalBook extends Book implements java.io.Serializable {
             overdue = true;
         }
         return overdue;
+    }
+
+    public String renewHardcover() throws IOException {
+        if (numHardcoverCheckedOut > 0){
+            super.setReturnDate();
+
+            super.serialize();
+            return "Renew successful! The new due date is " + returnDate;
+        } else{
+            return "You need to check this book out before renewing it (PERSONAL BOOK)";
+        }
+    }
+
+    public String renewPaperBack() throws IOException {
+        if (numPaperbackCheckedOut > 0){
+            super.setReturnDate();
+
+            super.serialize();
+            return "Renew successful! The new due date is " + returnDate;
+        } else{
+            return "You need to check this book out before renewing it (PERSONAL BOOK)";
+        }
     }
 
 }

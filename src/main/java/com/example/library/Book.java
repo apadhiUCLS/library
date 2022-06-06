@@ -142,6 +142,13 @@ public class Book implements java.io.Serializable {
     }
 
     public double getAvgRating(){
+        avgRating=0;
+        for (Rating r: ratings){
+            avgRating+=r.getStars();
+        }
+        if (ratings.size()>0){
+            avgRating=avgRating/ratings.size();
+        }
         return avgRating;
     }
 

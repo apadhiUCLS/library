@@ -17,7 +17,7 @@ public class  LibraryApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         s=stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LibraryApplication.class.getResource("choose-user.fxml"));
         loader=fxmlLoader;
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         home=scene;
@@ -42,9 +42,9 @@ public class  LibraryApplication extends Application {
     }
 
     public static void switchToMainView(Person p, ArrayList<Person> people) throws IOException {
-/*        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(LibraryApplication.class.getResource("browse-view.fxml"));
         Parent root = loader.load();
-        Scene myScene = new Scene(root);*/
+        Scene myScene = new Scene(root);
         BrowseController browseController = loader.getController();
         browseController.update();
         browseController.setPerson(p);
